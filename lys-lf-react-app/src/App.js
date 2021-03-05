@@ -169,7 +169,7 @@ function App() {
               img={gloPic}
               name="Atty. Gloriosa Yutatco-Sze"
               position="Partner"
-              mobile="0917-502-2674"
+              // mobile="0917-502-2674"
               email="gloriosasze@gmail.com"
             />
 
@@ -177,7 +177,7 @@ function App() {
               img={junPic}
               name="Atty. Juanito Lim, Jr."
               position="Partner"
-              mobile="0917-854-5546"
+              // mobile="0917-854-5546"
               email="juanitolim@gmail.com"
             />
           </div>
@@ -188,10 +188,10 @@ function App() {
           <div className="profile-container flex sm:flex-row flex-col">
             <Profile
               img={null}
-              // name="Atty. Mary Elizabeth Christine Rodriguez" too long
-              name="Atty. Mary E. C. Rodriguez"
+              name="Atty. Mary Elizabeth Christine Rodriguez"
+              // name="Atty. Mary E. C. Rodriguez"
               position="Senior Associate Lawyer"
-              mobile="0917-570-0206"
+              // mobile="0917-570-0206"
               email="mecdr.lslawfirm@gmail.com"
             />
           </div>
@@ -202,18 +202,17 @@ function App() {
           <div className="profile-container flex sm:flex-row flex-col">
             <Profile
               img={null}
-              // name="Atty. Mary Elizabeth Christine Rodriguez" too long
               name="Atty. Teoti N. Reyes"
               position="Junior Associate Lawyer"
-              mobile="0905-696-8119"
+              // mobile="0905-696-8119"
               email="tnr.lslawfirm@gmail.com"
             />
             <Profile
               img={null}
-              // name="Atty. Mary Elizabeth Christine Rodriguez" too long
-              name="Atty. Albert C. M. Pereña"
+              // name="Atty. Albert Caesar M. Pereña" too long
+              name="Atty. Albert Caesar M. Pereña"
               position="Junior Associate Lawyer"
-              mobile="0906-416-6037"
+              // mobile="0906-416-6037"
               email="amp.lslawfirm@gmail.com"
             />
           </div>
@@ -251,16 +250,7 @@ function App() {
               <br />
               <br />
               <span>
-                <strong>Monday</strong> 8am - 6pm
-                <br />
-                <strong>Tuesday</strong> 8am - 6pm
-                <br />
-                <strong>Wednesday</strong> 8am - 6pm
-                <br />
-                <strong>Thursday</strong> 8am - 6pm
-                <br />
-                <strong>Friday</strong> 8am - 6pm
-                <br />
+                <strong>Monday-Friday</strong> 8am - 5pm
               </span>
             </h3>
           </div>

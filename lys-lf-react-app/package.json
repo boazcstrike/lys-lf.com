@@ -20,7 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:stage": "env-cmd -f .env.staging react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
+    "build:stage": "env-cmd -f .env.staging react-scripts build",
+    "build:prod": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,6 +50,7 @@
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "autoprefixer": "^10.2.4",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-google": "^0.14.0",

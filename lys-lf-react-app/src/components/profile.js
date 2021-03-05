@@ -12,8 +12,8 @@ function Profile(props) {
                     <h5 className="position">{props.position}</h5>
                     <hr />
                     <div className="flex flex-col">
-                        <h3>{props.mobile}</h3>
-                        <h3>{props.email}</h3>
+                        {props.mobile ? <h3>{props.mobile}</h3> : null}
+                        {props.email ? <h3>{props.email}</h3> : null}
                     </div>
                 </div>
             </div>
