@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactGA from 'react-ga';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import {
   faPhone,
@@ -46,15 +46,6 @@ function App() {
     faMobileAlt)
 
   var random_boolean = Math.random() < 0.5;
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('ENV:')
-      console.log(process.env.NODE_ENV)
-      console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID)
-      console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-    }
-  }, [])
 
   return (
     <div className="App">
@@ -188,7 +179,7 @@ function App() {
           <div className="profile-container flex sm:flex-row flex-col">
             <Profile
               img={null}
-              name="Atty. Mary Elizabeth Christine Rodriguez"
+              name="Atty. Mary Elizabeth Christine D. Rodriguez"
               // name="Atty. Mary E. C. Rodriguez"
               position="Senior Associate Lawyer"
               // mobile="0917-570-0206"

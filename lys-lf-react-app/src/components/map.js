@@ -5,13 +5,14 @@ import {
     Marker,
     InfoWindow
 } from '@react-google-maps/api';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import pcc from '../images/pcc.jpg'
 
 import './styles.scss'
 
 const containerStyle = {
-    width: '100vw',
+    width: '100%',
     height: '400px'
 };
 
@@ -25,30 +26,33 @@ const divStyle = {
 }
 
 function Map() {
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
+    const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
 
     const [map, setMap] = React.useState(null)
 
-    const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds();
-        map.fitBounds(bounds);
-        setMap(map)
-    }, [])
+    const onLoad = React.useCallback(
+        function onLoad(mapInstance) {
+            // do something with map Instance
+        }
+    )
 
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
     }, [])
 
-
+    if (loadError) {
+        return <div>The map cannot be loaded right now, sorry.</div>
+    }
 
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={16}
+            defaultZoom={16}
+            defaultCenter={center}
+            zoom={13}
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
@@ -76,7 +80,11 @@ function Map() {
             </Marker>
 
         </GoogleMap>
-    ) : <></>
+    ) : <ClipLoader
+            color='#bcbcbc'
+            loading={true}
+            size={25}
+        />
 }
 
 export default React.memo(Map)
