@@ -49,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <link rel="shortcut icon" href="/images/myfavicon.ico"></link>
 
       {random_boolean ?
         <div className="flex flex-col header-container-1 items-center content-center h-screen justify-center">
