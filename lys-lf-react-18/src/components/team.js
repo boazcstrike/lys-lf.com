@@ -2,8 +2,8 @@ import React from "react"
 
 import Profile from "./profile"
 
-import gloPic from "../../public/images/LYS-20.jpg"
-import junPic from "../../public/images/LYS-21.jpg"
+import gloPic from "../../public/images/LYS-GLO-7-18-23.jpg"
+import junPic from "../../public/images/LYS-JUN-7-18-23.jpg"
 
 import Role from "./role"
 
@@ -17,26 +17,15 @@ function Team() {
             key: "Atty. Gloriosa Yutatco-Sze",
             name: "Atty. Gloriosa Yutatco-Sze",
             position: "Partner",
-            email: "gloriosasze@gmail.com",
+            // email: "gloriosasze@gmail.com",
             pic: gloPic.src,
           },
           {
             key: "Atty. Juanito Lim, Jr.",
             name: "Atty. Juanito Lim, Jr.",
             position: "Partner",
-            email: "juanitolim@gmail.com",
+            // email: "juanitolim@gmail.com",
             pic: junPic.src,
-          },
-        ]}
-      />
-      <Role
-        position="Senior Associate Lawyers"
-        employees={[
-          {
-            key: "Atty. Mary Elizabeth Christine D. Rodriguez",
-            name: "Atty. Mary Elizabeth Christine D. Rodriguez",
-            position: "Senior Associate Lawyer",
-            email: "mecdr.lslawfirm@gmail.com",
           },
         ]}
       />
@@ -47,7 +36,7 @@ function Team() {
             key: "Atty. Albert Caesar M. Pereña",
             name: "Atty. Albert Caesar M. Pereña",
             position: "Junior Associate Lawyer",
-            email: "amp.lslawfirm@gmail.com",
+            // email: "amp.lslawfirm@gmail.com",
           },
           {
             key: "Atty. Dianne G. Comon",

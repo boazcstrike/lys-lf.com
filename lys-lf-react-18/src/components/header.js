@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import { faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faPhone, faEnvelopeOpenText } from "@fortawesome/free-solid-svg-icons"
 
 import lysLogo from "../../public/images/lys-white-logo-darker.png"
 
 function Header() {
-  library.add(faPhone)
+  library.add(faPhone, faEnvelopeOpenText)
   const [backgroundImage, setBackgroundImage] = useState("")
 
   useEffect(() => {
@@ -33,6 +33,12 @@ function Header() {
             <FontAwesomeIcon icon={faPhone} />
           </span>
           (02)8-293-8254
+        </h1>
+        <h1 className="text-gray email-text">
+          <span>
+            <FontAwesomeIcon icon={faEnvelopeOpenText} />
+          </span>
+          limandsze.lf@gmail.com
         </h1>
         <h2 className="text-white">
           The Lim <span className="text-gray">&</span> Yutatco-Sze Law Firm{" "}

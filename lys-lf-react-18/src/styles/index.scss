@@ -33,8 +33,7 @@ $secondary-font: "Open Sans", sans-serif;
 }
 
 .header-container-1 {
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)),
-    url("../../public/images/LYS-29.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../../public/images/LYS-29.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -43,8 +42,7 @@ $secondary-font: "Open Sans", sans-serif;
 }
 
 .header-container-2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)),
-    url("../../public/images/LYS-24.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../../public/images/LYS-24.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,6 +61,11 @@ $secondary-font: "Open Sans", sans-serif;
   font-family: $lys-font;
   font-size: 1.45em;
   letter-spacing: 0.25em;
+  text-align: center;
+}
+.email-text {
+  font-family: $lys-font;
+  font-size: 1.45em;
   text-align: center;
 }
 h2 {
@@ -282,8 +285,7 @@ h3 {
 }
 
 .have-legal-problems-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../../public/images/LYS-38.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../public/images/LYS-38.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
