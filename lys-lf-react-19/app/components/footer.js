@@ -3,7 +3,7 @@ import lysLogo from "@/images/lys-white-logo-darker.png";
 
 function Footer() {
   return (
-    <footer className="bg-[url('@/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
+    <footer className="bg-[url('/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
       <div className="max-w-[20em] mb-4">
         <img src={lysLogo.src} alt="LYS Logo" />
       </div>

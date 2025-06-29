@@ -2,7 +2,7 @@ import React from "react"
 
 function BusinessProfile() {
   return (
-    <div className="bg-[url('/assets/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8">
+    <div className="bg-[url('/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8">
       <div className="flex flex-col items-center">
         <h2 className="uppercase tracking-wider font-bold text-[1.45em] max-w-[15em] mb-6 px-2 py-2 border-t border-b border-white text-white text-center">
           Business Profile
