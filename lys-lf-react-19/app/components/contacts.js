@@ -1,25 +1,26 @@
-import React from "react"
-
-import { 
+import React from "react";
+import {
   FaMapMarkerAlt,
   FaClock,
   FaPhone,
   FaEnvelope,
 } from "react-icons/fa";
 
-import Map from "@/components/map"
+import Map from "@/components/map";
 
 function Contact() {
   return (
-    <div className="contact-container">
+    <div className="bg-[url('/images/bg-map.png')] bg-fixed bg-repeat pb-20 px-6">
       <Map draggable={false} />
-      <div className="contact-wrapper flex sm:flex-row justify-around flex-col items-center">
-        <div className="contact-info-box">
-          <h3>
-            <FaMapMarkerAlt /> Address:
+
+      <div className="flex flex-col sm:flex-row justify-around items-center gap-8 mt-8">
+        <div className="text-[#1a1a1a] text-center">
+          <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
+            <FaMapMarkerAlt className="inline-block mr-2" />
+            Address:
             <br />
             <br />
-            <span>
+            <span className="font-helvetica text-[1em] font-normal">
               Unit 901 Parkway Corporate Center
               <br />
               Corporate Ave. corner Parkway Place
@@ -31,33 +32,38 @@ function Contact() {
           </h3>
         </div>
 
-        <div className="contact-info-box">
-          <h3>
-            <FaClock /> Hours:
+        <div className="text-[#1a1a1a] text-center">
+          <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
+            <FaClock className="inline-block mr-2" />
+            Hours:
             <br />
             <br />
-            <span>
-              <strong>Monday-Friday</strong> 8am - 5pm
+            <span className="font-helvetica text-[1em] font-normal">
+              <strong>Monday–Friday</strong> 8am - 5pm
             </span>
           </h3>
         </div>
 
-        <div className="contact-info-box">
-          <h3>
-            <FaPhone /> Contact:
+        <div className="text-[#1a1a1a] text-center">
+          <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
+            <FaPhone className="inline-block mr-2" />
+            Contact:
             <br />
-            <span className="phone-text"> (02) 8-293-8254</span>
+            <span className="block font-noticia text-[1.05em]">
+              (02) 8-293-8254
+            </span>
             <br />
+            <FaEnvelope className="inline-block mr-2" />
+            Email:
             <br />
-            <FaEnvelope /> Email:
-            <br />
-            <span> limandsze.lf@gmail.com</span>
-            <br />
+            <span className="font-helvetica text-[1.05em] font-normal">
+              limandsze.lf@gmail.com
+            </span>
           </h3>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

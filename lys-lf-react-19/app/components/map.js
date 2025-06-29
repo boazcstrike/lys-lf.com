@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api"
 import { ClipLoader } from "react-spinners"
 
-import pcc from "@/assets/images/pcc.jpg"
+import pcc from "@/images/pcc.jpg"
 
 const containerStyle = {
   width: "100%",
@@ -48,7 +48,7 @@ function Map() {
       center={center}
       defaultZoom={16}
       defaultCenter={center}
-      zoom={13}
+      zoom={14}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
@@ -61,7 +61,7 @@ function Map() {
       ></Marker>
       <InfoWindow position={center}>
         <div style={divStyle}>
-          <img src={pcc.src} className="map-info-pic" />
+          <img src={pcc.src} className="w-15 h-15 mb-2" />
           <h1>
             <b>Unit 901 Parkway Corporate Center</b>
           </h1>

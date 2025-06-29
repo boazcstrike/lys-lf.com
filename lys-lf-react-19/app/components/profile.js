@@ -1,5 +1,5 @@
 import React from "react"
-import pic from "@/assets/images/customer-512.png"
+import pic from "@/images/customer-512.png"
 
 function Profile({ img, name, position, mobile, email }) {
   return (

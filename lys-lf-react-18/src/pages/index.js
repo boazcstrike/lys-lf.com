@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react"
 
 import ReactGA from "react-ga4"
 
-import lysLogo from "../../public/images/lys-white-logo-darker.png"
-
-import Header from "../components/header"
-import PracticeAreas from "../components/practice-areas"
-import Map from "../components/map"
-import BusinessProfile from "../components/business-profile"
-import Team from "../components/team"
-import MiniShowcase from "../components/mini-showcase"
-import Contact from "../components/contacts"
-import Footer from "../components/footer"
+import Header from "@/components/header"
+import PracticeAreas from "@/components/practice-areas"
+import BusinessProfile from "@/components/business-profile"
+import Team from "@/components/team"
+import MiniShowcase from "@/components/mini-showcase"
+import Contact from "@/components/contacts"
+import Footer from "@/components/footer"
 
 function App() {
   // if (process.env.NODE_ENV === "production") {

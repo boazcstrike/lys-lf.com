@@ -2,11 +2,11 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
-      "@/assets/images/*": ["./app/assets/images/*"],
       "@/components/*": ["./app/components/*"],
-      "@/assets/data/*": [
+      "@/data/*": [
         "./app/assets/data/*"
-      ]
+      ],
+      "@/images/*": ["./public/images/*"]
     }
   }
 }

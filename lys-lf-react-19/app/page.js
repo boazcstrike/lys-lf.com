@@ -13,7 +13,7 @@ import MiniShowcase from "@/components/mini-showcase"
 import Contact from "@/components/contacts"
 import Footer from "@/components/footer"
 
-import practiceAreas from "@/assets/data/practice-areas"
+import practiceAreas from "@/data/practice-areas"
 
 
 function App() {
