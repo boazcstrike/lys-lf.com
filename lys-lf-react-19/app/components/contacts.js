@@ -7,13 +7,12 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
-// import Map from "@/app/components/map"
-// import Map from "../components/samples/sample-overlay-view"
+import Map from "@/components/map"
 
 function Contact() {
   return (
     <div className="contact-container">
-      {/* <Map draggable={false} /> */}
+      <Map draggable={false} />
       <div className="contact-wrapper flex sm:flex-row justify-around flex-col items-center">
         <div className="contact-info-box">
           <h3>

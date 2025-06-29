@@ -32,42 +32,6 @@ $secondary-font: "Open Sans", sans-serif;
   padding: 2em;
 }
 
-.header-container-1 {
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-29.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @extend %containers;
-}
-
-.header-container-2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-24.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @extend %containers;
-}
-
-.header-wrapper {
-  max-width: 45em;
-}
-
-.lys-landing-logo {
-  min-width: 0;
-}
-.phone-text {
-  font-family: $lys-font;
-  font-size: 1.45em;
-  letter-spacing: 0.25em;
-  text-align: center;
-}
-.email-text {
-  font-family: $lys-font;
-  font-size: 1.45em;
-  text-align: center;
-}
 h2 {
   font-size: 1.25em;
   padding: 1em;
@@ -194,114 +158,6 @@ h3 {
   }
 }
 
-.business-profile-container {
-  background: url("../assets/images/zwartevilt_@2X.jpg") left top repeat;
-  box-shadow: rgba(255, 255, 255, 0.5);
-  @extend %containers;
-  h2 {
-    @extend %title-text;
-    color: $color-secondary;
-    border-top: #fff 1px solid;
-    border-bottom: #fff 1px solid;
-  }
-  .bp-paragraph-wrapper {
-    padding-bottom: 2em;
-  }
-
-  .bp-paragraph {
-    width: 80vw;
-    max-width: 40em;
-    text-indent: 2.5em;
-    color: $color-secondary;
-    text-align: justify;
-    margin: 0 auto;
-    margin-bottom: 1em;
-    font-size: 1.2em;
-  }
-  .business-profile {
-    padding: 2em;
-  }
-}
-
-.team-container {
-  @extend %containers;
-  .team-role-container {
-    margin-bottom: 2em;
-  }
-  .team-titles {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-family: $lys-font;
-    font-weight: 700;
-    font-size: 1.25em;
-
-    padding: 0.5em;
-    margin: 1.5em;
-    color: $color-quaternary;
-    border-top: $color-primary 1px solid;
-    border-bottom: $color-primary 1px solid;
-  }
-
-  .profile {
-    padding: 1.5em;
-    .profile-image-wrapper {
-      img {
-        border-radius: 100em;
-        max-width: 15em;
-        box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
-      }
-    }
-    .profile-details {
-      margin: 2em 0;
-      text-align: center;
-      %text {
-        font-family: $lys-font;
-        color: $color-quinary;
-        margin: 0;
-        padding: 0;
-      }
-      .name {
-        @extend %text;
-        margin-top: 0.85em;
-        font-size: 1.45em;
-        font-weight: 800;
-      }
-      .position {
-        margin-top: 0.45em;
-        font-size: 1.25em;
-        font-weight: 200;
-      }
-      h3 {
-        @extend %text;
-      }
-      hr {
-        max-width: 16em;
-      }
-      .details {
-        text-align: left;
-      }
-    }
-  }
-}
-
-.have-legal-problems-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-38.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 1em 0 0.2em 0;
-  text-align: center;
-  h2 {
-    font-family: "Raleway", sans-serif;
-    font-weight: 700;
-    padding: 0;
-    margin: 1.2em 0 1.6em;
-    text-transform: uppercase;
-    font-size: 2.6em;
-    color: #fff;
-  }
-}
 
 .contact-container {
   padding-bottom: 5em;
@@ -339,38 +195,6 @@ h3 {
   }
 }
 
-.footer-container {
-  background: url("../assets/images/zwartevilt_@2X.jpg") left top repeat;
-  @extend %containers;
-  padding-bottom: 3em;
-  .footer-logo {
-    max-width: 20em;
-  }
-  .copyright,
-  .credits {
-    color: #cccccc;
-    font-size: 14px;
-    display: block;
-    text-align: center;
-  }
-  .copyright a,
-  .credits a {
-    color: #696969;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-  }
-  .copyright a:hover,
-  .credits a:hover {
-    color: #fff;
-  }
-
-  .portfolioContainer {
-    max-width: 1140px;
-  }
-}
 
 .map-info-pic {
   max-width: 5em;

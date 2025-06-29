@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api"
 import { ClipLoader } from "react-spinners"
 
-import pcc from "@/public/images/pcc.jpg"
+import pcc from "@/assets/images/pcc.jpg"
 
 const containerStyle = {
   width: "100%",

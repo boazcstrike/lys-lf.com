@@ -4,48 +4,46 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import lysLogo from "@/assets/images/lys-white-logo-darker.png"
 
 function Header() {
-  const [backgroundImage, setBackgroundImage] = useState("")
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
-    const randomNumber = Math.random() * 2
-    const backgroundImageName =
-      randomNumber < 1 ? "header-container-1 " : "header-container-2 "
-    setBackgroundImage(backgroundImageName)
-  }, [])
+    const bg = Math.random() < 0.5
+      ? "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('@/assets/images/LYS-29.jpg')]"
+      : "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('@/assets/images/LYS-24.jpg')]";
+    setBackgroundImage(bg);
+  }, []);
 
   return (
     <div
-      className={`flex flex-col ${backgroundImage}items-center content-center h-screen justify-center`}
+      className={`flex flex-col items-center justify-center h-screen bg-fixed bg-center bg-no-repeat bg-cover px-8 ${backgroundImage}`}
     >
-      <div className="header-wrapper">
+      <div className="max-w-[45em]">
         <img
           src={lysLogo.src}
-          className="lys-landing-logo"
           alt="lys-landing-logo"
           key={lysLogo.src}
+          className="min-w-0"
         />
-        <h1 className="text-gray phone-text">
-          <span>
-            <FaPhoneAlt />
-          </span>
-          (02)8-293-8254
-        </h1>
-        <h1 className="text-gray email-text">
-          <span>
-            <FaEnvelope />
-          </span>
-          limandsze.lf@gmail.com
-        </h1>
-        <h2 className="text-white">
-          The Lim <span className="text-gray">&</span> Yutatco-Sze Law Firm{" "}
-          <span className="text-gray">(LYS)</span> is a full-service law office
-          established in 2015.
+        <div className="flex flex-col items-center gap-2">
+          <h1 className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] tracking-[0.25em] flex items-center gap-2">
+            <FaPhoneAlt className="text-[0.75em]" />
+            (02)<span className="text-white">8-293-8254</span>
+          </h1>
+          <h1 className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] flex items-center gap-2">
+            <FaEnvelope className="text-[0.75em]" />
+            limandsze.lf@gmail.com
+          </h1>
+        </div>
+        <h2 className="text-white text-[1.25em] p-5 text-center">
+          The Lim <span className="text-[#bcbcbc]">&</span> Yutatco-Sze Law Firm{" "}
+          <span className="text-[#bcbcbc]">(LYS)</span> is a full-service law
+          office established in 2015.
         </h2>
-        <h3 className="text-white">
+        <h3 className="text-white font-['Raleway'] text-[1em] tracking-[0.05em] p-4 text-center">
           It is engaged in diversified practice of law primarily focusing in
           corporate, labor and and tax laws. The Firm likewise represents both
-          corporate and individual clients in different courts and
-          administrative agencies in the country.
+          corporate and individual clients in different courts and administrative
+          agencies in the country.
         </h3>
       </div>
     </div>

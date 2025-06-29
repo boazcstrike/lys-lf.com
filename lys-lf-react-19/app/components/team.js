@@ -2,9 +2,6 @@ import React from "react"
 
 import Profile from "@/app/components/profile"
 
-import gloPic from "@/assets/images/LYS-GLO-7-18-23.jpg"
-import junPic from "@/assets/images/LYS-JUN-7-18-23.jpg"
-
 import Role from "@/app/components/role"
 
 
@@ -19,14 +16,14 @@ function Team() {
             name: "Atty. Gloriosa Yutatco-Sze",
             // position: "Partner",
             // email: "gloriosasze@gmail.com",
-            pic: gloPic.src,
+            pic: "/images/LYS-GLO-7-18-23.jpg",
           },
           {
-            key: "Atty. Juanito Lim, Jr.",
-            name: "Atty. Juanito Lim, Jr.",
+            key: "Atty. Juanito R. Lim, Jr.",
+            name: "Atty. Juanito R. Lim, Jr.",
             // position: "Partner",
             // email: "juanitolim@gmail.com",
-            pic: junPic.src,
+            pic: "/images/LYS-JUN-7-18-23.jpg",
           },
         ]}
       />
