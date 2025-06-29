@@ -1,6 +1,5 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-
 ## Getting Started
 
 First, run the development server:
@@ -30,11 +29,8 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Packages
+## Deploy on Vercel
 
-This section lists essential packages used in the project for various functionalities:
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- **[@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)**: A library for integrating Google Maps into React applications.
-- **[React Icons](https://react-icons.github.io/react-icons/search/#q=Scale)**: A collection of popular icons for React applications.
-- **[React Google Analytics](https://github.com/keiko-app/react-google-analytics)**: A library for integrating Google Analytics into React applications.
-- **[@keiko-app/react-google-analytics](https://www.npmjs.com/package/@keiko-app/react-google-analytics)**: A package for using Google Analytics with React, providing easy setup and tracking.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

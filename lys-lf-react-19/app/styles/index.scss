@@ -1,0 +1,379 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+$max-width: 42em;
+
+$color-primary: #bcbcbc;
+$color-secondary: #f2f2f2;
+$color-tertiary: #cecece;
+$color-quaternary: #222222;
+$color-quinary: #606060;
+
+$color-senary: #bcbcbc;
+$color-septenary: #f2f2f2;
+$color-octonary: #cecece;
+$color-nonary: #222222;
+$color-denary: #606060;
+
+$lys-font: "Noticia Text", sans-serif;
+$primary-font: "Raleway", sans-serif;
+$secondary-font: "Open Sans", sans-serif;
+
+.text-gray {
+  color: #bcbcbc;
+  span {
+    margin-right: 1em;
+  }
+}
+
+%containers {
+  padding: 2em;
+}
+
+.header-container-1 {
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-29.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @extend %containers;
+}
+
+.header-container-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-24.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @extend %containers;
+}
+
+.header-wrapper {
+  max-width: 45em;
+}
+
+.lys-landing-logo {
+  min-width: 0;
+}
+.phone-text {
+  font-family: $lys-font;
+  font-size: 1.45em;
+  letter-spacing: 0.25em;
+  text-align: center;
+}
+.email-text {
+  font-family: $lys-font;
+  font-size: 1.45em;
+  text-align: center;
+}
+h2 {
+  font-size: 1.25em;
+  padding: 1em;
+  text-align: center;
+}
+
+h3 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  padding: 1em;
+  text-align: center;
+}
+
+%title-text {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: $lys-font;
+  font-weight: 700;
+  font-size: 1.45em;
+
+  padding: 0.5em;
+  margin-bottom: 1.5em;
+  max-width: 15em;
+}
+
+.practice-areas-container {
+  @extend %containers;
+
+  h2 {
+    @extend %title-text;
+    color: $color-quaternary;
+    border-top: $color-primary 1px solid;
+    border-bottom: $color-primary 1px solid;
+  }
+
+  .pa-item {
+    padding: 0.5em;
+  }
+
+  .icon-container {
+    box-shadow: 5px 1px 0.5em rgba(0, 0, 0, 0.25);
+    border-radius: 5em;
+    color: $color-quaternary;
+    font-size: 1em;
+    padding: 2.5em;
+    margin-left: 2em;
+    &:hover {
+      box-shadow: 2px 3px 1.2em rgba(0, 0, 0, 0.25);
+      transition: 0.2s;
+    }
+  }
+
+  %pa-design {
+    font-family: $primary-font;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 1.5em;
+    border-bottom: $color-primary 2px solid;
+    span {
+      color: #4c4c4c;
+      font-size: 1.8em;
+    }
+    &:hover {
+      transition: 0.5s;
+      border-bottom: $color-primary 4px solid;
+    }
+  }
+
+  h4 {
+    @extend %pa-design;
+    letter-spacing: 0.05em;
+    font-size: 1.25em;
+  }
+
+  .pa-list-special {
+    margin-bottom: 5em;
+
+    h4 {
+      @extend %pa-design;
+      letter-spacing: 0.2px;
+      font-family: $primary-font;
+      font-size: 1em;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .pa-list {
+      margin-left: 2em;
+    }
+    .pa-list-special {
+      margin-left: 2em;
+      h4 {
+        font-size: 1em;
+        span {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1180px) {
+    .pa-list {
+      margin-left: 5em;
+    }
+    .pa-list-special {
+      margin-left: 5em;
+    }
+  }
+
+  @media (max-width: 414px) {
+    .pa-list {
+      margin-left: 3em;
+    }
+    .pa-list-special {
+      margin-left: 3em;
+      h4 {
+        font-size: 0.8em;
+        span {
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+}
+
+.business-profile-container {
+  background: url("../assets/images/zwartevilt_@2X.jpg") left top repeat;
+  box-shadow: rgba(255, 255, 255, 0.5);
+  @extend %containers;
+  h2 {
+    @extend %title-text;
+    color: $color-secondary;
+    border-top: #fff 1px solid;
+    border-bottom: #fff 1px solid;
+  }
+  .bp-paragraph-wrapper {
+    padding-bottom: 2em;
+  }
+
+  .bp-paragraph {
+    width: 80vw;
+    max-width: 40em;
+    text-indent: 2.5em;
+    color: $color-secondary;
+    text-align: justify;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+  }
+  .business-profile {
+    padding: 2em;
+  }
+}
+
+.team-container {
+  @extend %containers;
+  .team-role-container {
+    margin-bottom: 2em;
+  }
+  .team-titles {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: $lys-font;
+    font-weight: 700;
+    font-size: 1.25em;
+
+    padding: 0.5em;
+    margin: 1.5em;
+    color: $color-quaternary;
+    border-top: $color-primary 1px solid;
+    border-bottom: $color-primary 1px solid;
+  }
+
+  .profile {
+    padding: 1.5em;
+    .profile-image-wrapper {
+      img {
+        border-radius: 100em;
+        max-width: 15em;
+        box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
+      }
+    }
+    .profile-details {
+      margin: 2em 0;
+      text-align: center;
+      %text {
+        font-family: $lys-font;
+        color: $color-quinary;
+        margin: 0;
+        padding: 0;
+      }
+      .name {
+        @extend %text;
+        margin-top: 0.85em;
+        font-size: 1.45em;
+        font-weight: 800;
+      }
+      .position {
+        margin-top: 0.45em;
+        font-size: 1.25em;
+        font-weight: 200;
+      }
+      h3 {
+        @extend %text;
+      }
+      hr {
+        max-width: 16em;
+      }
+      .details {
+        text-align: left;
+      }
+    }
+  }
+}
+
+.have-legal-problems-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/images/LYS-38.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1em 0 0.2em 0;
+  text-align: center;
+  h2 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    padding: 0;
+    margin: 1.2em 0 1.6em;
+    text-transform: uppercase;
+    font-size: 2.6em;
+    color: #fff;
+  }
+}
+
+.contact-container {
+  padding-bottom: 5em;
+  background: url("../assets/images/bg-map.png");
+  background-attachment: fixed;
+  background-repeat: repeat;
+
+  #map {
+    width: 100%;
+    height: 18em;
+  }
+  .contact-info-box {
+    margin-top: 2em;
+    h3 {
+      font-family: $lys-font;
+      font-size: 1.35em;
+      padding-top: 0.5em;
+      padding-bottom: 1em;
+      span {
+        font-family: $primary-font;
+        font-size: 0.8em;
+        font-weight: 400;
+      }
+      .phone-text {
+        font-family: $lys-font;
+        text-align: center;
+      }
+    }
+    h6 {
+      margin-left: 2.2em;
+      font-family: $primary-font;
+      font-weight: 400;
+      margin-bottom: 2.5em;
+    }
+  }
+}
+
+.footer-container {
+  background: url("../assets/images/zwartevilt_@2X.jpg") left top repeat;
+  @extend %containers;
+  padding-bottom: 3em;
+  .footer-logo {
+    max-width: 20em;
+  }
+  .copyright,
+  .credits {
+    color: #cccccc;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+  }
+  .copyright a,
+  .credits a {
+    color: #696969;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+  }
+  .copyright a:hover,
+  .credits a:hover {
+    color: #fff;
+  }
+
+  .portfolioContainer {
+    max-width: 1140px;
+  }
+}
+
+.map-info-pic {
+  max-width: 5em;
+  max-height: 5em;
+  margin-bottom: 1em;
+}
