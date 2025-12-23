@@ -1,5 +1,4 @@
-import { memo, useCallback, useState } from "react"
-import PropTypes from "prop-types"
+import { memo, useCallback, useState, FC } from "react"
 import {
   GoogleMap,
   OverlayViewF,
@@ -8,43 +7,59 @@ import {
   MARKER_LAYER,
 } from "@react-google-maps/api"
 
-const ExampleOverlayViewPropTypes = {
-  styles: PropTypes.shape({
-    container: PropTypes.object,
-  }).isRequired,
+/**
+ * Sample Overlay View component - demonstrates Google Maps OverlayView functionality
+ * 
+ * @component
+ * @returns {React.ReactNode} Map with overlay view controls
+ */
+interface CenterOverlayOffset {
+  x: number
+  y: number
 }
 
-const mapCenter = {
+interface MapCenter {
+  lat: number
+  lng: number
+}
+
+interface ContentStyles extends React.CSSProperties {
+  background: string
+  border: string
+  padding: number
+}
+
+const mapCenter: MapCenter = {
   lat: 0,
   lng: -180,
 }
 
-const contentStyles = {
-  background: `white`,
-  border: `1px solid #CCC`,
+const contentStyles: ContentStyles = {
+  background: 'white',
+  border: '1px solid #CCC',
   padding: 15,
 }
 
-function centerOverlayView(width, height) {
+function centerOverlayView(width: number, height: number): CenterOverlayOffset {
   return {
     x: -(width / 2),
     y: -(height / 2),
   }
 }
 
-function Map() {
-  const [isShown, setIsShown] = useState(false)
+const SampleOverlayView: FC = () => {
+  const [isShown, setIsShown] = useState<boolean>(false)
 
   const changeIsShown = useCallback(() => {
-    setIsShown(!isShown)
-  }, [isShown])
+    setIsShown((prev) => !prev)
+  }, [])
 
-  const [overlayPane, setOverlayPane] = useState(OVERLAY_MOUSE_TARGET)
+  const [overlayPane, setOverlayPane] = useState<string | keyof google.maps.MapPanes>(OVERLAY_MOUSE_TARGET)
   const clickHandler = useCallback(() => {
     alert("You clicked overlay view")
   }, [])
 
-  const [overlayPosition, setOverlayPosition] = useState(mapCenter)
+  const [overlayPosition, setOverlayPosition] = useState<MapCenter>(mapCenter)
 
   const randomOverlayPosition = useCallback(() => {
     setOverlayPosition({
@@ -53,11 +68,11 @@ function Map() {
     })
   }, [])
 
-  const loadCallback = useCallback((e) => {
+  const loadCallback = useCallback((e: unknown) => {
     console.log("OverlayView onLoad: ", e)
   }, [])
 
-  const unmountCallback = useCallback((e) => {
+  const unmountCallback = useCallback((e: unknown) => {
     console.log("OverlayView onUnmount", e)
   }, [])
 
@@ -78,7 +93,7 @@ function Map() {
           {isShown ? (
             <OverlayViewF
               position={overlayPosition}
-              mapPaneName={overlayPane}
+              mapPaneName={overlayPane as keyof google.maps.MapPanes}
               onLoad={loadCallback}
               onUnmount={unmountCallback}
               getPixelPositionOffset={centerOverlayView}
@@ -133,6 +148,4 @@ function Map() {
   )
 }
 
-Map.propTypes = ExampleOverlayViewPropTypes
-
-export default memo(Map)
+export default memo(SampleOverlayView)

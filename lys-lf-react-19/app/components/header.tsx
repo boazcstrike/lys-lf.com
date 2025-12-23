@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from "react"
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import React, { useState, useEffect, FC } from "react"
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa"
 
-import lysLogo from "@/images/lys-white-logo-darker.png"
+import lysLogo from "@/public/images/lys-white-logo-darker.png"
 
-function Header() {
-  const [backgroundImage, setBackgroundImage] = useState("");
+/**
+ * Header component - displays hero section with firm logo and contact info
+ * 
+ * Renders a full-screen header with:
+ * - Random background image (one of two options)
+ * - LYS Law Firm logo
+ * - Phone number and email contact info
+ * - Firm description
+ * 
+ * @component
+ * @returns {React.ReactNode} Hero section element
+ */
+const Header: FC = () => {
+  const [backgroundImage, setBackgroundImage] = useState<string>("")
 
   useEffect(() => {
     const bg = Math.random() < 0.5
       ? "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('/images/LYS-29.jpg')]"
-      : "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('/images/LYS-24.jpg')]";
-    setBackgroundImage(bg);
-  }, []);
+      : "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('/images/LYS-24.jpg')]"
+    setBackgroundImage(bg)
+  }, [])
 
   return (
     <div
@@ -23,6 +35,7 @@ function Header() {
           alt="lys-landing-logo"
           key={lysLogo.src}
           className="min-w-0"
+          fetchPriority="high"
         />
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] tracking-[0.25em] flex items-center gap-2">
@@ -50,4 +63,4 @@ function Header() {
   )
 }
 
-export default Header
+export default React.memo(Header)

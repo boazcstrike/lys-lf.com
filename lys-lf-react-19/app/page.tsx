@@ -5,18 +5,23 @@ import React from "react"
 // only develop this when needed; in this case they dont really need it
 // import ReactGA from "react-ga4"
 
-import Header from "@/components/header"
-import PracticeAreas from "@/components/practice-areas"
-import BusinessProfile from "@/components/business-profile"
-import Team from "@/components/team"
-import MiniShowcase from "@/components/mini-showcase"
-import Contact from "@/components/contacts"
-import Footer from "@/components/footer"
+import Header from "@/app/components/header"
+import PracticeAreas from "@/app/components/practice-areas"
+import BusinessProfile from "@/app/components/business-profile"
+import Team from "@/app/components/team"
+import MiniShowcase from "@/app/components/mini-showcase"
+import Contact from "@/app/components/contacts"
+import Footer from "@/app/components/footer"
 
-import practiceAreas from "@/data/practice-areas"
+import practiceAreas from "@/app/assets/data/practice-areas"
 
-
-function App() {
+/**
+ * Home page component
+ * Main landing page that displays all sections of the law firm website
+ *
+ * @returns The home page JSX
+ */
+function App(): React.ReactNode {
   // if (process.env.NODE_ENV === "production") {
   // ReactGA.initialize([
     // {

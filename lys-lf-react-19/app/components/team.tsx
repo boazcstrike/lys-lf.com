@@ -1,11 +1,19 @@
-import React from "react"
-
-import Profile from "@/app/components/profile"
+import { FC } from "react"
 
 import Role from "@/app/components/role"
 
+/**
+ * Team component - displays firm's legal team organized by role
+ * 
+ * Displays team members in sections:
+ * - Partners section with photos
+ * - Associate Lawyers section
+ * 
+ * @component
+ * @returns {React.ReactNode} Team listing element
+ */
 
-function Team() {
+const Team: FC = () => {
   return (
     <div className="team-container flex flex-col items-center">
       <Role
@@ -14,15 +22,11 @@ function Team() {
           {
             key: "Atty. Gloriosa Yutatco-Sze",
             name: "Atty. Gloriosa Yutatco-Sze",
-            // position: "Partner",
-            // email: "gloriosasze@gmail.com",
             pic: "/images/LYS-GLO-7-18-23.jpg",
           },
           {
             key: "Atty. Juanito R. Lim, Jr.",
             name: "Atty. Juanito R. Lim, Jr.",
-            // position: "Partner",
-            // email: "juanitolim@gmail.com",
             pic: "/images/LYS-JUN-7-18-23.jpg",
           },
         ]}
@@ -33,24 +37,19 @@ function Team() {
           {
             key: "Atty. Albert Caesar M. Pereña",
             name: "Atty. Albert Caesar M. Pereña",
-            // position: "Associate Lawyer",
-            // email: "amp.lslawfirm@gmail.com",
           },
           {
             key: "Atty. Dana F. Ruedas",
             name: "Atty. Dana F. Ruedas",
-            // position: "Associate Lawyer",
           },
           {
             key: "Atty. Jan Ethan L. Gordola",
             name: "Atty. Jan Ethan L. Gordola",
-            // position: "Associate Lawyer",
           },
         ]}
       />
     </div>
   )
 }
-
 
 export default Team

@@ -1,17 +1,23 @@
-import React from "react";
+import { FC } from "react"
 import {
   FaMapMarkerAlt,
   FaClock,
   FaPhone,
   FaEnvelope,
-} from "react-icons/fa";
+} from "react-icons/fa"
 
-import Map from "@/components/map";
+import Map from "@/app/components/map"
 
-function Contact() {
+/**
+ * Contact component - displays firm contact information and location map
+ * 
+ * @component
+ * @returns {React.ReactNode} Contact section with address, hours, and contact details
+ */
+const Contact: FC = () => {
   return (
     <div className="bg-[url('/images/bg-map.png')] bg-fixed bg-repeat pb-20 px-6">
-      <Map draggable={false} />
+      <Map />
 
       <div className="flex flex-col sm:flex-row justify-around items-center gap-8 mt-8">
         <div className="text-[#1a1a1a] text-center">
@@ -63,7 +69,7 @@ function Contact() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

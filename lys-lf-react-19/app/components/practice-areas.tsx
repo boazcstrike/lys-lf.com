@@ -1,21 +1,36 @@
 import * as FaIcons from "react-icons/fa"
 
-import SectionTitle from "./section-title"
+import SectionTitle from "@/app/components/section-title"
 
-function PracticeAreas({ practiceAreas }) {
+/**
+ * PracticeAreas component - displays firm's legal practice areas
+ * 
+ * @component
+ * @param {Object} props - Component props
+ * @param {Array<{title: string, description: string, icon: string}>} props.practiceAreas - Array of practice areas to display
+ * @returns {React.ReactNode} Grid of practice area cards
+ */
+interface PracticeArea {
+  title: string
+  description: string
+  icon: string
+}
+
+interface PracticeAreasProps {
+  practiceAreas: PracticeArea[]
+}
+
+const PracticeAreas: React.FC<PracticeAreasProps> = ({ practiceAreas }) => {
   return (
     <div className="pt-15 pb-25 px-4 bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-5">
           <SectionTitle title="Practice Areas" />
-          {/* <p className="text-slate-600 mt-6 text-lg max-w-2xl mx-auto">
-            Comprehensive legal services tailored to meet your specific needs
-          </p> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
           {practiceAreas.map((area, index) => {
-            const IconComponent = FaIcons[area.icon]
+            const IconComponent = FaIcons[area.icon as keyof typeof FaIcons] as React.ComponentType<{ className: string }> | undefined
             return (
               <div
                 key={index}
@@ -39,7 +54,7 @@ function PracticeAreas({ practiceAreas }) {
         <div className="hidden">
           <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
             {practiceAreas.map((area, index) => {
-              const IconComponent = FaIcons[area.icon]
+              const IconComponent = FaIcons[area.icon as keyof typeof FaIcons] as React.ComponentType<{ className: string }> | undefined
               return (
                 <div
                   key={index}

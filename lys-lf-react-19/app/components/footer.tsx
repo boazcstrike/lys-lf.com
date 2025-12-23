@@ -1,11 +1,23 @@
-import React from "react";
-import lysLogo from "@/images/lys-white-logo-darker.png";
+import React, { FC } from "react"
 
-function Footer() {
+import lysLogo from "@/public/images/lys-white-logo-darker.png"
+
+/**
+ * Footer component - displays firm branding and credits
+ * 
+ * Shows:
+ * - LYS Logo
+ * - Firm name
+ * - Website credits
+ * 
+ * @component
+ * @returns {React.ReactNode} Footer element with firm information
+ */
+const Footer: FC = () => {
   return (
     <footer className="bg-[url('/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
       <div className="max-w-[20em] mb-4">
-        <img src={lysLogo.src} alt="LYS Logo" />
+        <img src={lysLogo.src} alt="LYS Logo" loading="lazy" />
       </div>
       <span className="text-[#cccccc] text-sm text-center block">
         Lim & Yutatco-Sze Law Firm.
@@ -21,7 +33,7 @@ function Footer() {
         .
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default React.memo(Footer)
