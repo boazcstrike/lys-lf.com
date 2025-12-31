@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 
-import lysLogo from "@/public/images/lys-white-logo-darker.png"
+import lysLogo from "@/public/images/optimized/lys-white-logo-darker.webp"
 
 /**
  * Footer component - displays firm branding and credits
@@ -15,7 +15,7 @@ import lysLogo from "@/public/images/lys-white-logo-darker.png"
  */
 const Footer: FC = () => {
   return (
-    <footer className="bg-[url('/images/zwartevilt_@2X.jpg')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
+    <footer className="bg-[url('/images/optimized/zwartevilt_@2X.webp')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
       <div className="max-w-[20em] mb-4">
         <img src={lysLogo.src} alt="LYS Logo" loading="lazy" />
       </div>

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import React, { FC } from "react"
 import {
   FaMapMarkerAlt,
   FaClock,
@@ -7,14 +7,12 @@ import {
 } from "react-icons/fa"
 
 import Map from "@/app/components/map"
+import { siteConfig } from "@/app/assets/data/site-config"
 
-/**
- * Contact component - displays firm contact information and location map
- * 
- * @component
- * @returns {React.ReactNode} Contact section with address, hours, and contact details
- */
-const Contact: FC = () => {
+const Contacts: FC = (): React.ReactNode => {
+  const { address } = siteConfig.location
+  const { officeHours, contact } = siteConfig
+
   return (
     <div className="bg-[url('/images/bg-map.png')] bg-fixed bg-repeat pb-20 px-6">
       <Map />
@@ -22,48 +20,48 @@ const Contact: FC = () => {
       <div className="flex flex-col sm:flex-row justify-around items-center gap-8 mt-8">
         <div className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
-            <FaMapMarkerAlt className="inline-block mr-2" />
+            <FaMapMarkerAlt className="inline-block mr-2" aria-hidden="true" />
             Address:
             <br />
             <br />
             <span className="font-helvetica text-[1em] font-normal">
-              Unit 901 Parkway Corporate Center
+              {address.line1}
               <br />
-              Corporate Ave. corner Parkway Place
+              {address.line2}
               <br />
-              Filinvest City, Alabang
+              {address.line3}
               <br />
-              Muntinlupa City 1781
+              {address.city} {address.postalCode}
             </span>
           </h3>
         </div>
 
         <div className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
-            <FaClock className="inline-block mr-2" />
+            <FaClock className="inline-block mr-2" aria-hidden="true" />
             Hours:
             <br />
             <br />
             <span className="font-helvetica text-[1em] font-normal">
-              <strong>Monday–Friday</strong> 8am - 5pm
+              <strong>{officeHours.days}</strong> {officeHours.hours}
             </span>
           </h3>
         </div>
 
         <div className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
-            <FaPhone className="inline-block mr-2" />
+            <FaPhone className="inline-block mr-2" aria-hidden="true" />
             Contact:
             <br />
             <span className="block font-noticia text-[1.05em]">
-              (02) 8-293-8254
+              {contact.phone}
             </span>
             <br />
-            <FaEnvelope className="inline-block mr-2" />
+            <FaEnvelope className="inline-block mr-2" aria-hidden="true" />
             Email:
             <br />
             <span className="font-helvetica text-[1.05em] font-normal">
-              limandsze.lf@gmail.com
+              {contact.email}
             </span>
           </h3>
         </div>
@@ -72,4 +70,4 @@ const Contact: FC = () => {
   )
 }
 
-export default Contact
+export default React.memo(Contacts)

@@ -1,40 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LYS Law Firm - Website Repository
 
+Professional website for LYS Law Firm, a full-service law firm based in the Philippines.
 
-## Getting Started
+## Project
 
-First, run the development server:
+| Folder | Description |
+|--------|-------------|
+| `lys-lf-react-19/` | **Active** - Next.js 16 + React 19 implementation |
+
+## Quick Start
 
 ```bash
+cd lys-lf-react-19
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd lys-lf-react-19
+npm run build
+```
 
-## Learn More
+Static files generated in `lys-lf-react-19/out/` - deploy to Apache/Nginx.
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture Overview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```mermaid
+graph TB
+    subgraph "lys-lf-react-19"
+        subgraph "Data Layer"
+            D1[team.ts]
+            D2[site-config.ts]
+            D3[practice-areas.ts]
+            D4[business-profile.ts]
+        end
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+        subgraph "Types"
+            T[types/index.ts]
+        end
 
-## Packages
+        subgraph "Components"
+            C1[Header]
+            C2[Team]
+            C3[PracticeAreas]
+            C4[Contacts]
+            C5[Footer]
+        end
 
-This section lists essential packages used in the project for various functionalities:
+        subgraph "Output"
+            O[/out - Static Export/]
+        end
+    end
 
-- **[@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)**: A library for integrating Google Maps into React applications.
-- **[React Icons](https://react-icons.github.io/react-icons/search/#q=Scale)**: A collection of popular icons for React applications.
-- **[React Google Analytics](https://github.com/keiko-app/react-google-analytics)**: A library for integrating Google Analytics into React applications.
-- **[@keiko-app/react-google-analytics](https://www.npmjs.com/package/@keiko-app/react-google-analytics)**: A package for using Google Analytics with React, providing easy setup and tracking.
+    D1 --> T
+    D2 --> T
+    D3 --> T
+    D4 --> T
+
+    T --> C1
+    T --> C2
+    T --> C3
+    T --> C4
+
+    C1 --> O
+    C2 --> O
+    C3 --> O
+    C4 --> O
+    C5 --> O
+```
+
+## Tech Stack
+
+- **Next.js 16** - Framework with static export
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Google Maps API** - Location map
+
+## Design Principles
+
+This project follows **SOLID principles** and **Clean Code** practices:
+
+- **Single Responsibility**: Data, types, and components are separated
+- **Open/Closed**: Add team members or practice areas without modifying components
+- **DRY**: Centralized configuration in `data/` folder
+
+See `lys-lf-react-19/README.md` for detailed architecture documentation.
+
+## Deployment
+
+Static export works on any web server:
+
+1. Run `npm run build` in `lys-lf-react-19/`
+2. Upload contents of `out/` folder to web root
+3. No Node.js runtime required
+
+## License
+
+Private - LYS Law Firm

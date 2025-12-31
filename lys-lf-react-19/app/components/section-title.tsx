@@ -1,4 +1,4 @@
-import { FC } from "react"
+import React, { FC } from "react"
 
 /**
  * SectionTitle component - displays a styled section heading
@@ -20,4 +20,4 @@ const SectionTitle: FC<SectionTitleProps> = ({ title }) => (
   </div>
 )
 
-export default SectionTitle
+export default React.memo(SectionTitle)

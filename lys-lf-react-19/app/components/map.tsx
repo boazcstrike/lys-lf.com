@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useCallback, FC } from "react"
 import {
   GoogleMap,
@@ -5,54 +7,25 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api"
-import { ClipLoader } from "react-spinners"
+import Spinner from "@/app/components/spinner"
 
 import pcc from "@/public/images/pcc.jpg"
+import { siteConfig } from "@/app/assets/data/site-config"
 
-/**
- * Map component - displays interactive Google Maps with firm location
- * 
- * Features:
- * - Interactive Google Map centered on Parkway Corporate Center
- * - Marker at firm location (Manila, Philippines)
- * - Info window showing firm address with image
- * - Loading spinner while map loads
- * - Error handling for API failures
- * 
- * @component
- * @returns {React.ReactNode} Google Map or loading/error state
- */
-interface MapContainerStyle extends React.CSSProperties {
-  width: string
-  height: string
-}
-
-interface MapCenter {
-  lat: number
-  lng: number
-}
-
-interface DivStyle extends React.CSSProperties {
-  padding: number
-}
-
-const containerStyle: MapContainerStyle = {
+const containerStyle: React.CSSProperties = {
   width: "100%",
   height: "400px",
 }
 
-const center: MapCenter = {
-  lat: 14.4152799,
-  lng: 121.0380395,
-}
-
-const divStyle: DivStyle = {
+const divStyle: React.CSSProperties = {
   padding: 15,
 }
 
 const Map: FC = () => {
+  const { coordinates, address, markerTitle } = siteConfig.location
+  
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   })
 
   const [, setMap] = useState<google.maps.Map | null>(null)
@@ -66,38 +39,45 @@ const Map: FC = () => {
   }, [])
 
   if (loadError) {
-    return <div>The map cannot be loaded right now, sorry.</div>
+    return (
+      <div className="flex flex-col items-center justify-center h-[400px] bg-gray-100 text-gray-600">
+        <p className="text-lg font-serif">Location currently unavailable.</p>
+        <p className="text-sm mt-2">
+          Please contact us directly at {siteConfig.contact.phone}
+        </p>
+      </div>
+    )
   }
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
+      center={coordinates}
       zoom={14}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       <Marker
-        key="Parkway Corporate Center"
-        position={center}
+        key={markerTitle}
+        position={coordinates}
         draggable={false}
       />
-      <InfoWindow position={center}>
+      <InfoWindow position={coordinates}>
         <div style={divStyle}>
-          <img src={pcc.src} className="w-15 h-15 mb-2" alt="Parkway Corporate Center" loading="lazy" />
+          <img src={pcc.src} className="w-15 h-15 mb-2" alt={markerTitle} loading="lazy" />
           <h1>
-            <b>Unit 901 Parkway Corporate Center</b>
+            <b>{address.line1}</b>
           </h1>
           <p>
-            Corporate Ave. corner Parkway Place
+            {address.line2}
             <br />
-            Filinvest City, Alabang Muntinlupa City 1781
+            {address.line3} {address.city} {address.postalCode}
           </p>
         </div>
       </InfoWindow>
     </GoogleMap>
   ) : (
-    <ClipLoader color="#bcbcbc" loading={true} size={25} />
+    <Spinner size="sm" label="Locating our office..." />
   )
 }
 

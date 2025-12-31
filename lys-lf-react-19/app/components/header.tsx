@@ -1,65 +1,81 @@
+'use client'
+
 import React, { useState, useEffect, FC } from "react"
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa"
 
-import lysLogo from "@/public/images/lys-white-logo-darker.png"
+import lysLogo from "@/public/images/optimized/lys-white-logo-darker.webp"
+import { siteConfig, headerConfig } from "@/app/assets/data/site-config"
+import Spinner from "@/app/components/spinner"
 
-/**
- * Header component - displays hero section with firm logo and contact info
- * 
- * Renders a full-screen header with:
- * - Random background image (one of two options)
- * - LYS Law Firm logo
- * - Phone number and email contact info
- * - Firm description
- * 
- * @component
- * @returns {React.ReactNode} Hero section element
- */
-const Header: FC = () => {
-  const [backgroundImage, setBackgroundImage] = useState<string>("")
+const Header: FC = (): React.ReactNode => {
+  const [backgroundStyle, setBackgroundStyle] = useState<React.CSSProperties>({})
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
 
   useEffect(() => {
-    const bg = Math.random() < 0.5
-      ? "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('/images/LYS-29.jpg')]"
-      : "bg-[linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('/images/LYS-24.jpg')]"
-    setBackgroundImage(bg)
+    const randomIndex = Math.floor(Math.random() * headerConfig.backgroundImages.length)
+    const selectedImage = headerConfig.backgroundImages[randomIndex]
+    
+    if (!selectedImage) {
+      setIsImageLoaded(true)
+      return
+    }
+
+    const img = new Image()
+    img.onload = () => {
+      setBackgroundStyle({
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.7)),url('${selectedImage}')`
+      })
+      setIsImageLoaded(true)
+    }
+    img.src = selectedImage
   }, [])
 
+  if (!isImageLoaded) {
+    return (
+      <section
+        aria-label="LYS Law Firm header loading"
+        className="flex flex-col items-center justify-center h-screen bg-lys-black px-8"
+      >
+        <Spinner size="lg" label="Preparing your case..." />
+      </section>
+    )
+  }
+
   return (
-    <div
-      className={`flex flex-col items-center justify-center h-screen bg-fixed bg-center bg-no-repeat bg-cover px-8 ${backgroundImage}`}
+    <section
+      aria-label="LYS Law Firm header"
+      className="flex flex-col items-center justify-center h-screen bg-fixed bg-center bg-no-repeat bg-cover px-8 animate-fade-in"
+      style={backgroundStyle}
     >
       <div className="max-w-[45em]">
         <img
           src={lysLogo.src}
-          alt="lys-landing-logo"
-          key={lysLogo.src}
+          alt="LYS Law Firm logo"
           className="min-w-0"
           fetchPriority="high"
         />
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] tracking-[0.25em] flex items-center gap-2">
-            <FaPhoneAlt className="text-[0.75em]" />
-            (02)<span className="text-white">8-293-8254</span>
-          </h1>
-          <h1 className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] flex items-center gap-2">
-            <FaEnvelope className="text-[0.75em]" />
-            limandsze.lf@gmail.com
-          </h1>
+          <p className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] tracking-[0.25em] flex items-center gap-2">
+            <FaPhoneAlt className="text-[0.75em]" aria-hidden="true" />
+            <a href={`tel:${siteConfig.contact.phone}`} className="text-white hover:underline">
+              {siteConfig.contact.phoneDisplay}
+            </a>
+          </p>
+          <p className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] flex items-center gap-2">
+            <FaEnvelope className="text-[0.75em]" aria-hidden="true" />
+            <a href={`mailto:${siteConfig.contact.email}`} className="hover:underline">
+              {siteConfig.contact.email}
+            </a>
+          </p>
         </div>
-        <h2 className="text-white text-[1.25em] p-5 text-center">
-          The Lim <span className="text-[#bcbcbc]">&</span> Yutatco-Sze Law Firm{" "}
-          <span className="text-[#bcbcbc]">(LYS)</span> is a full-service law
-          office established in 2015.
-        </h2>
-        <h3 className="text-white font-['Raleway'] text-[1em] tracking-[0.05em] p-4 text-center">
-          It is engaged in diversified practice of law primarily focusing in
-          corporate, labor and and tax laws. The Firm likewise represents both
-          corporate and individual clients in different courts and administrative
-          agencies in the country.
-        </h3>
+        <h1 className="text-white text-[1.25em] p-5 text-center">
+          {headerConfig.tagline}
+        </h1>
+        <p className="text-white font-['Raleway'] text-[1em] tracking-[0.05em] p-4 text-center">
+          {headerConfig.description}
+        </p>
       </div>
-    </div>
+    </section>
   )
 }
 

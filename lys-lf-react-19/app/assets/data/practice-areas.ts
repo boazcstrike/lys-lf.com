@@ -1,8 +1,4 @@
-interface PracticeArea {
-  icon: string
-  title: string
-  description: string
-}
+import type { PracticeArea } from "@/app/types"
 
 export const practiceAreas: PracticeArea[] = [
   {

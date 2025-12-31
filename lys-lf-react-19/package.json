@@ -6,17 +6,22 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "preview": "serve out",
+    "clean": "rm -rf .next out",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@keiko-app/react-google-analytics": "^1.0.0",
-    "@react-google-maps/api": "^2.20.7",
-    "next": "15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@react-google-maps/api": "^2.20.8",
+    "next": "16.1.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-spinners": "^0.17.0",
-    "sass": "^1.89.2"
+    "sass": "^1.97.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,8 +29,12 @@
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "@typescript-eslint/parser": "^8",
     "eslint": "^9",
-    "eslint-config-next": "15.3.4",
+    "eslint-config-next": "16.1.1",
+    "serve": "^14.2.5",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5.9.3"
   },

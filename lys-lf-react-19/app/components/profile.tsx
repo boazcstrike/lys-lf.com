@@ -1,38 +1,28 @@
-import { FC } from "react"
+"use client"
 
-import pic from "@/public/images/customer-512.png"
+import React, { FC, useState } from "react"
+import Spinner from "@/app/components/spinner"
+import type { Employee } from "@/app/types"
 
-/**
- * Profile component - displays professional profile information
- * 
- * @component
- * @param {Object} props - Profile data
- * @param {string} [props.img] - URL to profile image
- * @param {string} props.name - Person's full name
- * @param {string} props.position - Job position/title
- * @param {string} [props.mobile] - Mobile phone number
- * @param {string} [props.email] - Email address
- * @returns {React.ReactNode} Profile card element
- */
-interface ProfileProps {
-  img?: string
-  name: string
-  position?: string
-  mobile?: string
-  email?: string
-}
+const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email }): React.ReactNode => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
 
-const Profile: FC<ProfileProps> = ({ img, name, position, mobile, email }) => {
   return (
     <div className="p-6">
       <div className="flex flex-col items-center">
         {img && (
-          <div className="animate-fade-in delay-75">
+          <div className="animate-fade-in delay-75 relative">
+            {!isImageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Spinner size="md" label="Introducing your legal team..." />
+              </div>
+            )}
             <img
-              src={img || pic.src}
-              alt="profile"
-              className="rounded-full max-w-[15em] shadow-[2px_2px_16px_rgba(0,0,0,0.25)]"
+              src={img}
+              alt={`${name} profile photo`}
+              className={`rounded-full max-w-[15em] shadow-[2px_2px_16px_rgba(0,0,0,0.25)] transition-opacity duration-300 ${!isImageLoaded ? "opacity-0" : "opacity-100"}`}
               loading="lazy"
+              onLoad={() => setIsImageLoaded(true)}
             />
           </div>
         )}
@@ -51,4 +41,4 @@ const Profile: FC<ProfileProps> = ({ img, name, position, mobile, email }) => {
   )
 }
 
-export default Profile
+export default React.memo(Profile)

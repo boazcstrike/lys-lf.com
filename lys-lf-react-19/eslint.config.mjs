@@ -10,12 +10,15 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals"),
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      // Disable image optimization warning - not applicable to static export (output: 'export')
-      // Next.js Image component optimization requires server-side rendering
       "@next/next/no-img-element": "off",
+      "prefer-const": "error",
+      "no-var": "error",
+      "object-shorthand": "error",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "error",
     },
   },
 ];

@@ -1,32 +1,15 @@
-import { FC } from "react"
+import React, { FC } from "react"
 
 import Profile from "@/app/components/profile"
 import SectionTitle from "@/app/components/section-title"
-
-/**
- * Role component - displays a group of employees in a specific role/position
- * 
- * @component
- * @param {Object} props - Component props
- * @param {string} props.position - The role/position title
- * @param {Array<{name: string, pic?: string, position?: string, mobile?: string, email?: string}>} props.employees - Array of employee data
- * @returns {React.ReactNode} Section displaying all employees in this role
- */
-interface Employee {
-  key?: string
-  name: string
-  pic?: string
-  position?: string
-  mobile?: string
-  email?: string
-}
+import type { Employee } from "@/app/types"
 
 interface RoleProps {
   position: string
   employees: Employee[]
 }
 
-const Role: FC<RoleProps> = ({ position, employees }) => {
+const Role: FC<RoleProps> = ({ position, employees }): React.ReactNode => {
   return (
     <div className="mb-8">
       <SectionTitle title={position} />
@@ -34,7 +17,7 @@ const Role: FC<RoleProps> = ({ position, employees }) => {
         {employees.map((emp) => (
           <Profile
             key={emp.name}
-            img={emp.pic}
+            img={emp.img}
             name={emp.name}
             position={emp.position}
             mobile={emp.mobile}
@@ -46,4 +29,4 @@ const Role: FC<RoleProps> = ({ position, employees }) => {
   )
 }
 
-export default Role
+export default React.memo(Role)
