@@ -40,7 +40,8 @@
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
-      "@parcel/watcher"
+      "@parcel/watcher",
+      "sharp"
     ],
     "onlyBuiltDependencies": [
       "@parcel/watcher"

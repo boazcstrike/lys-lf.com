@@ -1,11 +1,19 @@
 "use client"
 
-import React, { FC, useState } from "react"
+import React, { FC, useState, useEffect, useRef } from "react"
 import Spinner from "@/app/components/spinner"
 import type { Employee } from "@/app/types"
 
 const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email }): React.ReactNode => {
   const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  // Handle case where image is already cached (onLoad won't fire)
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalHeight !== 0) {
+      setIsImageLoaded(true)
+    }
+  }, [])
 
   return (
     <div className="p-6">
@@ -18,11 +26,13 @@ const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email
               </div>
             )}
             <img
+              ref={imgRef}
               src={img}
               alt={`${name} profile photo`}
               className={`rounded-full max-w-[15em] shadow-[2px_2px_16px_rgba(0,0,0,0.25)] transition-opacity duration-300 ${!isImageLoaded ? "opacity-0" : "opacity-100"}`}
               loading="lazy"
               onLoad={() => setIsImageLoaded(true)}
+              onError={() => setIsImageLoaded(true)}
             />
           </div>
         )}
