@@ -55,13 +55,13 @@ const Header: FC = (): React.ReactNode => {
           fetchPriority="high"
         />
         <div className="flex flex-col items-center gap-2">
-          <p className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] tracking-[0.25em] flex items-center gap-2">
+<p className="text-[#bcbcbc] font-noticia text-[1.55em] tracking-[0.25em] flex items-center gap-2">
             <FaPhoneAlt className="text-[0.75em]" aria-hidden="true" />
             <a href={`tel:${siteConfig.contact.phone}`} className="text-white hover:underline">
               {siteConfig.contact.phoneDisplay}
             </a>
           </p>
-          <p className="text-[#bcbcbc] font-['Noticia_Text'] text-[1.55em] flex items-center gap-2">
+          <p className="text-[#bcbcbc] font-noticia text-[1.55em] flex items-center gap-2">
             <FaEnvelope className="text-[0.75em]" aria-hidden="true" />
             <a href={`mailto:${siteConfig.contact.email}`} className="hover:underline">
               {siteConfig.contact.email}
@@ -69,9 +69,9 @@ const Header: FC = (): React.ReactNode => {
           </p>
         </div>
         <h1 className="text-white text-[1.25em] p-5 text-center">
-          {headerConfig.tagline}
+          The Lim <span className="text-lys-gray">&</span> Yutatco-Sze Law Firm <span className="text-lys-gray">({siteConfig.firmShortName})</span> is a full-service law office established in {siteConfig.establishedYear}.
         </h1>
-        <p className="text-white font-['Raleway'] text-[1em] tracking-[0.05em] p-4 text-center">
+        <p className="text-white font-raleway text-[1em] tracking-[0.05em] p-4 text-center">
           {headerConfig.description}
         </p>
       </div>

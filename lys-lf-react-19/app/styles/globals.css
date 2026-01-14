@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-lys-gray-light: #f2f2f2;
+  --color-lys-gray: #bcbcbc;
+  --color-lys-gray-medium: #cecece;
+  --color-lys-gray-dark: #606060;
+  --color-lys-black: #222222;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -7,7 +15,6 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
 
 body {
   /* color: rgb(var(--foreground-rgb));

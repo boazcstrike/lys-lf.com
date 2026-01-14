@@ -2,9 +2,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        noticia: ["'Noticia Text'", "serif"],
-        raleway: ["'Raleway'", "sans-serif"],
-        opensans: ["'Open Sans'", "sans-serif"],
+        noticia: ["var(--font-noticia)", "'Noticia Text'", "serif"],
+        raleway: ["var(--font-raleway)", "'Raleway'", "sans-serif"],
+        opensans: ["var(--font-opensans)", "'Open Sans'", "sans-serif"],
       },
       colors: {
         lys: {
