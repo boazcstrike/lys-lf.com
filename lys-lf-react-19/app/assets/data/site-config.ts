@@ -27,7 +27,7 @@ export const siteConfig: SiteConfig = {
   },
   
   officeHours: {
-    days: "Monday–Friday",
+    days: "Monday-Friday",
     hours: "8am - 5pm",
   },
   
