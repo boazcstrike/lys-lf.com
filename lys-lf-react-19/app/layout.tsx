@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Raleway, Noticia_Text, Open_Sans } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import ErrorBoundary from "@/app/components/error-boundary";
+import ConsentModeInit from "@/app/components/consent-mode-init";
+import CookieConsent from "@/app/components/cookie-consent";
 import "@/app/styles/globals.css";
 import "@/app/styles/index.scss";
 import React from "react";
@@ -160,21 +162,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
+        <ConsentModeInit />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-<body
+      <body
         className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${noticiaText.variable} ${openSans.variable} antialiased`}
       >
         <ErrorBoundary>
           {children}
+          <CookieConsent />
         </ErrorBoundary>
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </body>
-      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-      )}
     </html>
   );
 }
