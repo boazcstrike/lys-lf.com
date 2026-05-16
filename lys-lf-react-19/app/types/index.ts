@@ -5,6 +5,7 @@ export interface Employee {
   position?: string
   mobile?: string
   email?: string
+  bio?: string
 }
 
 export interface TeamRole {

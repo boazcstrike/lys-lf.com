@@ -22,6 +22,7 @@ const Role: FC<RoleProps> = ({ position, employees }): React.ReactNode => {
             position={emp.position}
             mobile={emp.mobile}
             email={emp.email}
+            bio={emp.bio}
           />
         ))}
       </div>

@@ -4,7 +4,7 @@ import React, { FC, useState, useEffect, useRef } from "react"
 import Spinner from "@/app/components/spinner"
 import type { Employee } from "@/app/types"
 
-const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email }): React.ReactNode => {
+const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email, bio }): React.ReactNode => {
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -45,6 +45,11 @@ const Profile: FC<Omit<Employee, "key">> = ({ img, name, position, mobile, email
             {mobile && <h3 className="text-base">{mobile}</h3>}
             {email && <h3 className="text-base">{email}</h3>}
           </div>
+          {bio && (
+            <p className="max-w-[28em] mt-6 text-[0.95em] font-normal leading-relaxed text-justify text-[#3a3a3a]">
+              {bio}
+            </p>
+          )}
         </div>
       </div>
     </div>
