@@ -173,7 +173,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ErrorBoundary>
           {children}
-          <CookieConsent />
+          {/* Consent UI is dev-only by client request. ConsentModeInit
+              still defaults analytics to denied in prod, so GA runs
+              cookieless there — no banner needed for that state. */}
+          {process.env.NODE_ENV !== "production" && <CookieConsent />}
         </ErrorBoundary>
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />

@@ -24,6 +24,12 @@ import {
  * @returns {React.ReactNode} An inline head script element.
  */
 const ConsentModeInit: FC = () => {
+  // Consent gating is dev-only by client request (the consent flow is still
+  // a draft). In production GA loads with its default behaviour — no
+  // Consent Mode denial — so analytics runs without a banner. Revisit when
+  // the consent UX is approved for production.
+  if (process.env.NODE_ENV === "production") return null;
+
   const script = `
 (function(){
   window.dataLayer = window.dataLayer || [];

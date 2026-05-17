@@ -19,6 +19,10 @@ import CookieSettingsButton from "@/app/components/cookie-settings-button";
 
 const EFFECTIVE_DATE = "16 May 2026";
 
+// Consent UI ships dev-only by client request; the consent flow is a draft.
+// In production GA currently runs without a consent banner.
+const CONSENT_UI_ENABLED = process.env.NODE_ENV !== "production";
+
 export const metadata: Metadata = {
   title: "Cookies & Analytics Notice",
   description: `How ${siteConfig.firmName} uses cookies and Google Analytics on this website, and your choices under the Philippine Data Privacy Act of 2012 (RA 10173).`,
@@ -89,13 +93,23 @@ export default function PrivacyPolicyPage(): React.ReactNode {
           </Section>
 
           <Section title="Your consent">
-            <p>
-              On your first visit you can Accept or Reject analytics with
-              equal ease. Until you accept, Google Consent Mode keeps
-              analytics storage off. Your choice is remembered on your
-              device and you can change or withdraw it anytime &mdash;{" "}
-              <CookieSettingsButton />.
-            </p>
+            {CONSENT_UI_ENABLED ? (
+              <p>
+                On your first visit you can Accept or Reject analytics with
+                equal ease. Until you accept, Google Consent Mode keeps
+                analytics storage off. Your choice is remembered on your
+                device and you can change or withdraw it anytime &mdash;{" "}
+                <CookieSettingsButton />.
+              </p>
+            ) : (
+              <p>
+                We use Google Analytics to measure aggregate, anonymised
+                site usage. A granular cookie-consent control is being
+                finalised and will be added here. In the meantime, you can
+                prevent analytics cookies using your browser settings or a
+                privacy extension, or contact us (below) with any request.
+              </p>
+            )}
           </Section>
 
           <Section title="Your rights">
