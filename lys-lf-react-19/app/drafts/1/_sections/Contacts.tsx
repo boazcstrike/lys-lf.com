@@ -22,7 +22,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <p
       className="mb-3 text-xs tracking-[0.22em] uppercase"
       style={{
-        color: "#C5A572",
+        color: "var(--d6-accent)",
         fontFamily: "var(--font-source-sans)",
         fontWeight: 600,
       }}
@@ -38,7 +38,7 @@ function GoldRule({ className = "" }: { className?: string }) {
     <div
       aria-hidden="true"
       className={`h-px ${className}`}
-      style={{ backgroundColor: "#C5A572" }}
+      style={{ backgroundColor: "var(--d6-accent)" }}
     />
   )
 }
@@ -55,7 +55,7 @@ function DetailRow({ label, children }: DetailRowProps) {
       <p
         className="mb-1.5 text-xs tracking-[0.18em] uppercase"
         style={{
-          color: "#C5A572",
+          color: "var(--d6-accent)",
           fontFamily: "var(--font-source-sans)",
           fontWeight: 600,
         }}
@@ -64,7 +64,7 @@ function DetailRow({ label, children }: DetailRowProps) {
       </p>
       <div
         className="text-sm leading-[1.7]"
-        style={{ color: "#1A1A2E", fontFamily: "var(--font-source-sans)" }}
+        style={{ color: "var(--d6-text)", fontFamily: "var(--font-source-sans)" }}
       >
         {children}
       </div>
@@ -81,7 +81,7 @@ const Contacts: React.FC = () => {
     <section
       id="contact"
       className="py-20 md:py-28"
-      style={{ backgroundColor: "#FBF8F1" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 xl:px-20">
@@ -95,7 +95,7 @@ const Contacts: React.FC = () => {
               id="contact-heading"
               className="mb-5 text-3xl leading-tight md:text-4xl"
               style={{
-                color: "#14213D",
+                color: "var(--d6-heading)",
                 fontFamily: "var(--font-playfair)",
                 fontWeight: 700,
               }}
@@ -128,8 +128,8 @@ const Contacts: React.FC = () => {
               {/* Gold underline grow on hover via contact-link CSS */}
               <a
                 href={`tel:${contact.phone}`}
-                className="contact-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
-                style={{ color: "#14213D" }}
+                className="contact-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
+                style={{ color: "var(--d6-heading)" }}
               >
                 {contact.phoneDisplay}
               </a>
@@ -138,8 +138,8 @@ const Contacts: React.FC = () => {
             <DetailRow label="Email">
               <a
                 href={`mailto:${contact.email}`}
-                className="contact-link break-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
-                style={{ color: "#14213D" }}
+                className="contact-link break-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
+                style={{ color: "var(--d6-heading)" }}
               >
                 {contact.email}
               </a>
@@ -151,7 +151,7 @@ const Contacts: React.FC = () => {
             <p
               className="mb-4 text-xs tracking-[0.18em] uppercase"
               style={{
-                color: "#C5A572",
+                color: "var(--d6-accent)",
                 fontFamily: "var(--font-source-sans)",
                 fontWeight: 600,
               }}
@@ -167,7 +167,7 @@ const Contacts: React.FC = () => {
               className="relative w-full overflow-hidden lg:flex-1 lg:min-h-[420px]"
               style={{
                 paddingBottom: "75%",
-                border: "1px solid #C5A572",
+                border: "1px solid var(--d6-accent)",
               }}
             >
               <iframe
@@ -190,7 +190,7 @@ const Contacts: React.FC = () => {
       <style>{`
         .contact-link {
           display: inline;
-          background-image: linear-gradient(#C5A572, #C5A572);
+          background-image: linear-gradient(var(--d6-accent), var(--d6-accent));
           background-size: 0% 1px;
           background-repeat: no-repeat;
           background-position: left bottom;

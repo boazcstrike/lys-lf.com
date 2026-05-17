@@ -1,12 +1,5 @@
 import teamRoles from "@/app/assets/data/team"
 
-// Quiet Luxury palette
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const CHARCOAL = "#2B2622"
-const PANEL = "#F6F2EA"
-const STONE = "#EFEAE1"
-
 // Honorific tokens to strip when deriving initials
 const HONORIFICS = new Set([
   "atty.", "atty", "mr.", "mr", "ms.", "ms", "dr.", "dr",
@@ -34,10 +27,11 @@ function getInitials(name: string): string {
 
 /**
  * Team — Quiet Luxury layout.
- * Panel bg, Cormorant section heading, brass hairlines.
+ * Cormorant section heading, brass hairlines.
  * Partners: portrait photos (3:4 aspect).
- * Associates: typographic monogram on stone bg.
+ * Associates: typographic monogram on bg color.
  * No JS — CSS hover only.
+ * Colors via CSS custom properties (--d6-*).
  */
 export default function Team() {
   return (
@@ -45,7 +39,7 @@ export default function Team() {
       id="team"
       aria-labelledby="team-heading"
       style={{
-        backgroundColor: PANEL,
+        backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="py-20 md:py-28"
@@ -54,7 +48,7 @@ export default function Team() {
         {/* Section header */}
         <div className="mb-14 max-w-xl">
           <p
-            style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "10px" }}
+            style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
             className="mb-4 font-medium uppercase"
           >
             Our People
@@ -63,7 +57,7 @@ export default function Team() {
             id="team-heading"
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
-              color: GREEN,
+              color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.1,
             }}
@@ -72,7 +66,7 @@ export default function Team() {
             Meet the Team
           </h2>
           <div
-            style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+            style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
             className="mt-5"
             aria-hidden="true"
           />
@@ -85,10 +79,10 @@ export default function Team() {
               {/* Role label row */}
               <h3
                 style={{
-                  color: BRASS,
+                  color: "var(--d6-accent)",
                   letterSpacing: "0.22em",
                   fontSize: "10px",
-                  borderBottom: `1px solid ${BRASS}33`,
+                  borderBottom: "1px solid var(--d6-hair)",
                   paddingBottom: "0.75rem",
                   marginBottom: "2rem",
                 }}
@@ -108,10 +102,10 @@ export default function Team() {
                     <li
                       key={employee.key}
                       style={{
-                        border: `1px solid ${BRASS}33`,
-                        backgroundColor: STONE,
+                        border: "1px solid var(--d6-hair)",
+                        backgroundColor: "var(--d6-bg)",
                       }}
-                      className="flex flex-col transition-shadow hover:shadow-[0_4px_24px_rgba(31,58,46,0.10)]"
+                      className="flex flex-col transition-shadow hover:shadow-[0_4px_24px_var(--d6-scrim-mid)]"
                     >
                       {/* Photo (partners) or typographic monogram (associates) */}
                       {employee.img ? (
@@ -125,7 +119,7 @@ export default function Team() {
                       ) : (
                         <div
                           style={{
-                            backgroundColor: STONE,
+                            backgroundColor: "var(--d6-bg)",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -144,18 +138,18 @@ export default function Team() {
                               left: "1rem",
                               right: "1rem",
                               bottom: "1rem",
-                              border: `1px solid ${BRASS}33`,
+                              border: "1px solid var(--d6-hair)",
                               pointerEvents: "none",
                             }}
                             aria-hidden="true"
                           />
-                          {/* Monogram letters */}
+                          {/* Monogram letters — heading color at low opacity */}
                           <span
                             style={{
                               fontFamily: "var(--font-cormorant), Georgia, serif",
                               fontSize: "3.5rem",
                               fontWeight: 300,
-                              color: `${GREEN}55`,
+                              color: "var(--d6-faint)",
                               lineHeight: 1,
                               letterSpacing: "0.05em",
                               userSelect: "none",
@@ -170,7 +164,7 @@ export default function Team() {
                       {/* Name card */}
                       <div
                         style={{
-                          borderTop: `1px solid ${BRASS}33`,
+                          borderTop: "1px solid var(--d6-hair)",
                           padding: "1.125rem 1.25rem",
                         }}
                         className="flex flex-1 flex-col"
@@ -178,7 +172,7 @@ export default function Team() {
                         <p
                           style={{
                             fontFamily: "var(--font-cormorant), Georgia, serif",
-                            color: GREEN,
+                            color: "var(--d6-heading)",
                             fontWeight: 600,
                             fontSize: "1.05rem",
                             lineHeight: 1.25,
@@ -190,7 +184,7 @@ export default function Team() {
                         {employee.position && (
                           <p
                             style={{
-                              color: `${CHARCOAL}88`,
+                              color: "var(--d6-faint)",
                               fontSize: "11px",
                               letterSpacing: "0.05em",
                               marginTop: "0.25rem",
@@ -203,7 +197,7 @@ export default function Team() {
                         {employee.bio && (
                           <p
                             style={{
-                              color: CHARCOAL,
+                              color: "var(--d6-text)",
                               fontSize: "12px",
                               lineHeight: 1.7,
                               marginTop: "0.75rem",
@@ -218,7 +212,7 @@ export default function Team() {
                         {(employee.mobile ?? employee.email) && (
                           <div
                             style={{
-                              borderTop: `1px solid ${BRASS}22`,
+                              borderTop: "1px solid var(--d6-hair)",
                               marginTop: "0.75rem",
                               paddingTop: "0.75rem",
                             }}
@@ -227,8 +221,8 @@ export default function Team() {
                             {employee.mobile && (
                               <a
                                 href={`tel:${employee.mobile}`}
-                                style={{ color: `${CHARCOAL}88`, fontSize: "11px", display: "block" }}
-                                className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+                                style={{ color: "var(--d6-faint)", fontSize: "11px", display: "block" }}
+                                className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                               >
                                 {employee.mobile}
                               </a>
@@ -236,8 +230,8 @@ export default function Team() {
                             {employee.email && (
                               <a
                                 href={`mailto:${employee.email}`}
-                                style={{ color: `${CHARCOAL}88`, fontSize: "11px", display: "block" }}
-                                className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+                                style={{ color: "var(--d6-faint)", fontSize: "11px", display: "block" }}
+                                className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                               >
                                 {employee.email}
                               </a>

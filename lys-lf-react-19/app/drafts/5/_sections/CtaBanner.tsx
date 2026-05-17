@@ -1,10 +1,22 @@
 /**
  * CtaBanner — Swiss Architectural (Draft 5)
  *
- * Full-bleed red (#D72638) field. White Space Grotesk headline at large
- * display size. Section index "05" in a contrast-safe near-white tint.
- * Two flat button CTAs: solid white (call) and outline white (find us).
+ * Full-bleed accent field. White Space Grotesk headline at large display size.
+ * Section index "05" in a contrast-safe near-white tint.
+ * Two flat button CTAs: solid bg (call) and outline (find us).
  * No JS handlers — pure CSS hover.
+ *
+ * Token mapping (d5-default):
+ *   accent         = #D72638 (full section background — CTA field)
+ *   accentContrast = #FFFFFF (headline text on accent bg; "Find Us" border+text)
+ *   bg             = #FFFFFF ("Call Us" button background — always opposite-polarity to heading)
+ *   heading        = #0A0A0A ("Call Us" button text on bg; bg vs heading always AA per scheme)
+ *   hair           = #0A0A0A (section borderBottom)
+ *
+ * All 8 schemes: var(--d6-accent-contrast) is the guaranteed readable color ON
+ * accent bg (AA). var(--d6-bg) + var(--d6-heading) are always opposite-polarity
+ * per scheme definition, so "Call Us" button is AA on all schemes.
+ * d5-default: accentContrast=#FFFFFF, bg=#FFFFFF, heading=#0A0A0A => identical look.
  */
 
 import React from "react"
@@ -15,8 +27,8 @@ const CtaBanner: React.FC = () => {
     <section
       aria-label="Call to action"
       style={{
-        backgroundColor: "#D72638",
-        borderBottom: "1px solid #0A0A0A",
+        backgroundColor: "var(--d6-accent)",
+        borderBottom: "1px solid var(--d6-hair)",
       }}
     >
       {/* Index row */}
@@ -53,7 +65,7 @@ const CtaBanner: React.FC = () => {
           style={{
             fontFamily: "var(--font-space-grotesk)",
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "var(--d6-accent-contrast)",
             fontSize: "clamp(2rem, 5vw + 0.5rem, 4rem)",
           }}
         >
@@ -64,23 +76,25 @@ const CtaBanner: React.FC = () => {
 
         {/* CTA buttons */}
         <div className="flex flex-wrap items-center gap-4">
+          {/* "Call Us" — solid bg button on accent bg (bg+heading always opposite-polarity => AA all schemes) */}
           <a
             href={`tel:${siteConfig.contact.phone}`}
-            className="inline-flex min-h-[52px] items-center justify-center px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex min-h-[52px] items-center justify-center px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent-contrast)]"
             style={{
-              backgroundColor: "#FFFFFF",
-              color: "#0A0A0A",
+              backgroundColor: "var(--d6-bg)",
+              color: "var(--d6-heading)",
               fontFamily: "var(--font-inter)",
             }}
           >
             Call Us
           </a>
+          {/* "Find Us" — accent-contrast outline button on accent bg (guaranteed AA per token definition) */}
           <a
             href="#contact"
-            className="inline-flex min-h-[52px] items-center justify-center px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex min-h-[52px] items-center justify-center px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent-contrast)]"
             style={{
-              border: "1px solid rgba(255,255,255,0.8)",
-              color: "#FFFFFF",
+              border: "1px solid var(--d6-accent-contrast)",
+              color: "var(--d6-accent-contrast)",
               fontFamily: "var(--font-inter)",
               backgroundColor: "transparent",
             }}

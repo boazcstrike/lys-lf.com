@@ -26,7 +26,7 @@ function GoldRule({ className = "" }: { className?: string }) {
     <div
       aria-hidden="true"
       className={`h-px ${className}`}
-      style={{ backgroundColor: "#C5A572" }}
+      style={{ backgroundColor: "var(--d6-accent)" }}
     />
   )
 }
@@ -37,7 +37,7 @@ function EyebrowLabel({ children }: { children: React.ReactNode }) {
     <p
       className="mb-4 text-xs tracking-[0.22em] uppercase"
       style={{
-        color: "#C5A572",
+        color: "var(--d6-accent)",
         fontFamily: "var(--font-source-sans)",
         fontWeight: 600,
       }}
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
   return (
     <header
       className="relative flex min-h-[100svh] flex-col lg:flex-row"
-      style={{ backgroundColor: "#14213D" }}
+      style={{ backgroundColor: "var(--d6-panel)" }}
     >
       {/* ── Left panel: full-bleed hero photograph ── */}
       <div className="relative h-[56vw] min-h-[280px] w-full lg:h-auto lg:w-[58%] lg:min-h-[100svh]">
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
           className="absolute inset-0 hidden lg:block"
           style={{
             background:
-              "linear-gradient(to right, transparent 52%, #14213D 100%)",
+              "linear-gradient(to right, var(--d6-scrim-top) 52%, var(--d6-panel) 100%)",
           }}
         />
 
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
           className="absolute inset-0 lg:hidden"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 38%, #14213D 100%)",
+              "linear-gradient(to bottom, var(--d6-scrim-top) 38%, var(--d6-panel) 100%)",
           }}
         />
 
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
           <p
             className="text-xs tracking-[0.18em] uppercase"
             style={{
-              color: "#C5A572",
+              color: "var(--d6-accent)",
               fontFamily: "var(--font-source-sans)",
             }}
           >
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
       <div
         className="flex flex-1 flex-col justify-center px-8 py-14 lg:px-14 xl:px-20"
         style={{
-          backgroundColor: "#14213D",
+          backgroundColor: "var(--d6-panel)",
           animation: "heroFadeUp 420ms ease-out both",
         }}
       >
@@ -126,13 +126,13 @@ const Hero: React.FC = () => {
         <h1
           className="mb-6 text-4xl leading-[1.08] md:text-5xl xl:text-6xl"
           style={{
-            color: "#FBF8F1",
+            color: "var(--d6-hero-text)",
             fontFamily: "var(--font-playfair)",
             fontWeight: 700,
           }}
         >
           Lim &amp;{" "}
-          <span style={{ color: "#C5A572" }}>Yutatco&#8209;Sze</span>
+          <span style={{ color: "var(--d6-accent)" }}>Yutatco&#8209;Sze</span>
           <br />
           Law Firm
         </h1>
@@ -144,9 +144,8 @@ const Hero: React.FC = () => {
         <p
           className="mb-4 max-w-[42ch] text-base leading-[1.65] md:text-lg"
           style={{
-            color: "#FBF8F1",
+            color: "var(--d6-hero-muted)",
             fontFamily: "var(--font-source-sans)",
-            opacity: 0.85,
           }}
         >
           {headerConfig.tagline}
@@ -156,7 +155,7 @@ const Hero: React.FC = () => {
         <p
           className="mb-10 max-w-[52ch] text-sm leading-[1.7]"
           style={{
-            color: "#FBF8F1",
+            color: "var(--d6-hero-text)",
             fontFamily: "var(--font-source-sans)",
             opacity: 0.62,
           }}
@@ -168,10 +167,10 @@ const Hero: React.FC = () => {
         <div className="flex flex-wrap gap-4">
           <a
             href="#contact"
-            className="hero-cta-solid inline-flex min-h-[44px] items-center justify-center px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
+            className="hero-cta-solid inline-flex min-h-[44px] items-center justify-center px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
             style={{
-              backgroundColor: "#C5A572",
-              color: "#14213D",
+              backgroundColor: "var(--d6-accent)",
+              color: "var(--d6-accent-contrast)",
               fontFamily: "var(--font-source-sans)",
               transition: "transform 180ms ease-out, opacity 180ms ease-out",
             }}
@@ -180,10 +179,10 @@ const Hero: React.FC = () => {
           </a>
           <a
             href="#practice-areas"
-            className="hero-cta-outline inline-flex min-h-[44px] items-center justify-center border px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
+            className="hero-cta-outline inline-flex min-h-[44px] items-center justify-center border px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
             style={{
-              borderColor: "#C5A572",
-              color: "#C5A572",
+              borderColor: "var(--d6-accent)",
+              color: "var(--d6-accent)",
               fontFamily: "var(--font-source-sans)",
               transition: "transform 180ms ease-out, opacity 180ms ease-out",
             }}

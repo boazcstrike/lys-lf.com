@@ -8,6 +8,7 @@ import Reveal from "../_components/Reveal"
  * CTA Banner — full-bleed dark section, centered headline with gold accent.
  * "Have Legal Problems? Let's Talk." + phone and email links.
  * Buttons have hover brightness + press scale(0.97).
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function CtaBanner() {
   const { contact } = siteConfig
@@ -20,7 +21,7 @@ export default function CtaBanner() {
     <section
       aria-labelledby="cta-heading"
       style={{
-        backgroundColor: "#0B0B0C",
+        backgroundColor: "var(--d6-slab)",
         padding: "clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem)",
         position: "relative",
         overflow: "hidden",
@@ -49,7 +50,7 @@ export default function CtaBanner() {
         style={{
           position: "absolute",
           inset: "1.5rem",
-          border: "1px solid rgba(176,141,87,0.3)",
+          border: "1px solid var(--d6-accent-line)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -73,7 +74,7 @@ export default function CtaBanner() {
               fontWeight: 600,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#B08D57",
+              color: "var(--d6-accent)",
               marginBottom: "1.25rem",
             }}
           >
@@ -87,14 +88,14 @@ export default function CtaBanner() {
               fontSize: "clamp(2rem, 5vw, 3.75rem)",
               fontWeight: 400,
               lineHeight: 1.1,
-              color: "#EDEDED",
+              color: "var(--d6-slab-text)",
               margin: 0,
               marginBottom: "1.5rem",
             }}
           >
             Have Legal Problems?
             <br />
-            <span style={{ color: "#B08D57" }}>Let&apos;s Talk.</span>
+            <span style={{ color: "var(--d6-accent)" }}>Let&apos;s Talk.</span>
           </h2>
 
           <div
@@ -102,7 +103,7 @@ export default function CtaBanner() {
             style={{
               width: "3rem",
               height: "1px",
-              backgroundColor: "#B08D57",
+              backgroundColor: "var(--d6-accent)",
               margin: "0 auto 2rem",
             }}
           />
@@ -112,7 +113,7 @@ export default function CtaBanner() {
               fontFamily: "var(--font-inter)",
               fontSize: "clamp(0.875rem, 1.2vw, 1rem)",
               fontWeight: 300,
-              color: "#9A9A9A",
+              color: "var(--d6-muted)",
               marginBottom: "2.5rem",
               lineHeight: 1.7,
               maxWidth: "55ch",
@@ -148,18 +149,19 @@ export default function CtaBanner() {
                 justifyContent: "center",
                 minHeight: "44px",
                 padding: "0.75rem 2rem",
-                backgroundColor: primaryHover ? "#C9A46A" : "#B08D57",
-                color: "#0B0B0C",
+                backgroundColor: "var(--d6-accent)",
+                color: "var(--d6-accent-contrast)",
                 fontFamily: "var(--font-inter)",
                 fontSize: "0.8rem",
                 fontWeight: 600,
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
                 textDecoration: "none",
-                border: "1px solid #B08D57",
+                border: "1px solid var(--d6-accent)",
+                filter: primaryHover ? "brightness(1.14)" : "brightness(1)",
                 transform: primaryPress ? "scale(0.97)" : "scale(1)",
                 transition:
-                  "background-color 200ms ease-out, transform 150ms ease-out",
+                  "filter 200ms ease-out, transform 150ms ease-out",
                 outline: "2px solid transparent",
               }}
             >
@@ -183,15 +185,15 @@ export default function CtaBanner() {
                 minHeight: "44px",
                 padding: "0.75rem 2rem",
                 backgroundColor: secondaryHover
-                  ? "rgba(176,141,87,0.08)"
+                  ? "var(--d6-faint)"
                   : "transparent",
-                color: secondaryHover ? "#EDEDED" : "#EDEDED",
+                color: "var(--d6-slab-text)",
                 fontFamily: "var(--font-inter)",
                 fontSize: "0.8rem",
                 fontWeight: 400,
                 letterSpacing: "0.08em",
                 textDecoration: "none",
-                border: `1px solid ${secondaryHover ? "rgba(176,141,87,0.5)" : "rgba(237,237,237,0.25)"}`,
+                border: `1px solid ${secondaryHover ? "var(--d6-accent-line)" : "var(--d6-hair)"}`,
                 transform: secondaryPress ? "scale(0.97)" : "scale(1)",
                 transition:
                   "background-color 200ms ease-out, border-color 200ms ease-out, transform 150ms ease-out",

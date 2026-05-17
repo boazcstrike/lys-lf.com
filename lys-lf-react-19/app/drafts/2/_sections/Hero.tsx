@@ -1,17 +1,11 @@
 import siteConfig, { headerConfig } from "@/app/assets/data/site-config"
 
-// Quiet Luxury palette constants — used inline to avoid globals.css edits
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const CHARCOAL = "#2B2622"
-const STONE = "#EFEAE1"
-const PANEL = "#F6F2EA"
-
 /**
  * Hero — Quiet Luxury direction.
  * Stone background, serif headline (Cormorant), brass hairline,
  * framed photo (LYS-29) with offset decorative border.
  * Single h1 on the page. Pure CSS hover — no JS handlers.
+ * Colors via CSS custom properties (--d6-*).
  */
 export default function Hero() {
   const { firmName, firmShortName, establishedYear, contact } = siteConfig
@@ -20,22 +14,22 @@ export default function Hero() {
   return (
     <header
       style={{
-        backgroundColor: STONE,
+        backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="w-full"
     >
       {/* ── Utility top bar ────────────────────────────────────────── */}
       <div
-        style={{ borderBottom: `1px solid ${BRASS}33` }}
+        style={{ borderBottom: "1px solid var(--d6-hair)" }}
         className="hidden sm:block"
       >
         <div
-          style={{ color: `${CHARCOAL}99` }}
+          style={{ color: "var(--d6-faint)" }}
           className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2.5 text-[11px]"
         >
           <span
-            style={{ color: BRASS, letterSpacing: "0.22em" }}
+            style={{ color: "var(--d6-accent)", letterSpacing: "0.22em" }}
             className="font-medium uppercase"
           >
             Est. {establishedYear}
@@ -44,14 +38,14 @@ export default function Hero() {
             <a
               href={`tel:${contact.phone}`}
               style={{ color: "inherit" }}
-              className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+              className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
             >
               {contact.phoneDisplay}
             </a>
             <a
               href={`mailto:${contact.email}`}
               style={{ color: "inherit" }}
-              className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+              className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
             >
               {contact.email}
             </a>
@@ -60,11 +54,11 @@ export default function Hero() {
       </div>
 
       {/* ── Logo / nav bar ─────────────────────────────────────────── */}
-      <div style={{ borderBottom: `1px solid ${BRASS}33` }}>
+      <div style={{ borderBottom: "1px solid var(--d6-hair)" }}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-5">
           <a
             href="#"
-            className="flex items-center gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+            className="flex items-center gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
           >
             <img
               src="/images/optimized/lys-logo.webp"
@@ -76,7 +70,7 @@ export default function Hero() {
             <div>
               <p
                 style={{
-                  color: BRASS,
+                  color: "var(--d6-accent)",
                   letterSpacing: "0.2em",
                   fontSize: "9px",
                 }}
@@ -87,7 +81,7 @@ export default function Hero() {
               <p
                 style={{
                   fontFamily: "var(--font-cormorant), Georgia, serif",
-                  color: GREEN,
+                  color: "var(--d6-heading)",
                   fontWeight: 600,
                   fontSize: "1.1rem",
                   lineHeight: 1.2,
@@ -100,7 +94,7 @@ export default function Hero() {
 
           <nav aria-label="Main navigation">
             <ul
-              style={{ color: `${CHARCOAL}aa` }}
+              style={{ color: "var(--d6-muted)" }}
               className="hidden items-center gap-8 text-[11px] font-medium uppercase tracking-widest md:flex"
             >
               {(
@@ -115,7 +109,7 @@ export default function Hero() {
                   <a
                     href={href}
                     style={{ color: "inherit" }}
-                    className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+                    className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                   >
                     {label}
                   </a>
@@ -132,7 +126,7 @@ export default function Hero() {
         <div className="flex flex-col">
           {/* Eyebrow label */}
           <p
-            style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "10px" }}
+            style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
             className="mb-5 font-medium uppercase"
           >
             Full-Service Law Office &middot; Philippines
@@ -142,7 +136,7 @@ export default function Hero() {
           <h1
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
-              color: GREEN,
+              color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.08,
             }}
@@ -153,20 +147,20 @@ export default function Hero() {
 
           {/* Brass hairline */}
           <div
-            style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+            style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
             className="mb-6"
             aria-hidden="true"
           />
 
           <p
-            style={{ color: CHARCOAL, lineHeight: 1.72 }}
+            style={{ color: "var(--d6-text)", lineHeight: 1.72 }}
             className="mb-4 text-base"
           >
             {tagline}
           </p>
 
           <p
-            style={{ color: `${CHARCOAL}99`, lineHeight: 1.75 }}
+            style={{ color: "var(--d6-faint)", lineHeight: 1.75 }}
             className="mb-10 text-sm"
           >
             {description}
@@ -177,28 +171,28 @@ export default function Hero() {
             <a
               href="#contact"
               style={{
-                backgroundColor: GREEN,
-                color: PANEL,
+                backgroundColor: "var(--d6-panel)",
+                color: "var(--d6-hero-text)",
                 letterSpacing: "0.1em",
                 fontSize: "11px",
                 minWidth: "10rem",
                 height: "48px",
               }}
-              className="inline-flex items-center justify-center px-7 font-medium uppercase transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center px-7 font-medium uppercase transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
             >
               Contact Us
             </a>
             <a
               href="#practice-areas"
               style={{
-                border: `1px solid ${BRASS}`,
-                color: GREEN,
+                border: "1px solid var(--d6-accent)",
+                color: "var(--d6-heading)",
                 letterSpacing: "0.1em",
                 fontSize: "11px",
                 minWidth: "10rem",
                 height: "48px",
               }}
-              className="inline-flex items-center justify-center px-7 font-medium uppercase transition-colors hover:bg-[#A98B5D]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center px-7 font-medium uppercase transition-colors hover:bg-[var(--d6-accent-soft)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
             >
               Our Practice Areas
             </a>
@@ -210,7 +204,7 @@ export default function Hero() {
           {/* Decorative offset border */}
           <div
             style={{
-              border: `1px solid ${BRASS}55`,
+              border: "1px solid var(--d6-accent-line)",
               position: "absolute",
               top: "14px",
               left: "14px",
@@ -224,7 +218,7 @@ export default function Hero() {
           {/* Photo frame */}
           <div
             style={{
-              boxShadow: "0 8px 40px rgba(31,58,46,0.14)",
+              boxShadow: "0 8px 40px var(--d6-scrim-top)",
               position: "relative",
               zIndex: 1,
               overflow: "hidden",
@@ -240,8 +234,8 @@ export default function Hero() {
           {/* Est. badge — bottom-left */}
           <div
             style={{
-              backgroundColor: GREEN,
-              color: PANEL,
+              backgroundColor: "var(--d6-panel)",
+              color: "var(--d6-hero-text)",
               position: "absolute",
               bottom: "-1rem",
               left: "1.5rem",
@@ -261,7 +255,7 @@ export default function Hero() {
             </p>
             <p
               style={{
-                color: BRASS,
+                color: "var(--d6-accent)",
                 letterSpacing: "0.18em",
                 fontSize: "8px",
                 marginTop: "4px",

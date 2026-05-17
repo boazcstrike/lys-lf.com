@@ -1,15 +1,10 @@
 import siteConfig from "@/app/assets/data/site-config"
 
-// Quiet Luxury palette
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const CHARCOAL = "#2B2622"
-const STONE = "#EFEAE1"
-
 /**
  * Contacts — address, office hours, phone, email + embedded Google Map.
- * Stone bg. Two-column: contact details left, map iframe right.
+ * Two-column: contact details left, map iframe right.
  * Map uses coordinate-based embed URL — no API key required.
+ * Colors via CSS custom properties (--d6-*).
  */
 export default function Contacts() {
   const { contact, location, officeHours } = siteConfig
@@ -20,7 +15,7 @@ export default function Contacts() {
       id="contact"
       aria-labelledby="contact-heading"
       style={{
-        backgroundColor: STONE,
+        backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="py-20 md:py-28"
@@ -29,7 +24,7 @@ export default function Contacts() {
         {/* Section header */}
         <div className="mb-14 max-w-xl">
           <p
-            style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "10px" }}
+            style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
             className="mb-4 font-medium uppercase"
           >
             Find Us
@@ -38,7 +33,7 @@ export default function Contacts() {
             id="contact-heading"
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
-              color: GREEN,
+              color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.1,
             }}
@@ -47,7 +42,7 @@ export default function Contacts() {
             Contact &amp; Location
           </h2>
           <div
-            style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+            style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
             className="mt-5"
             aria-hidden="true"
           />
@@ -59,13 +54,13 @@ export default function Contacts() {
             {/* Office Address */}
             <div>
               <h3
-                style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "9px" }}
+                style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "9px" }}
                 className="mb-3 font-medium uppercase"
               >
                 Office Address
               </h3>
               <address
-                style={{ color: `${CHARCOAL}bb`, lineHeight: 1.8 }}
+                style={{ color: "var(--d6-muted)", lineHeight: 1.8 }}
                 className="not-italic text-sm"
               >
                 <p>{address.line1}</p>
@@ -78,20 +73,20 @@ export default function Contacts() {
             </div>
 
             <div
-              style={{ height: "1px", backgroundColor: `${BRASS}33` }}
+              style={{ height: "1px", backgroundColor: "var(--d6-hair)" }}
               aria-hidden="true"
             />
 
             {/* Office Hours */}
             <div>
               <h3
-                style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "9px" }}
+                style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "9px" }}
                 className="mb-3 font-medium uppercase"
               >
                 Office Hours
               </h3>
-              <p style={{ color: `${CHARCOAL}bb` }} className="text-sm">
-                <span style={{ color: CHARCOAL, fontWeight: 500 }}>
+              <p style={{ color: "var(--d6-muted)" }} className="text-sm">
+                <span style={{ color: "var(--d6-text)", fontWeight: 500 }}>
                   {officeHours.days}
                 </span>
                 {" — "}
@@ -100,45 +95,45 @@ export default function Contacts() {
             </div>
 
             <div
-              style={{ height: "1px", backgroundColor: `${BRASS}33` }}
+              style={{ height: "1px", backgroundColor: "var(--d6-hair)" }}
               aria-hidden="true"
             />
 
             {/* Phone + Email */}
             <div>
               <h3
-                style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "9px" }}
+                style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "9px" }}
                 className="mb-3 font-medium uppercase"
               >
                 Get in Touch
               </h3>
               <div className="space-y-2 text-sm">
-                <p style={{ color: `${CHARCOAL}bb` }}>
+                <p style={{ color: "var(--d6-muted)" }}>
                   <span
-                    style={{ color: BRASS, letterSpacing: "0.15em", fontSize: "9px" }}
+                    style={{ color: "var(--d6-accent)", letterSpacing: "0.15em", fontSize: "9px" }}
                     className="mr-2 font-medium uppercase"
                   >
                     Tel
                   </span>
                   <a
                     href={`tel:${contact.phone}`}
-                    style={{ color: CHARCOAL }}
-                    className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+                    style={{ color: "var(--d6-text)" }}
+                    className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                   >
                     {contact.phoneDisplay}
                   </a>
                 </p>
-                <p style={{ color: `${CHARCOAL}bb` }}>
+                <p style={{ color: "var(--d6-muted)" }}>
                   <span
-                    style={{ color: BRASS, letterSpacing: "0.15em", fontSize: "9px" }}
+                    style={{ color: "var(--d6-accent)", letterSpacing: "0.15em", fontSize: "9px" }}
                     className="mr-2 font-medium uppercase"
                   >
                     Email
                   </span>
                   <a
                     href={`mailto:${contact.email}`}
-                    style={{ color: CHARCOAL }}
-                    className="transition-colors hover:text-[#1F3A2E] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2"
+                    style={{ color: "var(--d6-text)" }}
+                    className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                   >
                     {contact.email}
                   </a>
@@ -146,9 +141,9 @@ export default function Contacts() {
               </div>
             </div>
 
-            {/* Short brass accent rule */}
+            {/* Short accent rule */}
             <div
-              style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+              style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
               aria-hidden="true"
             />
           </div>
@@ -157,8 +152,8 @@ export default function Contacts() {
           <div
             style={{
               overflow: "hidden",
-              border: `1px solid ${BRASS}33`,
-              boxShadow: "0 4px 24px rgba(31,58,46,0.08)",
+              border: "1px solid var(--d6-hair)",
+              boxShadow: "0 4px 24px var(--d6-scrim-bot)",
             }}
           >
             <iframe

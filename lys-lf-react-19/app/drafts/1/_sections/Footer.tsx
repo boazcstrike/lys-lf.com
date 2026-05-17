@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   return (
     <footer
       className="py-10"
-      style={{ backgroundColor: "#14213D" }}
+      style={{ backgroundColor: "var(--d6-panel)" }}
       aria-label="Site footer"
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 xl:px-20">
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         <div
           aria-hidden="true"
           className="mb-8 h-px w-full"
-          style={{ backgroundColor: "#C5A572", opacity: 0.4 }}
+          style={{ backgroundColor: "var(--d6-accent)", opacity: 0.4 }}
         />
 
         {/* Three-column footer row */}
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
           <p
             className="text-center text-sm tracking-wide"
             style={{
-              color: "#FBF8F1",
+              color: "var(--d6-hero-text)",
               fontFamily: "var(--font-playfair)",
               fontWeight: 500,
               opacity: 0.88,
@@ -57,9 +57,9 @@ const Footer: React.FC = () => {
             <p
               className="mb-1 text-xs"
               style={{
-                color: "#FBF8F1",
+                color: "var(--d6-hero-text)",
                 fontFamily: "var(--font-source-sans)",
-                opacity: 0.48,
+                opacity: 0.62,
               }}
             >
               &copy; {currentYear} {siteConfig.firmName}. All rights reserved.
@@ -67,9 +67,9 @@ const Footer: React.FC = () => {
             <p
               className="text-xs"
               style={{
-                color: "#FBF8F1",
+                color: "var(--d6-hero-text)",
                 fontFamily: "var(--font-source-sans)",
-                opacity: 0.44,
+                opacity: 0.58,
               }}
             >
               Website by{" "}
@@ -77,8 +77,8 @@ const Footer: React.FC = () => {
                 href="https://www.facebook.com/boazcstrike/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
-                style={{ color: "#C5A572", opacity: 1 }}
+                className="footer-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
+                style={{ color: "var(--d6-accent)", opacity: 1 }}
               >
                 Boaz Sze
               </a>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
       {/* Gold underline grow for footer link */}
       <style>{`
         .footer-link {
-          background-image: linear-gradient(#C5A572, #C5A572);
+          background-image: linear-gradient(var(--d6-accent), var(--d6-accent));
           background-size: 0% 1px;
           background-repeat: no-repeat;
           background-position: left bottom;

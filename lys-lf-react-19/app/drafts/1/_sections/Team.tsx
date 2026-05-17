@@ -39,7 +39,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <p
       className="mb-3 text-xs tracking-[0.22em] uppercase"
       style={{
-        color: "#C5A572",
+        color: "var(--d6-accent)",
         fontFamily: "var(--font-source-sans)",
         fontWeight: 600,
       }}
@@ -55,7 +55,7 @@ function GoldRule({ className = "" }: { className?: string }) {
     <div
       aria-hidden="true"
       className={`h-px ${className}`}
-      style={{ backgroundColor: "#C5A572" }}
+      style={{ backgroundColor: "var(--d6-accent)" }}
     />
   )
 }
@@ -84,14 +84,14 @@ function PartnerCard({ employee }: { employee: Employee }) {
         <div
           aria-hidden="true"
           className="partner-card-bar pointer-events-none absolute bottom-0 left-0 h-1"
-          style={{ backgroundColor: "#C5A572", width: "4rem" }}
+          style={{ backgroundColor: "var(--d6-accent)", width: "4rem" }}
         />
       </div>
 
       <h3
         className="mb-1 text-xl leading-snug"
         style={{
-          color: "#14213D",
+          color: "var(--d6-heading)",
           fontFamily: "var(--font-playfair)",
           fontWeight: 600,
         }}
@@ -102,7 +102,7 @@ function PartnerCard({ employee }: { employee: Employee }) {
       <p
         className="text-xs tracking-[0.18em] uppercase"
         style={{
-          color: "#C5A572",
+          color: "var(--d6-accent)",
           fontFamily: "var(--font-source-sans)",
           fontWeight: 600,
         }}
@@ -114,7 +114,7 @@ function PartnerCard({ employee }: { employee: Employee }) {
         <p
           className="mt-4 max-w-[46ch] text-sm leading-[1.75] text-justify"
           style={{
-            color: "#14213D",
+            color: "var(--d6-heading)",
             fontFamily: "var(--font-source-sans)",
             opacity: 1,
           }}
@@ -136,15 +136,15 @@ function AssociateCard({ employee }: { employee: Employee }) {
       <div
         className="associate-card-mono mb-5 flex h-24 w-24 items-center justify-center"
         style={{
-          border: "1px solid #C5A572",
-          backgroundColor: "#FBF8F1",
+          border: "1px solid var(--d6-accent)",
+          backgroundColor: "var(--d6-bg)",
         }}
         aria-hidden="true"
       >
         <span
           className="select-none text-2xl tracking-wider"
           style={{
-            color: "#14213D",
+            color: "var(--d6-heading)",
             fontFamily: "var(--font-playfair)",
             fontWeight: 600,
           }}
@@ -156,7 +156,7 @@ function AssociateCard({ employee }: { employee: Employee }) {
       <h3
         className="mb-1 text-base leading-snug"
         style={{
-          color: "#14213D",
+          color: "var(--d6-heading)",
           fontFamily: "var(--font-playfair)",
           fontWeight: 600,
         }}
@@ -167,7 +167,7 @@ function AssociateCard({ employee }: { employee: Employee }) {
       <p
         className="text-xs tracking-[0.18em] uppercase"
         style={{
-          color: "#C5A572",
+          color: "var(--d6-accent)",
           fontFamily: "var(--font-source-sans)",
           fontWeight: 600,
         }}
@@ -184,7 +184,7 @@ const Team: React.FC = () => {
     <section
       id="team"
       className="py-20 md:py-28"
-      style={{ backgroundColor: "#FBF8F1" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
       aria-labelledby="team-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 xl:px-20">
@@ -196,7 +196,7 @@ const Team: React.FC = () => {
             id="team-heading"
             className="mb-5 text-3xl leading-tight md:text-4xl"
             style={{
-              color: "#14213D",
+              color: "var(--d6-heading)",
               fontFamily: "var(--font-playfair)",
               fontWeight: 700,
             }}
@@ -207,7 +207,7 @@ const Team: React.FC = () => {
           <p
             className="max-w-[62ch] text-sm leading-[1.7]"
             style={{
-              color: "#1A1A2E",
+              color: "var(--d6-text)",
               fontFamily: "var(--font-source-sans)",
               opacity: 0.72,
             }}
@@ -229,7 +229,7 @@ const Team: React.FC = () => {
                 <h3
                   className="shrink-0 text-xs tracking-[0.22em] uppercase"
                   style={{
-                    color: "#14213D",
+                    color: "var(--d6-heading)",
                     fontFamily: "var(--font-source-sans)",
                     fontWeight: 700,
                   }}
@@ -241,7 +241,7 @@ const Team: React.FC = () => {
                   className="flex-1"
                   style={{
                     height: "1px",
-                    backgroundColor: "#C5A572",
+                    backgroundColor: "var(--d6-accent)",
                     opacity: 0.35,
                   }}
                 />
@@ -291,8 +291,8 @@ const Team: React.FC = () => {
           transition: border-color 200ms ease-out, background-color 200ms ease-out;
         }
         .associate-card:hover .associate-card-mono {
-          border-color: #c5a572;
-          background-color: rgba(197,165,114,0.06);
+          border-color: var(--d6-accent);
+          background-color: var(--d6-accent-soft);
         }
         @media (prefers-reduced-motion: reduce) {
           .partner-card-img,

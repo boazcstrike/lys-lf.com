@@ -2,24 +2,28 @@
  * BusinessProfileSection — Heritage Traditional (server component)
  * Alternating photo + text layout with serif headings.
  * Reveal wraps the two columns; react-markdown for bold copy.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: secondary bg (#FAF6F0) and oxblood (#6B1F2A) have no dedicated token;
+ * mapped to --d6-bg and --d6-accent respectively (closest semantics).
  */
 
 import businessProfile from "@/app/assets/data/business-profile"
 import ReactMarkdown from "react-markdown"
 import Reveal from "../_components/Reveal"
 
-/** Ornamental side-rule heading — gold vertical bar left of h2. */
+/** Ornamental side-rule heading — accent vertical bar left of h2. */
 function SectionLabel({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-4 mb-6">
       <span
         className="block w-1 self-stretch flex-shrink-0 rounded-sm"
-        style={{ backgroundColor: "#9C7A3C" }}
+        style={{ backgroundColor: "var(--d6-accent)" }}
         aria-hidden="true"
       />
       <h2
         className="text-2xl sm:text-3xl leading-tight"
-        style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F", fontWeight: 700 }}
+        style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)", fontWeight: 700 }}
       >
         {text}
       </h2>
@@ -32,12 +36,12 @@ export default function BusinessProfileSection() {
     <section
       id="about"
       aria-labelledby="bp-heading"
-      style={{ backgroundColor: "#FAF6F0" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
     >
-      {/* Thin burgundy rule at top */}
+      {/* Thin accent rule at top */}
       <div
         className="h-px w-full"
-        style={{ backgroundColor: "#6B1F2A" }}
+        style={{ backgroundColor: "var(--d6-accent)" }}
         aria-hidden="true"
       />
 
@@ -54,7 +58,7 @@ export default function BusinessProfileSection() {
             {/* Ornamental subline */}
             <p
               className="text-xs tracking-[0.25em] uppercase mb-6"
-              style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+              style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
             >
               A Legacy of Legal Excellence
             </p>
@@ -64,7 +68,7 @@ export default function BusinessProfileSection() {
               className="space-y-4 text-base leading-[1.75]"
               style={{
                 fontFamily: "var(--font-lora)",
-                color: "#3B2F2F",
+                color: "var(--d6-text)",
                 maxWidth: "68ch",
               }}
             >
@@ -74,7 +78,7 @@ export default function BusinessProfileSection() {
                   components={{
                     p: ({ children }) => <p>{children}</p>,
                     strong: ({ children }) => (
-                      <strong style={{ color: "#6B1F2A", fontWeight: 700 }}>
+                      <strong style={{ color: "var(--d6-accent)", fontWeight: 700 }}>
                         {children}
                       </strong>
                     ),
@@ -88,9 +92,9 @@ export default function BusinessProfileSection() {
 
           {/* Photo column */}
           <Reveal delay={80} className="w-full md:w-72 lg:w-80 flex-shrink-0">
-            {/* Classic portrait frame: thick burgundy + inner gold inset */}
-            <div className="border-4 p-1" style={{ borderColor: "#6B1F2A" }}>
-              <div className="border" style={{ borderColor: "#9C7A3C" }}>
+            {/* Classic portrait frame: thick accent + inner accent-line inset */}
+            <div className="border-4 p-1" style={{ borderColor: "var(--d6-accent)" }}>
+              <div className="border" style={{ borderColor: "var(--d6-accent-line)" }}>
                 <img
                   src="/images/optimized/LYS-12.webp"
                   alt="Lawyers of LYS Law Firm in the office"
@@ -102,7 +106,7 @@ export default function BusinessProfileSection() {
             {/* Caption */}
             <p
               className="text-center text-xs tracking-widest uppercase mt-3"
-              style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+              style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
             >
               Est. 2015 &mdash; Alabang, Muntinlupa
             </p>
@@ -110,10 +114,10 @@ export default function BusinessProfileSection() {
         </div>
       </div>
 
-      {/* Thin burgundy rule at bottom */}
+      {/* Thin accent rule at bottom */}
       <div
         className="h-px w-full"
-        style={{ backgroundColor: "#6B1F2A" }}
+        style={{ backgroundColor: "var(--d6-accent)" }}
         aria-hidden="true"
       />
     </section>

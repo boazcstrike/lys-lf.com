@@ -3,6 +3,10 @@
  * Cream background, double-rule frame, centered serif heading,
  * animated OrnamentalDivider, PracticeCard for hover interactivity.
  * Passes iconName string (not the component) to avoid server→client fn boundary.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: section double-rules use --d6-accent2 (#6B1F2A exact parity); original oxblood
+ * #6B1F2A is mapped to --d6-accent2 which preserves the exact Heritage Traditional color.
  */
 
 import practiceAreas from "@/app/assets/data/practice-areas"
@@ -15,13 +19,13 @@ export default function PracticeAreasSection() {
     <section
       id="practice-areas"
       aria-labelledby="pa-heading"
-      style={{ backgroundColor: "#F4EFE6" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
     >
       {/* Double-rule top border */}
-      <div className="border-t-4" style={{ borderColor: "#6B1F2A" }} aria-hidden="true" />
+      <div className="border-t-4" style={{ borderColor: "var(--d6-accent2)" }} aria-hidden="true" />
       <div
         className="border-t"
-        style={{ borderColor: "#6B1F2A", marginTop: "3px" }}
+        style={{ borderColor: "var(--d6-accent2)", marginTop: "3px" }}
         aria-hidden="true"
       />
 
@@ -31,19 +35,19 @@ export default function PracticeAreasSection() {
           <h2
             id="pa-heading"
             className="text-2xl sm:text-3xl mb-2"
-            style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F", fontWeight: 700 }}
+            style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)", fontWeight: 700 }}
           >
             Areas of Practice
           </h2>
 
           <p
             className="text-xs tracking-widest uppercase mb-6"
-            style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+            style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
           >
             Our Fields of Expertise
           </p>
 
-          <OrnamentalDivider className="my-8 max-w-sm mx-auto" />
+          <OrnamentalDivider className="my-8 max-w-sm mx-auto" color="var(--d6-accent)" />
         </Reveal>
 
         {/* Cards grid — role="list" on wrapper; each PracticeCard has role="listitem" */}
@@ -64,10 +68,10 @@ export default function PracticeAreasSection() {
       </div>
 
       {/* Double-rule bottom border */}
-      <div className="border-b" style={{ borderColor: "#6B1F2A" }} aria-hidden="true" />
+      <div className="border-b" style={{ borderColor: "var(--d6-accent2)" }} aria-hidden="true" />
       <div
         className="border-b-4"
-        style={{ borderColor: "#6B1F2A", marginBottom: "3px" }}
+        style={{ borderColor: "var(--d6-accent2)", marginBottom: "3px" }}
         aria-hidden="true"
       />
     </section>

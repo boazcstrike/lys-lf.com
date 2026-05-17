@@ -1,14 +1,10 @@
 import siteConfig from "@/app/assets/data/site-config"
 
-// Quiet Luxury palette
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const PANEL = "#F6F2EA"
-
 /**
- * Footer — deep forest-green strip.
- * White logo, Cormorant firm name, brass developer credit link.
+ * Footer — dark panel strip.
+ * White logo, Cormorant firm name, accent developer credit link.
  * new Date() evaluated at build time — safe for static export.
+ * Colors via CSS custom properties (--d6-*).
  */
 export default function Footer() {
   const { firmName, firmShortName } = siteConfig
@@ -18,8 +14,8 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        backgroundColor: GREEN,
-        borderTop: `1px solid ${BRASS}33`,
+        backgroundColor: "var(--d6-panel)",
+        borderTop: "1px solid var(--d6-hair)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="py-8"
@@ -37,7 +33,7 @@ export default function Footer() {
           <span
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
-              color: PANEL,
+              color: "var(--d6-hero-text)",
               fontWeight: 500,
               fontSize: "1rem",
               lineHeight: 1.2,
@@ -48,19 +44,19 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p style={{ color: `${PANEL}66`, fontSize: "11px" }}>
+        <p style={{ color: "var(--d6-hero-muted)", fontSize: "11px" }}>
           &copy; {year} {firmName}. All rights reserved.
         </p>
 
         {/* Developer attribution */}
-        <p style={{ color: `${PANEL}66`, fontSize: "11px" }}>
+        <p style={{ color: "var(--d6-hero-muted)", fontSize: "11px" }}>
           Website by{" "}
           <a
             href="https://www.facebook.com/boazcstrike/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: BRASS }}
-            className="underline underline-offset-2 transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A98B5D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F3A2E]"
+            style={{ color: "var(--d6-accent)" }}
+            className="underline underline-offset-2 transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--d6-panel)]"
           >
             Boaz Sze
           </a>

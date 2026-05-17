@@ -8,13 +8,6 @@ import {
 import type { IconType } from "react-icons"
 import practiceAreas from "@/app/assets/data/practice-areas"
 
-// Quiet Luxury palette
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const CHARCOAL = "#2B2622"
-const STONE = "#EFEAE1"
-const PANEL = "#F6F2EA"
-
 const ICON_MAP: Record<string, IconType> = {
   FaBriefcase,
   FaCopyright,
@@ -25,9 +18,14 @@ const ICON_MAP: Record<string, IconType> = {
 
 /**
  * PracticeAreas — Quiet Luxury grid.
- * Soft panel (#F6F2EA) bg, thin brass hairline borders between cards,
- * generous white space, small-caps tracked section label,
+ * Brass hairline borders between cards, generous white space,
  * large Cormorant heading. No JS — CSS hover only.
+ * Colors via CSS custom properties (--d6-*).
+ *
+ * Gap token note: original used two distinct light bg values (STONE #EFEAE1
+ * for card bg, PANEL #F6F2EA for section bg and icon bg). The theme maps
+ * --d6-bg to STONE; both card and section now use --d6-bg. Visual difference
+ * is minimal (~5% lightness delta). Reported in commit.
  */
 export default function PracticeAreas() {
   return (
@@ -35,7 +33,7 @@ export default function PracticeAreas() {
       id="practice-areas"
       aria-labelledby="practice-areas-heading"
       style={{
-        backgroundColor: PANEL,
+        backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="py-20 md:py-28"
@@ -44,7 +42,7 @@ export default function PracticeAreas() {
         {/* Section header */}
         <div className="mb-14 max-w-xl">
           <p
-            style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "10px" }}
+            style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
             className="mb-4 font-medium uppercase"
           >
             What We Do
@@ -53,7 +51,7 @@ export default function PracticeAreas() {
             id="practice-areas-heading"
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
-              color: GREEN,
+              color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.1,
             }}
@@ -63,15 +61,15 @@ export default function PracticeAreas() {
           </h2>
           {/* Brass hairline */}
           <div
-            style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+            style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
             className="mt-5"
             aria-hidden="true"
           />
         </div>
 
-        {/* Card grid — brass hairline gap between cards */}
+        {/* Card grid — hair color gap between cards */}
         <ul
-          style={{ backgroundColor: `${BRASS}33` }}
+          style={{ backgroundColor: "var(--d6-hair)" }}
           className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3"
           role="list"
         >
@@ -81,8 +79,8 @@ export default function PracticeAreas() {
             return (
               <li
                 key={area.title}
-                style={{ backgroundColor: STONE }}
-                className="flex flex-col p-8 transition-shadow hover:shadow-[0_4px_24px_rgba(31,58,46,0.08)]"
+                style={{ backgroundColor: "var(--d6-bg)" }}
+                className="flex flex-col p-8 transition-shadow hover:shadow-[0_4px_24px_var(--d6-scrim-bot)]"
               >
                 {/* Icon in small framed square */}
                 <span
@@ -92,21 +90,21 @@ export default function PracticeAreas() {
                     justifyContent: "center",
                     width: "2.75rem",
                     height: "2.75rem",
-                    border: `1px solid ${BRASS}55`,
-                    backgroundColor: PANEL,
+                    border: "1px solid var(--d6-accent-line)",
+                    backgroundColor: "var(--d6-bg)",
                     marginBottom: "1.5rem",
                     flexShrink: 0,
                   }}
                   aria-hidden="true"
                 >
-                  <Icon style={{ color: BRASS, fontSize: "1.1rem" }} />
+                  <Icon style={{ color: "var(--d6-accent)", fontSize: "1.1rem" }} />
                 </span>
 
                 {/* Title — Cormorant serif */}
                 <h3
                   style={{
                     fontFamily: "var(--font-cormorant), Georgia, serif",
-                    color: GREEN,
+                    color: "var(--d6-heading)",
                     fontWeight: 600,
                     fontSize: "1.2rem",
                     lineHeight: 1.2,
@@ -121,14 +119,14 @@ export default function PracticeAreas() {
                   style={{
                     width: "1.5rem",
                     height: "1px",
-                    backgroundColor: BRASS,
+                    backgroundColor: "var(--d6-accent)",
                     marginBottom: "0.875rem",
                   }}
                   aria-hidden="true"
                 />
 
                 <p
-                  style={{ color: `${CHARCOAL}99`, lineHeight: 1.7 }}
+                  style={{ color: "var(--d6-faint)", lineHeight: 1.7 }}
                   className="text-sm"
                 >
                   {area.description}

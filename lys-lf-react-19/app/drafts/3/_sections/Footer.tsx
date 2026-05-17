@@ -8,6 +8,7 @@ import Reveal from "../_components/Reveal"
  * Footer — dark near-black bg, white logo, gold hairline top rule,
  * firm name, copyright, and "Website by Boaz Sze" credit.
  * Credit link has gold grow-underline on hover.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function Footer() {
   const { firmName, establishedYear } = siteConfig
@@ -18,8 +19,8 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        backgroundColor: "#0B0B0C",
-        borderTop: "1px solid rgba(176,141,87,0.3)",
+        backgroundColor: "var(--d6-slab)",
+        borderTop: "1px solid var(--d6-accent-line)",
         padding: "clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
@@ -52,7 +53,7 @@ export default function Footer() {
             style={{
               width: "3rem",
               height: "1px",
-              backgroundColor: "#B08D57",
+              backgroundColor: "var(--d6-accent)",
             }}
           />
 
@@ -62,7 +63,7 @@ export default function Footer() {
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(1rem, 2vw, 1.35rem)",
               fontWeight: 400,
-              color: "#EDEDED",
+              color: "var(--d6-slab-text)",
               letterSpacing: "0.05em",
               margin: 0,
             }}
@@ -76,7 +77,7 @@ export default function Footer() {
               fontFamily: "var(--font-inter)",
               fontSize: "0.75rem",
               fontWeight: 300,
-              color: "#9A9A9A",
+              color: "var(--d6-muted)",
               margin: 0,
             }}
           >
@@ -91,7 +92,7 @@ export default function Footer() {
               fontFamily: "var(--font-inter)",
               fontSize: "0.7rem",
               fontWeight: 300,
-              color: "#9A9A9A",
+              color: "var(--d6-muted)",
               margin: 0,
             }}
           >
@@ -103,9 +104,9 @@ export default function Footer() {
               onMouseEnter={() => setCreditHover(true)}
               onMouseLeave={() => setCreditHover(false)}
               style={{
-                color: "#B08D57",
+                color: "var(--d6-accent)",
                 textDecoration: "none",
-                borderBottom: `1px solid ${creditHover ? "#B08D57" : "transparent"}`,
+                borderBottom: `1px solid ${creditHover ? "var(--d6-accent)" : "transparent"}`,
                 transition: "border-color 200ms ease-out",
                 paddingBottom: "1px",
               }}

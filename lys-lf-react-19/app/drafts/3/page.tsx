@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import ThemeProvider from "@/app/drafts/_theme/ThemeProvider"
+import ColorSwitcher from "@/app/drafts/_theme/ColorSwitcher"
 import HeroClient from "./_components/HeroClient"
 import PracticeAreas from "./_sections/PracticeAreas"
 import BusinessProfile from "./_sections/BusinessProfile"
@@ -18,19 +20,12 @@ export const metadata: Metadata = {
  * off-white #EDEDED, muted #9A9A9A.
  * Fonts: headings var(--font-cormorant), body var(--font-inter).
  * All styling inline — no changes to globals.css or root layout.
- * scroll-behavior: smooth applied here for anchor nav.
+ * scroll-behavior: smooth applied via ThemeProvider root.
  */
 export default function Draft3Page() {
   return (
-    <div
-      style={{
-        backgroundColor: "#0B0B0C",
-        color: "#EDEDED",
-        fontFamily: "var(--font-inter)",
-        overflowX: "hidden",
-        scrollBehavior: "smooth",
-      }}
-    >
+    <ThemeProvider defaultScheme="d3-default" storageKey="lys-scheme-d3">
+      <ColorSwitcher />
       <HeroClient />
       <PracticeAreas />
       <BusinessProfile />
@@ -38,6 +33,6 @@ export default function Draft3Page() {
       <CtaBanner />
       <Contacts />
       <Footer />
-    </div>
+    </ThemeProvider>
   )
 }

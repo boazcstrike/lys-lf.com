@@ -3,8 +3,20 @@
  * Formal, classic law-firm aesthetic: cream bg, oxblood/burgundy primary,
  * antique gold accents, Libre Baskerville headings, Lora body copy.
  * Static-export safe; interactivity isolated into "use client" leaf components.
+ *
+ * Theme: ThemeProvider injects --d6-* CSS custom properties.
+ *        defaultScheme "d4-default" reproduces the original Heritage palette.
+ *        ColorSwitcher exposes d4-default + 7 shared luxury schemes.
  */
 
+import type { Metadata } from "next"
+import ThemeProvider from "@/app/drafts/_theme/ThemeProvider"
+
+export const metadata: Metadata = {
+  title: "Draft 4 — Heritage Traditional | LYS Law Firm",
+  robots: { index: false, follow: false },
+}
+import ColorSwitcher from "@/app/drafts/_theme/ColorSwitcher"
 import HeroSection from "./_sections/HeroSection"
 import PracticeAreasSection from "./_sections/PracticeAreasSection"
 import BusinessProfileSection from "./_sections/BusinessProfileSection"
@@ -15,35 +27,39 @@ import FooterSection from "./_sections/FooterSection"
 
 export default function Draft4Page() {
   return (
-    <div
-      style={{
-        backgroundColor: "#F4EFE6",
-        fontFamily: "var(--font-lora)",
-        color: "#3B2F2F",
-        // Smooth in-page anchor scrolling (e.g. #contact CTA).
-        scrollBehavior: "smooth",
-      }}
-    >
-      {/* 1. Hero / Header */}
-      <HeroSection />
+    <ThemeProvider defaultScheme="d4-default" storageKey="lys-scheme-d4">
+      <ColorSwitcher />
 
-      {/* 2. Practice Areas */}
-      <PracticeAreasSection />
+      {/* Root wrapper: bg and text driven by CSS vars; fonts kept per-section. */}
+      <div
+        style={{
+          backgroundColor: "var(--d6-bg)",
+          fontFamily: "var(--font-lora)",
+          color: "var(--d6-text)",
+          scrollBehavior: "smooth",
+        }}
+      >
+        {/* 1. Hero / Header */}
+        <HeroSection />
 
-      {/* 3. Business Profile */}
-      <BusinessProfileSection />
+        {/* 2. Practice Areas */}
+        <PracticeAreasSection />
 
-      {/* 4. Team */}
-      <TeamSection />
+        {/* 3. Business Profile */}
+        <BusinessProfileSection />
 
-      {/* 5. CTA Banner */}
-      <CtaBannerSection />
+        {/* 4. Team */}
+        <TeamSection />
 
-      {/* 6. Contact + Map */}
-      <ContactSection />
+        {/* 5. CTA Banner */}
+        <CtaBannerSection />
 
-      {/* 7. Footer */}
-      <FooterSection />
-    </div>
+        {/* 6. Contact + Map */}
+        <ContactSection />
+
+        {/* 7. Footer */}
+        <FooterSection />
+      </div>
+    </ThemeProvider>
   )
 }
