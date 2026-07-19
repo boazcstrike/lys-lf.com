@@ -1,0 +1,82 @@
+name: Deploy (static → Bluehost)
+
+# Deliberate triggers only (no auto-deploy on every push):
+#   • workflow_dispatch — pick staging/prod, optional dry-run
+#   • git tag v*        — release → prod
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Deploy target
+        type: choice
+        options: [staging, prod]
+        default: staging
+      dry_run:
+        description: Dry run (no changes on server)
+        type: boolean
+        default: false
+  push:
+    tags: ['v*']
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lys-lf-react-19
+    env:
+      # --- deploy transport (GitHub → Settings → Secrets) ---
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      STAGING_PATH: ${{ secrets.STAGING_PATH }}
+      PROD_PATH: ${{ secrets.PROD_PATH }}
+      # --- optional post-deploy verify URLs (repo Variables, not secret) ---
+      VERIFY_URL_STAGING: ${{ vars.VERIFY_URL_STAGING }}
+      VERIFY_URL_PROD: ${{ vars.VERIFY_URL_PROD }}
+      # --- build-time public vars (inlined into bundle by design) ---
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20            # Next 16 needs >=18.18; 20 LTS is safe
+          cache: npm
+          cache-dependency-path: lys-lf-react-19/package-lock.json
+
+      # NOTE: repo has BOTH package-lock.json and pnpm-lock.yaml — CI pins to
+      # npm (matches package.json scripts). Remove pnpm-lock.yaml to avoid drift.
+      - name: Install (frozen lockfile)
+        run: npm ci
+
+      - name: Build (static export → out/)
+        run: npm run build
+
+      - name: Guard — out/.htaccess present
+        run: test -f out/.htaccess || (echo '::error::out/.htaccess missing — headers would be lost' && exit 1)
+
+      - name: Write SSH key
+        run: |
+          umask 077
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > "${{ runner.temp }}/deploy_key"
+
+      - name: Resolve target + dry-run
+        id: t
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "target=prod" >> "$GITHUB_OUTPUT"; echo "dry=" >> "$GITHUB_OUTPUT"
+          else
+            echo "target=${{ inputs.target }}" >> "$GITHUB_OUTPUT"
+            if [ "${{ inputs.dry_run }}" = "true" ]; then echo "dry=--dry-run" >> "$GITHUB_OUTPUT"; else echo "dry=" >> "$GITHUB_OUTPUT"; fi
+          fi
+
+      - name: Deploy (shared script)
+        env:
+          SSH_KEY: ${{ runner.temp }}/deploy_key
+        run: bash scripts/deploy.sh --target ${{ steps.t.outputs.target }} ${{ steps.t.outputs.dry }}

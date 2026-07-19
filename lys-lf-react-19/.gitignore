@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+# build artifact archives (e.g. out.zip) — never commit
+*.zip
 
 # production
 /build
@@ -30,8 +32,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — real values ignored, committed template allowed
 .env*
+!.env.example
+
+# secrets / keys — defence in depth
+*.key
+*.ppk
+.secrets/
+*credentials*.local.*
 
 # vercel
 .vercel

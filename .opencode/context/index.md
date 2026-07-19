@@ -49,6 +49,25 @@ tone-voice      → content/tone-voice.md             [high] brand voice, tone g
 
 **Used by**: copywriter, technical-writer
 
+### Project (lys-lf.com — LOAD FIRST for any task on this repo)
+Path: `.opencode/context/project/{file}`
+
+```
+project-context → project/project-context.md [critical] lys-lf.com status, stack, hard rules R1-R8, deploy, risks
+```
+
+**Canonical (authoritative) sources referenced by the above:**
+```
+agent-brief  → lys-lf-react-19/docs/ops/AGENT-CONTEXT.md   [critical] one-page briefing for all agents
+infra        → lys-lf-react-19/docs/INFRASTRUCTURE.md      [high]     hosting, domain, creds map
+security     → lys-lf-react-19/docs/SECURITY.md            [high]     risk register + checklists
+deploy       → lys-lf-react-19/docs/ops/DEPLOY.agent.md    [high]     all deploy paths
+staging      → lys-lf-react-19/docs/ops/STAGING-DEPLOYMENT.md [medium] staging setup + mermaid flow
+```
+
+**Used by**: every agent working on the lys-lf.com repo. Load
+`project-context.md` first; it points to the canonical long-form docs.
+
 ### Product
 Path: `.opencode/context/product/{file}`
 

@@ -59,9 +59,20 @@ fixtures/dom/public/react-dom.js
 test/the-files-to-test.generated.js
 template/src/__tests__/__snapshots__/
 
-# environment variables
+# environment variables & secrets (NEVER commit real values)
 config
 .env*
+!.env.example
 .envs
+*.local
+
+# ops secrets / keys / creds — defence in depth
+.secrets/
+secrets/
+*.key
+*.pem
+*.ppk
+credentials*.json
+*credentials*.local.*
 
 lys-lf-initial

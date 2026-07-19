@@ -1,0 +1,56 @@
+name: Deploy FTPS (static → Bluehost, no-shell)
+
+# Active deploy path while SSH shell access is disabled on the account.
+# Manual only. When SSH is enabled, prefer deploy.yml (rsync).
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Deploy target
+        type: choice
+        options: [staging, prod]
+        default: staging
+      dry_run:
+        description: Dry run (no changes on server)
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-ftps-${{ inputs.target }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lys-lf-react-19
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_PRIMARY_USER: ${{ secrets.FTP_USER }}
+      FTP_PRIMARY_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTPS_STAGING_DIR: ${{ secrets.FTPS_STAGING_DIR }}
+      FTPS_PROD_DIR: ${{ secrets.FTPS_PROD_DIR }}
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: lys-lf-react-19/package-lock.json
+      - name: Install deps
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Guard — out/.htaccess present
+        run: test -f out/.htaccess || (echo '::error::out/.htaccess missing' && exit 1)
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Resolve dry-run
+        id: t
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then echo "dry=--dry-run" >> "$GITHUB_OUTPUT"; else echo "dry=" >> "$GITHUB_OUTPUT"; fi
+      - name: FTPS deploy (shared script)
+        run: bash scripts/ftps-deploy.sh --target ${{ inputs.target }} ${{ steps.t.outputs.dry }}

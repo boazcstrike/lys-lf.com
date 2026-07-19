@@ -15,6 +15,12 @@
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
   Header always set Cross-Origin-Opener-Policy "same-origin"
 
+  # Staging must never be indexed (prevents staging.lys-lf.com duplicate content
+  # in search). Applies only when the request host is the staging subdomain, so
+  # the same build is correct on prod (indexable) and staging (noindex).
+  SetEnvIfNoCase Host "staging\.lys-lf\.com" IS_STAGING
+  Header always set X-Robots-Tag "noindex, nofollow" env=IS_STAGING
+
   # HTTPS only — Bluehost serves this site over TLS. Moderate max-age, no
   # preload (reversible if TLS is ever interrupted).
   Header always set Strict-Transport-Security "max-age=15552000"
@@ -54,7 +60,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Force HTTPS.
+  # Force HTTPS — but never redirect ACME/AutoSSL validation paths, or HTTP-01
+  # cert renewal (cPanel AutoSSL) breaks.
+  RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
