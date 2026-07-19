@@ -44,9 +44,9 @@ function PracticeRow({
   return (
     <article
       className="group grid grid-cols-[auto_1fr] gap-x-6 py-7 sm:grid-cols-[auto_1fr_1fr] sm:gap-x-10 lg:grid-cols-[80px_1fr_1fr] lg:py-8"
-      style={{ borderBottom: "1px solid #0A0A0A" }}
+      style={{ borderBottom: "1px solid var(--d6-hair)" }}
     >
-      {/* Index number — red, large, Space Grotesk */}
+      {/* Index number — accent, large, Space Grotesk */}
       <span
         aria-hidden="true"
         className="self-start leading-none"
@@ -54,7 +54,7 @@ function PracticeRow({
           fontFamily: "var(--font-space-grotesk)",
           fontWeight: 700,
           fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-          color: "#D72638",
+          color: "var(--d6-accent)",
           lineHeight: 1,
         }}
       >
@@ -68,7 +68,7 @@ function PracticeRow({
           fontFamily: "var(--font-space-grotesk)",
           fontWeight: 600,
           fontSize: "clamp(1rem, 2vw, 1.35rem)",
-          color: "#0A0A0A",
+          color: "var(--d6-heading)",
           lineHeight: 1.2,
         }}
       >
@@ -78,14 +78,13 @@ function PracticeRow({
       {/* Description + icon — second column on sm+ */}
       <div className="col-span-2 mt-3 flex items-start gap-4 sm:col-span-1 sm:mt-0">
         <div aria-hidden="true" className="mt-0.5 flex-none">
-          <Icon size={18} style={{ color: "#D72638" }} />
+          <Icon size={18} style={{ color: "var(--d6-accent)" }} />
         </div>
         <p
           className="text-sm leading-relaxed"
           style={{
             fontFamily: "var(--font-inter)",
-            color: "#0A0A0A",
-            opacity: 0.6,
+            color: "var(--d6-muted)",
           }}
         >
           {description}
@@ -99,12 +98,12 @@ const PracticeAreas: React.FC = () => {
   return (
     <section
       id="practice-areas"
-      style={{ backgroundColor: "#FFFFFF", borderBottom: "1px solid #0A0A0A" }}
+      style={{ backgroundColor: "var(--d6-bg)", borderBottom: "1px solid var(--d6-hair)" }}
     >
       {/* Section header bar — 1px top rule, index + label in the same row */}
       <div
         className="flex items-baseline justify-between px-6 py-8 lg:px-14 xl:px-20"
-        style={{ borderBottom: "1px solid #0A0A0A" }}
+        style={{ borderBottom: "1px solid var(--d6-hair)" }}
       >
         {/* Section eyebrow */}
         <div className="flex items-baseline gap-4">
@@ -114,7 +113,7 @@ const PracticeAreas: React.FC = () => {
               fontFamily: "var(--font-space-grotesk)",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              color: "#D72638",
+              color: "var(--d6-accent)",
               lineHeight: 1,
             }}
           >
@@ -125,7 +124,7 @@ const PracticeAreas: React.FC = () => {
               fontFamily: "var(--font-space-grotesk)",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-              color: "#0A0A0A",
+              color: "var(--d6-heading)",
               lineHeight: 1,
             }}
           >
@@ -136,7 +135,7 @@ const PracticeAreas: React.FC = () => {
         {/* Right-side label */}
         <span
           className="hidden text-[11px] font-semibold uppercase tracking-[0.28em] sm:block"
-          style={{ fontFamily: "var(--font-inter)", color: "#0A0A0A", opacity: 0.35 }}
+          style={{ fontFamily: "var(--font-inter)", color: "var(--d6-faint)" }}
           aria-hidden="true"
         >
           What We Do
@@ -146,7 +145,7 @@ const PracticeAreas: React.FC = () => {
       {/* Indexed list rows */}
       <div className="px-6 lg:px-14 xl:px-20">
         {/* Top rule for first row */}
-        <div style={{ borderTop: "1px solid #0A0A0A" }} />
+        <div style={{ borderTop: "1px solid var(--d6-hair)" }} />
         {practiceAreas.map((area, i) => (
           <PracticeRow
             key={area.title}

@@ -2,6 +2,10 @@
  * TeamSection — Heritage Traditional (server component)
  * Framed portraits for members with photos; monogram placeholder for others.
  * Hover interactivity delegated to TeamCard client component.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: double-rule borders use --d6-accent2 (#6B1F2A exact parity); original oxblood
+ * #6B1F2A is mapped to --d6-accent2 which preserves the exact Heritage Traditional color.
  */
 
 import teamRoles from "@/app/assets/data/team"
@@ -17,7 +21,7 @@ function RoleGroup({ group }: { group: TeamRole }) {
       {/* Role label */}
       <h3
         className="text-center text-xs tracking-[0.3em] uppercase mb-8"
-        style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+        style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
       >
         {group.position}
       </h3>
@@ -43,13 +47,13 @@ export default function TeamSection() {
     <section
       id="team"
       aria-labelledby="team-heading"
-      style={{ backgroundColor: "#F4EFE6" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
     >
       {/* Double-rule top */}
-      <div className="border-t-4" style={{ borderColor: "#6B1F2A" }} aria-hidden="true" />
+      <div className="border-t-4" style={{ borderColor: "var(--d6-accent2)" }} aria-hidden="true" />
       <div
         className="border-t"
-        style={{ borderColor: "#6B1F2A", marginTop: "3px" }}
+        style={{ borderColor: "var(--d6-accent2)", marginTop: "3px" }}
         aria-hidden="true"
       />
 
@@ -59,19 +63,19 @@ export default function TeamSection() {
           <h2
             id="team-heading"
             className="text-2xl sm:text-3xl mb-2"
-            style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F", fontWeight: 700 }}
+            style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)", fontWeight: 700 }}
           >
             Our Legal Team
           </h2>
 
           <p
             className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+            style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
           >
             The Pillars of Our Practice
           </p>
 
-          <OrnamentalDivider className="mb-12 max-w-xs mx-auto" />
+          <OrnamentalDivider className="mb-12 max-w-xs mx-auto" color="var(--d6-accent)" />
         </Reveal>
 
         {teamRoles.map((group) => (
@@ -80,10 +84,10 @@ export default function TeamSection() {
       </div>
 
       {/* Double-rule bottom */}
-      <div className="border-b" style={{ borderColor: "#6B1F2A" }} aria-hidden="true" />
+      <div className="border-b" style={{ borderColor: "var(--d6-accent2)" }} aria-hidden="true" />
       <div
         className="border-b-4"
-        style={{ borderColor: "#6B1F2A", marginBottom: "3px" }}
+        style={{ borderColor: "var(--d6-accent2)", marginBottom: "3px" }}
         aria-hidden="true"
       />
     </section>

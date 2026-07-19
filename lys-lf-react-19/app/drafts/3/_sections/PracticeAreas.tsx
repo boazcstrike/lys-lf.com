@@ -24,6 +24,7 @@ const ICON_MAP: Record<string, IconType> = {
 /**
  * Single practice area card — extracted to isolate hover state per card.
  * Gold hairline glow on hover, icon scale(1.08), press scale(0.97) on click.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 function PracticeCard({
   area,
@@ -49,12 +50,12 @@ function PracticeCard({
         onMouseUp={() => setPressed(false)}
         style={{
           height: "100%",
-          backgroundColor: hovered ? "#111111" : "#0B0B0C",
+          backgroundColor: hovered ? "var(--d6-panel)" : "var(--d6-bg)",
           padding: "2.5rem 2rem",
-          borderBottom: `2px solid ${hovered ? "#B08D57" : "transparent"}`,
+          borderBottom: `2px solid ${hovered ? "var(--d6-accent)" : "transparent"}`,
           // Subtle gold glow on hover via box-shadow
           boxShadow: hovered
-            ? "inset 0 0 0 1px rgba(176,141,87,0.18), 0 4px 24px rgba(176,141,87,0.07)"
+            ? "inset 0 0 0 1px var(--d6-accent-soft), 0 4px 24px var(--d6-faint)"
             : "none",
           transform: pressed ? "scale(0.98)" : "scale(1)",
           transition:
@@ -67,7 +68,7 @@ function PracticeCard({
           aria-hidden="true"
           style={{
             marginBottom: "1.25rem",
-            color: "#B08D57",
+            color: "var(--d6-accent)",
             fontSize: "1.5rem",
             display: "inline-flex",
             transform: hovered ? "scale(1.08)" : "scale(1)",
@@ -84,7 +85,7 @@ function PracticeCard({
             fontSize: "1.35rem",
             fontWeight: 500,
             lineHeight: 1.25,
-            color: "#EDEDED",
+            color: "var(--d6-heading)",
             margin: 0,
             marginBottom: "0.75rem",
           }}
@@ -99,7 +100,7 @@ function PracticeCard({
             fontSize: "0.875rem",
             fontWeight: 300,
             lineHeight: 1.7,
-            color: "#9A9A9A",
+            color: "var(--d6-muted)",
             margin: 0,
             maxWidth: "38ch",
           }}
@@ -112,8 +113,9 @@ function PracticeCard({
 }
 
 /**
- * Practice Areas section — dark panel (#141414) with gold accents.
+ * Practice Areas section — dark panel with gold accents.
  * Cards in a responsive grid; each card reveals on scroll with staggered delay.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function PracticeAreas() {
   return (
@@ -121,7 +123,7 @@ export default function PracticeAreas() {
       id="practice-areas"
       aria-labelledby="practice-areas-heading"
       style={{
-        backgroundColor: "#141414",
+        backgroundColor: "var(--d6-panel)",
         padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
@@ -141,7 +143,7 @@ export default function PracticeAreas() {
               fontWeight: 600,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#B08D57",
+              color: "var(--d6-accent)",
               marginBottom: "1rem",
             }}
           >
@@ -154,7 +156,7 @@ export default function PracticeAreas() {
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               fontWeight: 400,
               lineHeight: 1.1,
-              color: "#EDEDED",
+              color: "var(--d6-heading)",
               margin: 0,
               marginBottom: "1rem",
             }}
@@ -164,7 +166,7 @@ export default function PracticeAreas() {
           {/* Gold rule */}
           <div
             aria-hidden="true"
-            style={{ width: "3rem", height: "1px", backgroundColor: "#B08D57" }}
+            style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
           />
         </div>
       </Reveal>
@@ -182,8 +184,8 @@ export default function PracticeAreas() {
           listStyle: "none",
           padding: 0,
           // gap lines show as gold tint between cards
-          backgroundColor: "rgba(176,141,87,0.15)",
-          border: "1px solid rgba(176,141,87,0.15)",
+          backgroundColor: "var(--d6-accent-soft)",
+          border: "1px solid var(--d6-accent-soft)",
         }}
       >
         {practiceAreas.map((area, i) => (

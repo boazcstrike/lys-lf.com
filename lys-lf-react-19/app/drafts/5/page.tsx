@@ -9,11 +9,14 @@
  * Palette: #FFFFFF bg | #0A0A0A structure/text | #D72638 accent (red) | #F2F2F2 panel
  * Fonts: Space Grotesk (display, numerals) + Inter (body/UI, tight tracking)
  *
- * Pure static orchestrator — no "use client" needed here.
+ * Theme: defaultScheme="d5-default" (Swiss Architectural) — storageKey "lys-scheme-d5"
+ * allows the user to switch to any of the 7 shared luxury schemes.
  */
 
 import type { Metadata } from "next"
 
+import ThemeProvider from "@/app/drafts/_theme/ThemeProvider"
+import ColorSwitcher from "@/app/drafts/_theme/ColorSwitcher"
 import Hero from "./_sections/Hero"
 import PracticeAreas from "./_sections/PracticeAreas"
 import BusinessProfile from "./_sections/BusinessProfile"
@@ -29,14 +32,9 @@ export const metadata: Metadata = {
 
 export default function Draft5Page() {
   return (
-    <main
-      style={{
-        backgroundColor: "#FFFFFF",
-        fontFamily: "var(--font-inter)",
-        overflowX: "hidden",
-        color: "#0A0A0A",
-      }}
-    >
+    <ThemeProvider defaultScheme="d5-default" storageKey="lys-scheme-d5">
+      <ColorSwitcher />
+
       {/* 01 — Hero: huge wordmark, structural grid lines, photo block */}
       <Hero />
 
@@ -57,6 +55,6 @@ export default function Draft5Page() {
 
       {/* Footer — logo + firm name + credit */}
       <Footer />
-    </main>
+    </ThemeProvider>
   )
 }

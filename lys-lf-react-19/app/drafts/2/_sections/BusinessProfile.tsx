@@ -1,17 +1,11 @@
 import ReactMarkdown from "react-markdown"
 import businessProfile from "@/app/assets/data/business-profile"
 
-// Quiet Luxury palette
-const GREEN = "#1F3A2E"
-const BRASS = "#A98B5D"
-const CHARCOAL = "#2B2622"
-const STONE = "#EFEAE1"
-
 /**
  * BusinessProfile — editorial two-column layout.
  * Left: Cormorant heading, brass rule, paragraphs with **bold** via react-markdown.
  * Right: stacked photo collage with soft shadows.
- * Stone bg for warmth; alternates with the panel bg on adjacent sections.
+ * Colors via CSS custom properties (--d6-*).
  */
 export default function BusinessProfile() {
   const { title, paragraphs } = businessProfile
@@ -21,7 +15,7 @@ export default function BusinessProfile() {
       id="about"
       aria-labelledby="about-heading"
       style={{
-        backgroundColor: STONE,
+        backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
       className="py-20 md:py-28"
@@ -31,7 +25,7 @@ export default function BusinessProfile() {
           {/* Left: text */}
           <div>
             <p
-              style={{ color: BRASS, letterSpacing: "0.22em", fontSize: "10px" }}
+              style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
               className="mb-4 font-medium uppercase"
             >
               Who We Are
@@ -41,7 +35,7 @@ export default function BusinessProfile() {
               id="about-heading"
               style={{
                 fontFamily: "var(--font-cormorant), Georgia, serif",
-                color: GREEN,
+                color: "var(--d6-heading)",
                 fontWeight: 500,
                 lineHeight: 1.1,
               }}
@@ -52,7 +46,7 @@ export default function BusinessProfile() {
 
             {/* Brass hairline */}
             <div
-              style={{ width: "3rem", height: "1px", backgroundColor: BRASS }}
+              style={{ width: "3rem", height: "1px", backgroundColor: "var(--d6-accent)" }}
               className="mb-8"
               aria-hidden="true"
             />
@@ -65,14 +59,14 @@ export default function BusinessProfile() {
                   components={{
                     p: ({ children }) => (
                       <p
-                        style={{ color: `${CHARCOAL}bb`, lineHeight: 1.78 }}
+                        style={{ color: "var(--d6-muted)", lineHeight: 1.78 }}
                         className="text-[0.9375rem]"
                       >
                         {children}
                       </p>
                     ),
                     strong: ({ children }) => (
-                      <strong style={{ color: GREEN, fontWeight: 600 }}>
+                      <strong style={{ color: "var(--d6-heading)", fontWeight: 600 }}>
                         {children}
                       </strong>
                     ),
@@ -89,7 +83,7 @@ export default function BusinessProfile() {
             <div
               style={{
                 overflow: "hidden",
-                boxShadow: "0 4px 24px rgba(31,58,46,0.10)",
+                boxShadow: "0 4px 24px var(--d6-scrim-mid)",
               }}
             >
               <img
@@ -103,7 +97,7 @@ export default function BusinessProfile() {
               <div
                 style={{
                   overflow: "hidden",
-                  boxShadow: "0 4px 24px rgba(31,58,46,0.10)",
+                  boxShadow: "0 4px 24px var(--d6-scrim-mid)",
                 }}
               >
                 <img
@@ -115,7 +109,7 @@ export default function BusinessProfile() {
               <div
                 style={{
                   overflow: "hidden",
-                  boxShadow: "0 4px 24px rgba(31,58,46,0.10)",
+                  boxShadow: "0 4px 24px var(--d6-scrim-mid)",
                 }}
               >
                 <img

@@ -99,6 +99,20 @@ Static export works on any web server:
 2. Upload contents of `out/` folder to web root
 3. No Node.js runtime required
 
+## Documentation
+
+| Doc | Purpose |
+|-----|---------|
+| `lys-lf-react-19/README.md` | Architecture, SOLID/DRY patterns, file structure |
+| `lys-lf-react-19/AGENTS.md` | AI-agent context: static-export rules, code patterns |
+| `lys-lf-react-19/DEPLOYMENT.md` | Bluehost deploy, `.htaccess`, cookie consent |
+| `lys-lf-react-19/docs/INFRASTRUCTURE.md` | Hosting, domain, cPanel/SSH, DNS, email, renewals, credentials map |
+| `lys-lf-react-19/docs/SECURITY.md` | Risk register + deploy / migration security checklists |
+
+**Secrets:** real credentials live only in gitignored `.env` (repo root, ops)
+and `lys-lf-react-19/.env.local` (app build vars). Committed `.env.example`
+files are the templates. Never commit real values.
+
 ## License
 
 Private - LYS Law Firm

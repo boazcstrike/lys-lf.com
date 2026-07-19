@@ -1,97 +1,48 @@
-# OpenCode Agent System Project Context
+# Project Context — lys-lf.com (LOAD FIRST for this project)
 
-## Technology Stack
+> Canonical, always-current briefing lives at
+> `lys-lf-react-19/docs/ops/AGENT-CONTEXT.md`. This file mirrors the
+> essentials for opencode agents — if they disagree, the canonical doc wins.
 
-**Primary Language:** TypeScript
-**Runtime:** Node.js/Bun
-**Package Manager:** npm/pnpm/yarn
-**Build Tools:** TypeScript Compiler (tsc)
-**Testing:** Jest/Vitest (if configured)
-**Linting:** ESLint (if configured)
+## What this is
+**lys-lf.com** — website for **Lim & Yutatco-Sze Law Firm** (Philippines).
+Real client site. Informational only: no forms, no accounts, `mailto:` contact.
 
-## Project Structure
+## Status — MIGRATION
+- LIVE: WordPress on Bluehost *WordPress Basic Hosting* (PHP 7.0, EOL).
+- Incoming: Next.js 16 + React 19 **static export** in `lys-lf-react-19/`.
+- Endgame: static `out/` replaces WordPress in `public_html`.
 
-```
-.opencode/
-├── agent/           # AI agents for specific tasks
-│   ├── subagents/   # Specialized subagents
-│   └── *.md         # Primary agents
-├── command/         # Slash commands
-├── context/         # Knowledge base for agents
-└── plugin/          # Extensions and integrations
+## Technology Stack (this project — NOT generic)
+Next.js 16 · React 19 · TypeScript 5 · Tailwind CSS 4 · SCSS (legacy) ·
+Google Maps (`@react-google-maps/api`) · react-icons.
+Build: `npm run build` → static `out/`. Package manager: **npm** (repo also
+has a stale `pnpm-lock.yaml` — prefer npm until removed).
 
-tasks/               # Task management files
-```
+## Hard rules (do not violate)
+- **R1** Keep `output: 'export'` in `next.config.ts`.
+- **R2** No API routes, no `'use server'`, no SSR / getServerSideProps — no server runtime in prod.
+- **R3** Components using hooks need `'use client'`.
+- **R4** Real secrets ONLY in gitignored `.env` / `.env.local`. Never commit secrets.
+- **R5** Never put ops secrets behind `NEXT_PUBLIC_` (that prefix ships them to the browser).
+- **R6** Deploy only a fresh `out/` WITH `out/.htaccess` (missing dotfile = security headers lost).
+- **R7** `--target prod` clean-mirrors `public_html` (deletes WP) — only at deliberate cutover.
+- **R8** Staging docroot lives OUTSIDE `public_html` (`~/staging`) or prod deploy wipes it.
 
-## Core Patterns
+## Deploy pipeline
+One script `scripts/deploy.sh` (rsync-over-SSH). CI:
+`.github/workflows/deploy.yml` (dispatch or tag `v*`→prod). Local/agent:
+`scripts/deploy.sh --target staging|prod [--dry-run]`. Always dry-run before prod.
 
-### Agent Structure Pattern
-```markdown
----
-description: "What this agent does"
-mode: primary|subagent
-tools: [read, edit, bash, etc.]
-permissions: [security restrictions]
----
+## Where to read more (authoritative)
+- Agent briefing: `lys-lf-react-19/docs/ops/AGENT-CONTEXT.md`
+- Code rules: `lys-lf-react-19/AGENTS.md`, `lys-lf-react-19/README.md`
+- Infra/creds map: `lys-lf-react-19/docs/INFRASTRUCTURE.md`
+- Security/risks: `lys-lf-react-19/docs/SECURITY.md`
+- Deploy: `lys-lf-react-19/docs/ops/DEPLOY.agent.md`
+- Staging setup (detailed + diagrams): `lys-lf-react-19/docs/ops/STAGING-DEPLOYMENT.md`
 
-# Agent Name
-
-[Direct instructions for behavior]
-
-**EXECUTE** this [process type] for every [task type]:
-
-**1. [ACTION]** the [subject]:
-- [Specific instruction 1]
-- [Specific instruction 2]
-
-**RULES:**
-- **ALWAYS** [critical requirement]
-- **NEVER** [forbidden action]
-```
-
-### Command Structure Pattern
-```markdown
----
-name: command-name
-agent: target-agent
----
-
-You are [doing specific task].
-
-**Request:** $ARGUMENTS
-
-**Context Loaded:**
-@.opencode/context/core/essential-patterns.md
-@[additional context files]
-
-Execute [task] now.
-```
-
-### Context Loading Rules
-- Commands load context immediately using @ references
-- Agents can look up additional context deterministically
-- Maximum 4 context files per command (250-450 lines total)
-- Keep context files focused (50-150 lines each)
-
-## Security Guidelines
-
-- Agents have restricted permissions by default
-- Sensitive operations require explicit approval
-- No direct file system modifications without validation
-- Build commands limited to safe operations
-
-## Development Workflow
-
-1. **Planning:** Create detailed task plans for complex work
-2. **Implementation:** Execute one step at a time with validation
-3. **Review:** Code review and security checks
-4. **Testing:** Automated testing and build validation
-5. **Documentation:** Update docs and context files
-
-## Quality Gates
-
-- TypeScript compilation passes
-- Code review completed
-- Build process succeeds
-- Tests pass (if available)
-- Documentation updated
+## Open risks
+- APP-1 (HIGH): prod consent UI gated OFF → GA no banner/denial (GDPR/RA-10173 gap).
+- INFRA-1 (HIGH): setup secrets exposed in chat → rotate.
+- INFRA-2 (HIGH): live WP on PHP 7.0 (EOL) until cutover.

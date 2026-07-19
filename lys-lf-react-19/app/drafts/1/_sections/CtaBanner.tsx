@@ -32,19 +32,19 @@ const CtaBanner: React.FC = () => {
       <div
         aria-hidden="true"
         className="absolute inset-0"
-        style={{ backgroundColor: "#14213D", opacity: 0.86 }}
+        style={{ backgroundColor: "var(--d6-panel)", opacity: 0.86 }}
       />
 
       {/* Decorative gold hairline rules top and bottom */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-8 left-1/2 w-16 -translate-x-1/2"
-        style={{ height: "1px", backgroundColor: "#C5A572" }}
+        style={{ height: "1px", backgroundColor: "var(--d6-accent)" }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-8 left-1/2 w-16 -translate-x-1/2"
-        style={{ height: "1px", backgroundColor: "#C5A572" }}
+        style={{ height: "1px", backgroundColor: "var(--d6-accent)" }}
       />
 
       {/* Centered content — revealed on scroll */}
@@ -53,7 +53,7 @@ const CtaBanner: React.FC = () => {
         <p
           className="mb-5 text-xs tracking-[0.22em] uppercase"
           style={{
-            color: "#C5A572",
+            color: "var(--d6-accent)",
             fontFamily: "var(--font-source-sans)",
             fontWeight: 600,
           }}
@@ -65,20 +65,20 @@ const CtaBanner: React.FC = () => {
         <h2
           className="mb-6 text-3xl leading-tight md:text-4xl xl:text-5xl"
           style={{
-            color: "#FBF8F1",
+            color: "var(--d6-hero-text)",
             fontFamily: "var(--font-playfair)",
             fontWeight: 700,
           }}
         >
           Have Legal Problems?{" "}
-          <span style={{ color: "#C5A572" }}>Let&apos;s Talk.</span>
+          <span style={{ color: "var(--d6-accent)" }}>Let&apos;s Talk.</span>
         </h2>
 
         {/* Supporting line */}
         <p
           className="mb-10 max-w-[52ch] mx-auto text-sm leading-[1.7] md:text-base"
           style={{
-            color: "#FBF8F1",
+            color: "var(--d6-hero-text)",
             fontFamily: "var(--font-source-sans)",
             opacity: 0.70,
           }}
@@ -91,10 +91,10 @@ const CtaBanner: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href={`tel:${siteConfig.contact.phone}`}
-            className="cta-btn-solid inline-flex min-h-[44px] items-center justify-center px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
+            className="cta-btn-solid inline-flex min-h-[44px] items-center justify-center px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
             style={{
-              backgroundColor: "#C5A572",
-              color: "#14213D",
+              backgroundColor: "var(--d6-accent)",
+              color: "var(--d6-accent-contrast)",
               fontFamily: "var(--font-source-sans)",
               transition: "transform 180ms ease-out, opacity 180ms ease-out",
             }}
@@ -103,10 +103,10 @@ const CtaBanner: React.FC = () => {
           </a>
           <a
             href={`mailto:${siteConfig.contact.email}`}
-            className="cta-btn-outline inline-flex min-h-[44px] items-center justify-center border px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C5A572]"
+            className="cta-btn-outline inline-flex min-h-[44px] items-center justify-center border px-8 py-3 text-sm font-semibold tracking-[0.12em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
             style={{
-              borderColor: "#C5A572",
-              color: "#C5A572",
+              borderColor: "var(--d6-accent)",
+              color: "var(--d6-accent)",
               fontFamily: "var(--font-source-sans)",
               transition: "transform 180ms ease-out, opacity 180ms ease-out",
             }}

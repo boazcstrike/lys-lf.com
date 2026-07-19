@@ -23,7 +23,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <p
       className="mb-3 text-xs tracking-[0.22em] uppercase"
       style={{
-        color: "#C5A572",
+        color: "var(--d6-accent)",
         fontFamily: "var(--font-source-sans)",
         fontWeight: 600,
       }}
@@ -39,7 +39,7 @@ function GoldRule({ className = "" }: { className?: string }) {
     <div
       aria-hidden="true"
       className={`h-px ${className}`}
-      style={{ backgroundColor: "#C5A572" }}
+      style={{ backgroundColor: "var(--d6-accent)" }}
     />
   )
 }
@@ -52,7 +52,7 @@ const mdBodyComponents: Components = {
       <p
         className="mb-4 text-sm leading-[1.72] last:mb-0 md:text-base"
         style={{
-          color: "#FBF8F1",
+          color: "var(--d6-hero-text)",
           fontFamily: "var(--font-source-sans)",
           opacity: 0.83,
           maxWidth: "64ch",
@@ -64,7 +64,7 @@ const mdBodyComponents: Components = {
   },
   strong({ children }) {
     return (
-      <strong style={{ color: "#C5A572", fontWeight: 700, opacity: 1 }}>
+      <strong style={{ color: "var(--d6-accent)", fontWeight: 700, opacity: 1 }}>
         {children}
       </strong>
     )
@@ -79,7 +79,7 @@ const BusinessProfile: React.FC = () => {
     <section
       id="about"
       className="py-20 md:py-28"
-      style={{ backgroundColor: "#14213D" }}
+      style={{ backgroundColor: "var(--d6-panel)" }}
       aria-labelledby="profile-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 xl:px-20">
@@ -95,7 +95,7 @@ const BusinessProfile: React.FC = () => {
             {/* Offset secondary photo — editorial depth */}
             <div
               className="absolute -bottom-8 -right-8 h-52 w-52 overflow-hidden"
-              style={{ outline: "4px solid #FBF8F1" }}
+              style={{ outline: "4px solid var(--d6-hero-text)" }}
             >
               <img
                 src="/images/optimized/LYS-16.webp"
@@ -106,12 +106,12 @@ const BusinessProfile: React.FC = () => {
             {/* Gold badge — "Since YYYY" */}
             <div
               className="absolute top-6 left-6 px-4 py-3"
-              style={{ backgroundColor: "#C5A572" }}
+              style={{ backgroundColor: "var(--d6-accent)" }}
             >
               <p
                 className="text-xs font-bold tracking-[0.15em] uppercase"
                 style={{
-                  color: "#14213D",
+                  color: "var(--d6-accent-contrast)",
                   fontFamily: "var(--font-source-sans)",
                 }}
               >
@@ -128,7 +128,7 @@ const BusinessProfile: React.FC = () => {
               id="profile-heading"
               className="mb-5 text-3xl leading-tight md:text-4xl"
               style={{
-                color: "#FBF8F1",
+                color: "var(--d6-hero-text)",
                 fontFamily: "var(--font-playfair)",
                 fontWeight: 700,
               }}
@@ -148,7 +148,7 @@ const BusinessProfile: React.FC = () => {
                 <p
                   className="text-sm leading-[1.72] md:text-base"
                   style={{
-                    color: "#FBF8F1",
+                    color: "var(--d6-hero-text)",
                     fontFamily: "var(--font-source-sans)",
                     opacity: 0.83,
                     maxWidth: "64ch",
@@ -158,7 +158,7 @@ const BusinessProfile: React.FC = () => {
                     aria-hidden="true"
                     className="float-left mr-2 select-none text-[4.5rem] leading-[0.85]"
                     style={{
-                      color: "#C5A572",
+                      color: "var(--d6-accent)",
                       fontFamily: "var(--font-playfair)",
                       fontWeight: 700,
                       marginTop: "0.05em",
@@ -173,7 +173,7 @@ const BusinessProfile: React.FC = () => {
                       },
                       strong({ children }) {
                         return (
-                          <strong style={{ color: "#C5A572", fontWeight: 700 }}>
+                          <strong style={{ color: "var(--d6-accent)", fontWeight: 700 }}>
                             {children}
                           </strong>
                         )

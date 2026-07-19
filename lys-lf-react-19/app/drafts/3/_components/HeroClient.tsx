@@ -10,6 +10,7 @@ import CountUp from "./CountUp"
  * - Content fade-in on load: opacity 0→1 + translateY 20px→0.
  * - CTA buttons with hover brightness + press scale(0.97).
  * - Scroll indicator fades in after 1.2s.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function HeroClient() {
   const { firmName, firmShortName, establishedYear } = siteConfig
@@ -68,7 +69,7 @@ export default function HeroClient() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(11,11,12,0.60) 0%, rgba(11,11,12,0.78) 40%, rgba(11,11,12,0.97) 100%)",
+            "linear-gradient(to bottom, var(--d6-scrim-top) 0%, var(--d6-scrim-mid) 40%, var(--d6-scrim-bot) 100%)",
           zIndex: 1,
         }}
       />
@@ -83,7 +84,7 @@ export default function HeroClient() {
           bottom: "10%",
           width: "1px",
           background:
-            "linear-gradient(to bottom, transparent, #B08D57 30%, #B08D57 70%, transparent)",
+            "linear-gradient(to bottom, transparent, var(--d6-accent) 30%, var(--d6-accent) 70%, transparent)",
           zIndex: 2,
         }}
       />
@@ -114,7 +115,7 @@ export default function HeroClient() {
             fontWeight: 600,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#B08D57",
+            color: "var(--d6-accent)",
             marginBottom: "1.5rem",
           }}
         >
@@ -129,7 +130,7 @@ export default function HeroClient() {
           style={{
             width: "3rem",
             height: "1px",
-            backgroundColor: "#B08D57",
+            backgroundColor: "var(--d6-accent)",
             marginBottom: "1.75rem",
           }}
         />
@@ -141,7 +142,7 @@ export default function HeroClient() {
             fontSize: "clamp(2.6rem, 7vw, 6rem)",
             fontWeight: 400,
             lineHeight: 1.08,
-            color: "#EDEDED",
+            color: "var(--d6-hero-text)",
             margin: 0,
             marginBottom: "1.5rem",
             maxWidth: "18ch",
@@ -157,7 +158,7 @@ export default function HeroClient() {
             fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
             fontWeight: 300,
             lineHeight: 1.75,
-            color: "#9A9A9A",
+            color: "var(--d6-hero-muted)",
             maxWidth: "55ch",
             marginBottom: "2.5rem",
           }}
@@ -183,18 +184,19 @@ export default function HeroClient() {
               justifyContent: "center",
               minHeight: "44px",
               padding: "0.75rem 2rem",
-              backgroundColor: primaryHover ? "#C9A46A" : "#B08D57",
-              color: "#0B0B0C",
+              backgroundColor: "var(--d6-accent)",
+              color: "var(--d6-accent-contrast)",
               fontFamily: "var(--font-inter)",
               fontSize: "0.8rem",
               fontWeight: 600,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               textDecoration: "none",
-              border: "1px solid #B08D57",
+              border: "1px solid var(--d6-accent)",
+              filter: primaryHover ? "brightness(1.14)" : "brightness(1)",
               transform: primaryPress ? "scale(0.97)" : "scale(1)",
               transition:
-                "background-color 200ms ease-out, transform 150ms ease-out",
+                "filter 200ms ease-out, transform 150ms ease-out",
               outline: "2px solid transparent",
               outlineOffset: "2px",
             }}
@@ -219,16 +221,16 @@ export default function HeroClient() {
               minHeight: "44px",
               padding: "0.75rem 2rem",
               backgroundColor: secondaryHover
-                ? "rgba(176,141,87,0.08)"
+                ? "var(--d6-faint)"
                 : "transparent",
-              color: "#EDEDED",
+              color: "var(--d6-hero-text)",
               fontFamily: "var(--font-inter)",
               fontSize: "0.8rem",
               fontWeight: 600,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               textDecoration: "none",
-              border: `1px solid ${secondaryHover ? "rgba(176,141,87,0.55)" : "rgba(237,237,237,0.3)"}`,
+              border: `1px solid ${secondaryHover ? "var(--d6-accent-line)" : "var(--d6-hair)"}`,
               transform: secondaryPress ? "scale(0.97)" : "scale(1)",
               transition:
                 "background-color 200ms ease-out, border-color 200ms ease-out, transform 150ms ease-out",
@@ -261,7 +263,7 @@ export default function HeroClient() {
           style={{
             width: "1px",
             height: "3rem",
-            background: "linear-gradient(to bottom, transparent, #B08D57)",
+            background: "linear-gradient(to bottom, transparent, var(--d6-accent))",
           }}
         />
         <span
@@ -270,7 +272,7 @@ export default function HeroClient() {
             fontSize: "0.6rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "#B08D57",
+            color: "var(--d6-accent)",
             writingMode: "vertical-rl",
           }}
         >

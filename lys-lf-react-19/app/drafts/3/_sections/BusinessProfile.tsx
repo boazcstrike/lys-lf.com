@@ -6,6 +6,7 @@ import Reveal from "../_components/Reveal"
  * Business Profile section — near-black bg with a side photo for texture.
  * Paragraphs rendered via react-markdown so **bold** → <strong>.
  * Sections and photo reveal on scroll via Reveal.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function BusinessProfile() {
   return (
@@ -13,7 +14,7 @@ export default function BusinessProfile() {
       id="about"
       aria-labelledby="about-heading"
       style={{
-        backgroundColor: "#0B0B0C",
+        backgroundColor: "var(--d6-bg)",
         padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
@@ -37,7 +38,7 @@ export default function BusinessProfile() {
                 fontWeight: 600,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#B08D57",
+                color: "var(--d6-accent)",
                 marginBottom: "1rem",
               }}
             >
@@ -51,7 +52,7 @@ export default function BusinessProfile() {
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
                 fontWeight: 400,
                 lineHeight: 1.1,
-                color: "#EDEDED",
+                color: "var(--d6-heading)",
                 margin: 0,
                 marginBottom: "1rem",
               }}
@@ -65,7 +66,7 @@ export default function BusinessProfile() {
               style={{
                 width: "3rem",
                 height: "1px",
-                backgroundColor: "#B08D57",
+                backgroundColor: "var(--d6-accent)",
                 marginBottom: "2rem",
               }}
             />
@@ -77,7 +78,7 @@ export default function BusinessProfile() {
                 fontSize: "clamp(0.875rem, 1.2vw, 1rem)",
                 fontWeight: 300,
                 lineHeight: 1.85,
-                color: "#9A9A9A",
+                color: "var(--d6-muted)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "1.25rem",
@@ -92,7 +93,7 @@ export default function BusinessProfile() {
                       <p style={{ margin: 0 }}>{children}</p>
                     ),
                     strong: ({ children }) => (
-                      <strong style={{ color: "#EDEDED", fontWeight: 600 }}>
+                      <strong style={{ color: "var(--d6-heading)", fontWeight: 600 }}>
                         {children}
                       </strong>
                     ),
@@ -117,7 +118,7 @@ export default function BusinessProfile() {
                 right: "-1.5rem",
                 bottom: "-1.5rem",
                 left: "1.5rem",
-                border: "1px solid rgba(176,141,87,0.25)",
+                border: "1px solid var(--d6-accent-line)",
                 zIndex: 0,
               }}
             />
@@ -145,8 +146,8 @@ export default function BusinessProfile() {
                 zIndex: 2,
                 width: "2.5rem",
                 height: "2.5rem",
-                borderBottom: "2px solid #B08D57",
-                borderLeft: "2px solid #B08D57",
+                borderBottom: "2px solid var(--d6-accent)",
+                borderLeft: "2px solid var(--d6-accent)",
               }}
             />
           </div>

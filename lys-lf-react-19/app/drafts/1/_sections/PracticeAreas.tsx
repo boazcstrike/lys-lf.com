@@ -40,7 +40,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <p
       className="mb-3 text-xs tracking-[0.22em] uppercase"
       style={{
-        color: "#C5A572",
+        color: "var(--d6-accent)",
         fontFamily: "var(--font-source-sans)",
         fontWeight: 600,
       }}
@@ -56,7 +56,7 @@ function GoldRule({ className = "" }: { className?: string }) {
     <div
       aria-hidden="true"
       className={`h-px ${className}`}
-      style={{ backgroundColor: "#C5A572" }}
+      style={{ backgroundColor: "var(--d6-accent)" }}
     />
   )
 }
@@ -82,12 +82,12 @@ function PracticeCard({ iconName, title, description, isLast }: PracticeCardProp
       className={`practice-card flex flex-col gap-4 py-8 md:py-10 ${
         isLast ? "" : "border-b md:border-b-0 md:border-r"
       }`}
-      style={{ borderColor: "#C5A572" }}
+      style={{ borderColor: "var(--d6-accent)" }}
     >
       {/* Icon in a square gold border — scales gently on card hover */}
       <div
         className="practice-card-icon flex h-11 w-11 items-center justify-center"
-        style={{ border: "1px solid #C5A572", color: "#C5A572" }}
+        style={{ border: "1px solid var(--d6-accent)", color: "var(--d6-accent)" }}
         aria-hidden="true"
       >
         <Icon size={18} />
@@ -97,7 +97,7 @@ function PracticeCard({ iconName, title, description, isLast }: PracticeCardProp
       <h3
         className="text-xl leading-snug"
         style={{
-          color: "#14213D",
+          color: "var(--d6-heading)",
           fontFamily: "var(--font-playfair)",
           fontWeight: 600,
         }}
@@ -112,7 +112,7 @@ function PracticeCard({ iconName, title, description, isLast }: PracticeCardProp
       <p
         className="text-sm leading-[1.7]"
         style={{
-          color: "#1A1A2E",
+          color: "var(--d6-text)",
           fontFamily: "var(--font-source-sans)",
           opacity: 0.78,
           maxWidth: "30ch",
@@ -130,7 +130,7 @@ const PracticeAreas: React.FC = () => {
     <section
       id="practice-areas"
       className="py-20 md:py-28"
-      style={{ backgroundColor: "#FBF8F1" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
       aria-labelledby="practice-areas-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12 xl:px-20">
@@ -142,7 +142,7 @@ const PracticeAreas: React.FC = () => {
             id="practice-areas-heading"
             className="mb-5 text-3xl leading-tight md:text-4xl"
             style={{
-              color: "#14213D",
+              color: "var(--d6-heading)",
               fontFamily: "var(--font-playfair)",
               fontWeight: 700,
             }}
@@ -153,7 +153,7 @@ const PracticeAreas: React.FC = () => {
           <p
             className="max-w-[62ch] text-sm leading-[1.7]"
             style={{
-              color: "#1A1A2E",
+              color: "var(--d6-text)",
               fontFamily: "var(--font-source-sans)",
               opacity: 0.72,
             }}
@@ -168,8 +168,8 @@ const PracticeAreas: React.FC = () => {
         <div
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5"
           style={{
-            borderTop: "1px solid #C5A572",
-            borderBottom: "1px solid #C5A572",
+            borderTop: "1px solid var(--d6-accent)",
+            borderBottom: "1px solid var(--d6-accent)",
           }}
         >
           {practiceAreas.map((area, index) => (
@@ -202,7 +202,7 @@ const PracticeAreas: React.FC = () => {
         .practice-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 8px 24px rgba(20,33,61,0.08);
-          outline: 1px solid rgba(197,165,114,0.5);
+          outline: 1px solid var(--d6-accent-line);
           outline-offset: -1px;
         }
         .practice-card:active {

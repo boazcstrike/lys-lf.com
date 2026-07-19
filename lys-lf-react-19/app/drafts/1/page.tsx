@@ -4,6 +4,8 @@
  * Composes all 7 sections in document order. No 'use client' needed here;
  * all sections are server components (no hooks or browser APIs at top level).
  * Interactive sub-components (Reveal, CountUpYear) carry their own "use client".
+ * ThemeProvider and ColorSwitcher are client components — safe to nest under
+ * this server component.
  *
  * Sections:
  *   1. Hero            — full-bleed asymmetric hero, single h1
@@ -15,8 +17,12 @@
  *   7. Footer          — navy, white logo, firm name, byline
  *
  * Background rhythm: navy → ivory → navy → ivory → navy → ivory → navy
+ *
+ * Theme: defaultScheme="d1-default" (Editorial Prestige Default)
+ * storageKey="lys-scheme-d1" — persists user's scheme choice per draft.
  */
 
+import type { Metadata } from "next"
 import Hero from "@/app/drafts/1/_sections/Hero"
 import PracticeAreas from "@/app/drafts/1/_sections/PracticeAreas"
 import BusinessProfile from "@/app/drafts/1/_sections/BusinessProfile"
@@ -24,6 +30,13 @@ import Team from "@/app/drafts/1/_sections/Team"
 import CtaBanner from "@/app/drafts/1/_sections/CtaBanner"
 import Contacts from "@/app/drafts/1/_sections/Contacts"
 import Footer from "@/app/drafts/1/_sections/Footer"
+import ThemeProvider from "@/app/drafts/_theme/ThemeProvider"
+import ColorSwitcher from "@/app/drafts/_theme/ColorSwitcher"
+
+export const metadata: Metadata = {
+  title: "Draft 1 — Editorial Prestige | LYS Law Firm",
+  robots: { index: false, follow: false },
+}
 
 /**
  * Draft 1 page — default export required by Next.js App Router.
@@ -31,20 +44,8 @@ import Footer from "@/app/drafts/1/_sections/Footer"
  */
 export default function Draft1Page() {
   return (
-    /*
-      scrollBehavior:smooth enables CSS smooth scrolling for all anchor links
-      (e.g., #contact, #practice-areas) without any JS scroll library.
-      overflowX:hidden prevents any horizontal scroll from animated elements.
-      backgroundColor:ivory so rendering gaps between sections fall back
-      to ivory rather than the browser default white.
-    */
-    <div
-      style={{
-        backgroundColor: "#FBF8F1",
-        overflowX: "hidden",
-        scrollBehavior: "smooth",
-      }}
-    >
+    <ThemeProvider defaultScheme="d1-default" storageKey="lys-scheme-d1">
+      <ColorSwitcher />
       <Hero />
       <PracticeAreas />
       <BusinessProfile />
@@ -52,6 +53,6 @@ export default function Draft1Page() {
       <CtaBanner />
       <Contacts />
       <Footer />
-    </div>
+    </ThemeProvider>
   )
 }

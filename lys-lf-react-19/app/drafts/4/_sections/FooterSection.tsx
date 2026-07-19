@@ -2,9 +2,11 @@
 
 /**
  * FooterSection — Heritage Traditional
- * Dark brown footer: white logo + firm name centred,
+ * Dark panel footer: white logo + firm name centred,
  * ornamental rule, "Website by Boaz Sze" credit.
  * Client: dynamic copyright year + EstYear count-up.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
  */
 
 import siteConfig from "@/app/assets/data/site-config"
@@ -16,10 +18,10 @@ export default function FooterSection() {
   return (
     <footer
       role="contentinfo"
-      style={{ backgroundColor: "#1E1414" }}
+      style={{ backgroundColor: "var(--d6-panel)" }}
     >
-      {/* Gold top accent */}
-      <div className="h-1 w-full" style={{ backgroundColor: "#9C7A3C" }} aria-hidden="true" />
+      {/* Accent top line */}
+      <div className="h-1 w-full" style={{ backgroundColor: "var(--d6-accent)" }} aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto px-6 py-12 flex flex-col items-center text-center gap-6">
         {/* White logo */}
@@ -34,7 +36,7 @@ export default function FooterSection() {
         {/* Firm name */}
         <p
           className="text-lg sm:text-xl leading-tight"
-          style={{ fontFamily: "var(--font-libre)", color: "#F4EFE6", fontWeight: 700 }}
+          style={{ fontFamily: "var(--font-libre)", color: "var(--d6-hero-text)", fontWeight: 700 }}
         >
           {siteConfig.firmName}
         </p>
@@ -42,25 +44,25 @@ export default function FooterSection() {
         {/* Established line — count-up on scroll-in */}
         <p
           className="text-xs tracking-[0.3em] uppercase"
-          style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
         >
           Est. <EstYear year={siteConfig.establishedYear} />
         </p>
 
         {/* Ornamental divider */}
         <div className="flex items-center gap-3 w-full max-w-xs" aria-hidden="true">
-          <span className="flex-1 border-t" style={{ borderColor: "rgba(156,122,60,0.4)" }} />
+          <span className="flex-1 border-t" style={{ borderColor: "var(--d6-accent-line)" }} />
           <span
             className="w-2 h-2 rotate-45 inline-block"
-            style={{ backgroundColor: "#9C7A3C" }}
+            style={{ backgroundColor: "var(--d6-accent)" }}
           />
-          <span className="flex-1 border-t" style={{ borderColor: "rgba(156,122,60,0.4)" }} />
+          <span className="flex-1 border-t" style={{ borderColor: "var(--d6-accent-line)" }} />
         </div>
 
         {/* Copyright */}
         <p
           className="text-xs"
-          style={{ fontFamily: "var(--font-lora)", color: "#7A6A5A" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-muted)" }}
         >
           &copy; {siteConfig.establishedYear}&ndash;{currentYear}{" "}
           {siteConfig.firmName}. All rights reserved.
@@ -69,15 +71,15 @@ export default function FooterSection() {
         {/* Developer credit */}
         <p
           className="text-xs"
-          style={{ fontFamily: "var(--font-lora)", color: "#5C4A3A" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-faint)" }}
         >
           Website by{" "}
           <a
             href="https://www.facebook.com/boazcstrike/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-amber-600"
-            style={{ color: "#9C7A3C" }}
+            className="underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[var(--d6-accent)]"
+            style={{ color: "var(--d6-accent)" }}
           >
             Boaz Sze
           </a>

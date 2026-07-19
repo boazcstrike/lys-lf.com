@@ -4,6 +4,8 @@
  * HeroSection — Heritage Traditional
  * Centered masthead over dark-overlay photo.
  * Client component: load-in fade/rise + EstYear count-up + hover CTA.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
  */
 
 import { useEffect, useState } from "react"
@@ -37,7 +39,7 @@ export default function HeroSection() {
     <header
       role="banner"
       className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
-      style={{ backgroundColor: "#3B2F2F" }}
+      style={{ backgroundColor: "var(--d6-panel)" }}
     >
       {/* Background photo */}
       <div
@@ -50,7 +52,7 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(27,18,18,0.84) 0%, rgba(27,18,18,0.72) 55%, rgba(27,18,18,0.90) 100%)",
+            "linear-gradient(to bottom, var(--d6-scrim-top) 0%, var(--d6-scrim-mid) 55%, var(--d6-scrim-bot) 100%)",
         }}
         aria-hidden="true"
       />
@@ -61,12 +63,12 @@ export default function HeroSection() {
         style={contentStyle}
       >
         {/* Top ornamental rule — draws in after mount */}
-        <OrnamentalDivider className="mb-8 w-full max-w-xs" color="#9C7A3C" />
+        <OrnamentalDivider className="mb-8 w-full max-w-xs" color="var(--d6-accent)" />
 
         {/* Established badge — count-up on reveal */}
         <p
           className="tracking-[0.3em] text-xs uppercase mb-6"
-          style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
         >
           Est. <EstYear year={siteConfig.establishedYear} />
         </p>
@@ -86,7 +88,7 @@ export default function HeroSection() {
         {/* Firm name — single h1 on the page */}
         <h1
           className="text-3xl sm:text-4xl md:text-5xl leading-tight mb-3"
-          style={{ fontFamily: "var(--font-libre)", color: "#F4EFE6", fontWeight: 700 }}
+          style={{ fontFamily: "var(--font-libre)", color: "var(--d6-hero-text)", fontWeight: 700 }}
         >
           {siteConfig.firmName}
         </h1>
@@ -94,26 +96,26 @@ export default function HeroSection() {
         {/* Short-name crest line */}
         <p
           className="tracking-[0.45em] text-sm uppercase mb-6"
-          style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
         >
           {siteConfig.firmShortName}
         </p>
 
         {/* Bottom ornamental rule */}
-        <OrnamentalDivider className="mb-8 w-full max-w-xs" color="#9C7A3C" />
+        <OrnamentalDivider className="mb-8 w-full max-w-xs" color="var(--d6-accent)" />
 
         {/* Tagline */}
         <p
           className="text-base sm:text-lg leading-[1.7] mb-3 max-w-[65ch]"
-          style={{ fontFamily: "var(--font-lora)", color: "#D9CFC2" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-hero-muted)" }}
         >
           {headerConfig.tagline}
         </p>
 
-        {/* Description */}
+        {/* Description — slightly dimmer; rendered at 75% of heroMuted */}
         <p
           className="text-sm sm:text-base leading-[1.75] max-w-[65ch]"
-          style={{ fontFamily: "var(--font-lora)", color: "#B8A89A" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-hero-muted)", opacity: 0.75 }}
         >
           {headerConfig.description}
         </p>
@@ -124,20 +126,20 @@ export default function HeroSection() {
           className="mt-10 inline-flex items-center justify-center px-8 py-3 text-sm tracking-widest uppercase border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-amber-400 hero-cta-btn"
           style={{
             fontFamily: "var(--font-lora)",
-            borderColor: "#9C7A3C",
-            color: "#F4EFE6",
+            borderColor: "var(--d6-accent)",
+            color: "var(--d6-hero-text)",
             minHeight: "44px",
             transition: "background-color 200ms ease-out, transform 150ms ease-out, border-color 200ms ease-out",
           }}
           onMouseEnter={(e) => {
             const t = e.currentTarget
-            t.style.backgroundColor = "rgba(156,122,60,0.18)"
-            t.style.borderColor = "#C9A050"
+            t.style.backgroundColor = "var(--d6-accent-soft)"
+            t.style.borderColor = "var(--d6-accent)"
           }}
           onMouseLeave={(e) => {
             const t = e.currentTarget
             t.style.backgroundColor = ""
-            t.style.borderColor = "#9C7A3C"
+            t.style.borderColor = "var(--d6-accent)"
           }}
           onMouseDown={(e) => {
             e.currentTarget.style.transform = "scale(0.97)"
@@ -150,7 +152,7 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* Scroll cue — gold fade line */}
+      {/* Scroll cue — accent fade line */}
       <div
         className="absolute bottom-8 flex flex-col items-center"
         aria-hidden="true"
@@ -161,7 +163,7 @@ export default function HeroSection() {
       >
         <span
           className="w-px h-10 block"
-          style={{ background: "linear-gradient(to bottom, transparent, #9C7A3C)" }}
+          style={{ background: "linear-gradient(to bottom, transparent, var(--d6-accent))" }}
         />
       </div>
     </header>

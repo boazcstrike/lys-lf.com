@@ -18,6 +18,7 @@ function getInitials(name: string): string {
 /**
  * Single team member card — photo or gold monogram placeholder.
  * Gold hairline glow + image scale(1.03) on hover; isolated state per card.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 function MemberCard({
   employee,
@@ -50,10 +51,10 @@ function MemberCard({
             overflow: "hidden",
             position: "relative",
             border: hovered
-              ? "1px solid rgba(176,141,87,0.55)"
-              : "1px solid rgba(176,141,87,0.2)",
+              ? "1px solid var(--d6-accent-line)"
+              : "1px solid var(--d6-hair)",
             boxShadow: hovered
-              ? "0 0 0 3px rgba(176,141,87,0.1)"
+              ? "0 0 0 3px var(--d6-faint)"
               : "none",
             transition: "border-color 200ms ease-out, box-shadow 200ms ease-out",
           }}
@@ -79,14 +80,14 @@ function MemberCard({
               style={{
                 width: "100%",
                 height: "100%",
-                backgroundColor: "#141414",
+                backgroundColor: "var(--d6-panel)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontFamily: "var(--font-cormorant)",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 fontWeight: 300,
-                color: "#B08D57",
+                color: "var(--d6-accent)",
                 letterSpacing: "0.05em",
                 transform: hovered ? "scale(1.04)" : "scale(1)",
                 transition: "transform 300ms ease-out",
@@ -103,7 +104,7 @@ function MemberCard({
             fontFamily: "var(--font-cormorant)",
             fontSize: "1.15rem",
             fontWeight: 500,
-            color: "#EDEDED",
+            color: "var(--d6-heading)",
             margin: 0,
             marginBottom: employee.position ? "0.3rem" : 0,
           }}
@@ -120,7 +121,7 @@ function MemberCard({
               fontWeight: 400,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "#B08D57",
+              color: "var(--d6-accent)",
               margin: 0,
             }}
           >
@@ -135,7 +136,7 @@ function MemberCard({
               fontSize: "0.82rem",
               fontWeight: 400,
               lineHeight: 1.75,
-              color: "#E2E2E2",
+              color: "var(--d6-text)",
               maxWidth: "44ch",
               marginTop: "1rem",
               textAlign: "justify",
@@ -152,6 +153,7 @@ function MemberCard({
 /**
  * Team section — groups employees by role (Partners, Associates).
  * Each group renders its own labeled row. Cards reveal on scroll with stagger.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function Team() {
   return (
@@ -159,7 +161,7 @@ export default function Team() {
       id="team"
       aria-labelledby="team-heading"
       style={{
-        backgroundColor: "#141414",
+        backgroundColor: "var(--d6-panel)",
         padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
@@ -174,7 +176,7 @@ export default function Team() {
                 fontWeight: 600,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#B08D57",
+                color: "var(--d6-accent)",
                 marginBottom: "1rem",
               }}
             >
@@ -188,7 +190,7 @@ export default function Team() {
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
                 fontWeight: 400,
                 lineHeight: 1.1,
-                color: "#EDEDED",
+                color: "var(--d6-heading)",
                 margin: 0,
                 marginBottom: "1rem",
               }}
@@ -201,7 +203,7 @@ export default function Team() {
               style={{
                 width: "3rem",
                 height: "1px",
-                backgroundColor: "#B08D57",
+                backgroundColor: "var(--d6-accent)",
                 marginBottom: "clamp(2.5rem, 5vw, 4.5rem)",
               }}
             />
@@ -227,10 +229,10 @@ export default function Team() {
                     fontWeight: 600,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: "#B08D57",
+                    color: "var(--d6-accent)",
                     marginBottom: "2rem",
                     paddingBottom: "0.75rem",
-                    borderBottom: "1px solid rgba(176,141,87,0.2)",
+                    borderBottom: "1px solid var(--d6-hair)",
                   }}
                 >
                   {role.position}

@@ -2,6 +2,10 @@
  * ContactSection — Heritage Traditional (server component)
  * Address, office hours, contact info left; Google Maps embed right.
  * Reveal wraps columns for scroll animation.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: oxblood links (#6B1F2A) and secondary bg (#FAF6F0) mapped to
+ * --d6-accent and --d6-bg respectively (closest semantics).
  */
 
 import siteConfig from "@/app/assets/data/site-config"
@@ -20,12 +24,12 @@ export default function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      style={{ backgroundColor: "#F4EFE6" }}
+      style={{ backgroundColor: "var(--d6-bg)" }}
     >
-      {/* Thin burgundy rule at top */}
+      {/* Thin accent rule at top */}
       <div
         className="h-px w-full"
-        style={{ backgroundColor: "#6B1F2A" }}
+        style={{ backgroundColor: "var(--d6-accent)" }}
         aria-hidden="true"
       />
 
@@ -35,17 +39,17 @@ export default function ContactSection() {
           <h2
             id="contact-heading"
             className="text-2xl sm:text-3xl mb-2"
-            style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F", fontWeight: 700 }}
+            style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)", fontWeight: 700 }}
           >
             Contact Us
           </h2>
           <p
             className="text-xs tracking-[0.25em] uppercase mb-6"
-            style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+            style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
           >
             We Welcome Your Enquiries
           </p>
-          <OrnamentalDivider className="max-w-xs mx-auto" />
+          <OrnamentalDivider className="max-w-xs mx-auto" color="var(--d6-accent)" />
         </Reveal>
 
         {/* Two-column: info left, map right */}
@@ -55,19 +59,19 @@ export default function ContactSection() {
           <Reveal className="flex-1 min-w-0">
             <div
               className="border p-8 h-full"
-              style={{ borderColor: "#C9B9A0", backgroundColor: "#FAF6F0" }}
+              style={{ borderColor: "var(--d6-hair)", backgroundColor: "var(--d6-bg)" }}
             >
               {/* Office address */}
               <div className="mb-8">
                 <h3
                   className="text-xs tracking-[0.2em] uppercase mb-3"
-                  style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+                  style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
                 >
                   Office Address
                 </h3>
                 <address
                   className="not-italic text-sm leading-[1.75]"
-                  style={{ fontFamily: "var(--font-lora)", color: "#3B2F2F" }}
+                  style={{ fontFamily: "var(--font-lora)", color: "var(--d6-text)" }}
                 >
                   {address.line1}<br />
                   {address.line2}<br />
@@ -78,7 +82,7 @@ export default function ContactSection() {
 
               <div
                 className="h-px w-full mb-8"
-                style={{ backgroundColor: "#C9B9A0" }}
+                style={{ backgroundColor: "var(--d6-hair)" }}
                 aria-hidden="true"
               />
 
@@ -86,13 +90,13 @@ export default function ContactSection() {
               <div className="mb-8">
                 <h3
                   className="text-xs tracking-[0.2em] uppercase mb-3"
-                  style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+                  style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
                 >
                   Office Hours
                 </h3>
                 <p
                   className="text-sm leading-[1.75]"
-                  style={{ fontFamily: "var(--font-lora)", color: "#3B2F2F" }}
+                  style={{ fontFamily: "var(--font-lora)", color: "var(--d6-text)" }}
                 >
                   {days}<br />{hours}
                 </p>
@@ -100,7 +104,7 @@ export default function ContactSection() {
 
               <div
                 className="h-px w-full mb-8"
-                style={{ backgroundColor: "#C9B9A0" }}
+                style={{ backgroundColor: "var(--d6-hair)" }}
                 aria-hidden="true"
               />
 
@@ -108,7 +112,7 @@ export default function ContactSection() {
               <div>
                 <h3
                   className="text-xs tracking-[0.2em] uppercase mb-3"
-                  style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+                  style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
                 >
                   Get in Touch
                 </h3>
@@ -117,7 +121,7 @@ export default function ContactSection() {
                   <a
                     href={`tel:${phone.replace(/\s/g, "")}`}
                     className="text-sm underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600"
-                    style={{ fontFamily: "var(--font-lora)", color: "#6B1F2A" }}
+                    style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent2)" }}
                   >
                     {phoneDisplay}
                   </a>
@@ -129,7 +133,7 @@ export default function ContactSection() {
                     className="text-sm underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600"
                     style={{
                       fontFamily: "var(--font-lora)",
-                      color: "#6B1F2A",
+                      color: "var(--d6-accent2)",
                       wordBreak: "break-all",
                     }}
                   >
@@ -144,7 +148,7 @@ export default function ContactSection() {
           <Reveal delay={80} className="flex-1 min-w-0">
             <div
               className="border overflow-hidden h-full"
-              style={{ borderColor: "#C9B9A0", minHeight: "340px" }}
+              style={{ borderColor: "var(--d6-hair)", minHeight: "340px" }}
             >
               <iframe
                 src={mapSrc}
@@ -161,10 +165,10 @@ export default function ContactSection() {
         </div>
       </div>
 
-      {/* Thin burgundy rule at bottom */}
+      {/* Thin accent rule at bottom */}
       <div
         className="h-px w-full"
-        style={{ backgroundColor: "#6B1F2A" }}
+        style={{ backgroundColor: "var(--d6-accent)" }}
         aria-hidden="true"
       />
     </section>

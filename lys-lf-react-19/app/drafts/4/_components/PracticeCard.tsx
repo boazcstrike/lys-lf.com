@@ -5,6 +5,9 @@
  * Handles hover lift + border colour change. Client component.
  * Accepts iconName string and resolves it internally (avoids passing
  * function across the server→client boundary).
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: icon bg (#6B1F2A oxblood) mapped to --d6-accent (closest).
  */
 
 import {
@@ -47,9 +50,9 @@ export default function PracticeCard({
         role="listitem"
         className="flex flex-col items-start gap-4 p-6 border w-full"
         style={{
-          borderColor: "#C9B9A0",
-          backgroundColor: "#FAF6F0",
-          outline: "2px solid #F4EFE6",
+          borderColor: "var(--d6-hair)",
+          backgroundColor: "var(--d6-bg)",
+          outline: "2px solid var(--d6-bg)",
           outlineOffset: "-5px",
           transition:
             "transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out",
@@ -58,19 +61,19 @@ export default function PracticeCard({
           const t = e.currentTarget
           t.style.transform = "translateY(-3px)"
           t.style.boxShadow = "0 8px 24px rgba(59,47,47,0.10)"
-          t.style.borderColor = "#9C7A3C"
+          t.style.borderColor = "var(--d6-accent)"
         }}
         onMouseLeave={(e) => {
           const t = e.currentTarget
           t.style.transform = ""
           t.style.boxShadow = ""
-          t.style.borderColor = "#C9B9A0"
+          t.style.borderColor = "var(--d6-hair)"
         }}
       >
         {/* Icon square */}
         <span
           className="flex items-center justify-center w-11 h-11 flex-shrink-0"
-          style={{ backgroundColor: "#6B1F2A", color: "#F4EFE6" }}
+          style={{ backgroundColor: "var(--d6-accent2)", color: "var(--d6-accent-contrast)" }}
           aria-hidden="true"
         >
           <Icon size={18} />
@@ -79,7 +82,7 @@ export default function PracticeCard({
         {/* Title */}
         <h3
           className="text-base font-bold leading-snug"
-          style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F" }}
+          style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)" }}
         >
           {title}
         </h3>
@@ -87,7 +90,7 @@ export default function PracticeCard({
         {/* Description — 1.7 line-height for comfort */}
         <p
           className="text-sm leading-[1.7]"
-          style={{ fontFamily: "var(--font-lora)", color: "#5C4A3A" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-muted)" }}
         >
           {description}
         </p>

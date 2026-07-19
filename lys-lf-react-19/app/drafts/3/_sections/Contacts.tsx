@@ -8,6 +8,7 @@ import Reveal from "../_components/Reveal"
  * Contacts section — address, hours, phone, email on left;
  * Google Maps embed (dark-filtered) on right.
  * Contact links have gold grow-underline on hover.
+ * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
 export default function Contacts() {
   const { contact, location, officeHours } = siteConfig
@@ -23,7 +24,7 @@ export default function Contacts() {
       id="contact"
       aria-labelledby="contact-heading"
       style={{
-        backgroundColor: "#141414",
+        backgroundColor: "var(--d6-panel)",
         padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
@@ -47,7 +48,7 @@ export default function Contacts() {
                 fontWeight: 600,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#B08D57",
+                color: "var(--d6-accent)",
                 marginBottom: "1rem",
               }}
             >
@@ -61,7 +62,7 @@ export default function Contacts() {
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
                 fontWeight: 400,
                 lineHeight: 1.1,
-                color: "#EDEDED",
+                color: "var(--d6-heading)",
                 margin: 0,
                 marginBottom: "1rem",
               }}
@@ -74,7 +75,7 @@ export default function Contacts() {
               style={{
                 width: "3rem",
                 height: "1px",
-                backgroundColor: "#B08D57",
+                backgroundColor: "var(--d6-accent)",
                 marginBottom: "2.5rem",
               }}
             />
@@ -97,7 +98,7 @@ export default function Contacts() {
                     fontWeight: 600,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#B08D57",
+                    color: "var(--d6-accent)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -109,7 +110,7 @@ export default function Contacts() {
                     fontSize: "0.9rem",
                     fontWeight: 300,
                     lineHeight: 1.8,
-                    color: "#9A9A9A",
+                    color: "var(--d6-muted)",
                     margin: 0,
                   }}
                 >
@@ -132,7 +133,7 @@ export default function Contacts() {
                     fontWeight: 600,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#B08D57",
+                    color: "var(--d6-accent)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -147,9 +148,9 @@ export default function Contacts() {
                       fontFamily: "var(--font-inter)",
                       fontSize: "0.9rem",
                       fontWeight: 300,
-                      color: phoneHover ? "#B08D57" : "#9A9A9A",
+                      color: phoneHover ? "var(--d6-accent)" : "var(--d6-muted)",
                       textDecoration: "none",
-                      borderBottom: `1px solid ${phoneHover ? "#B08D57" : "transparent"}`,
+                      borderBottom: `1px solid ${phoneHover ? "var(--d6-accent)" : "transparent"}`,
                       transition: "color 200ms ease-out, border-color 200ms ease-out",
                       paddingBottom: "1px",
                     }}
@@ -168,7 +169,7 @@ export default function Contacts() {
                     fontWeight: 600,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#B08D57",
+                    color: "var(--d6-accent)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -183,9 +184,9 @@ export default function Contacts() {
                       fontFamily: "var(--font-inter)",
                       fontSize: "0.9rem",
                       fontWeight: 300,
-                      color: emailHover ? "#B08D57" : "#9A9A9A",
+                      color: emailHover ? "var(--d6-accent)" : "var(--d6-muted)",
                       textDecoration: "none",
-                      borderBottom: `1px solid ${emailHover ? "#B08D57" : "transparent"}`,
+                      borderBottom: `1px solid ${emailHover ? "var(--d6-accent)" : "transparent"}`,
                       transition: "color 200ms ease-out, border-color 200ms ease-out",
                       paddingBottom: "1px",
                       wordBreak: "break-all",
@@ -205,7 +206,7 @@ export default function Contacts() {
                     fontWeight: 600,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#B08D57",
+                    color: "var(--d6-accent)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -217,7 +218,7 @@ export default function Contacts() {
                     fontSize: "0.9rem",
                     fontWeight: 300,
                     lineHeight: 1.7,
-                    color: "#9A9A9A",
+                    color: "var(--d6-muted)",
                     margin: 0,
                   }}
                 >
@@ -242,7 +243,7 @@ export default function Contacts() {
                 right: "-1.5rem",
                 bottom: "-1.5rem",
                 left: "1.5rem",
-                border: "1px solid rgba(176,141,87,0.2)",
+                border: "1px solid var(--d6-hair)",
                 zIndex: 0,
               }}
             />

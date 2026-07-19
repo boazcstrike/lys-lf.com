@@ -4,7 +4,17 @@
  * Asymmetric two-column: left 40% holds section index + photo as a strict
  * rectangular block; right 60% carries the prose on a light grey panel
  * (#F2F2F2). Thin 1px black vertical divider between columns.
- * react-markdown renders **bold** → <strong> in red for key names.
+ * react-markdown renders **bold** → <strong> in full heading color.
+ *
+ * Token mapping (d5-default):
+ *   panel   = #F2F2F2 (section bg — LIGHT in d5-default; intentionally changes on luxury schemes)
+ *   bg      = #FFFFFF (left index header row bg)
+ *   hair    = #0A0A0A (1px structural borders — opaque in d5-default)
+ *   accent  = #D72638 (index "03" numeral, 3px accent rule)
+ *   faint   = rgba(10,10,10,0.40) ("Who We Are" eyebrow label)
+ *   heading = #0A0A0A (section h2)
+ *   muted   = rgba(10,10,10,0.68) (body prose text)
+ *   text    = #0A0A0A (strong/bold text — full opacity)
  */
 
 import React from "react"
@@ -16,19 +26,19 @@ const BusinessProfile: React.FC = () => {
     <section
       id="about"
       className="overflow-hidden"
-      style={{ backgroundColor: "#F2F2F2", borderBottom: "1px solid #0A0A0A" }}
+      style={{ backgroundColor: "var(--d6-panel)", borderBottom: "1px solid var(--d6-hair)" }}
     >
       <div className="flex flex-col lg:flex-row">
 
         {/* LEFT — index number + photo */}
         <div
           className="relative flex flex-col lg:w-[40%]"
-          style={{ borderRight: "1px solid #0A0A0A" }}
+          style={{ borderRight: "1px solid var(--d6-hair)" }}
         >
-          {/* Index header row */}
+          {/* Index header row — bg = page bg (white in d5-default) */}
           <div
             className="flex items-baseline gap-4 px-6 py-8 lg:px-10"
-            style={{ borderBottom: "1px solid #0A0A0A", backgroundColor: "#FFFFFF" }}
+            style={{ borderBottom: "1px solid var(--d6-hair)", backgroundColor: "var(--d6-bg)" }}
           >
             <span
               aria-hidden="true"
@@ -36,7 +46,7 @@ const BusinessProfile: React.FC = () => {
                 fontFamily: "var(--font-space-grotesk)",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                color: "#D72638",
+                color: "var(--d6-accent)",
                 lineHeight: 1,
               }}
             >
@@ -44,7 +54,7 @@ const BusinessProfile: React.FC = () => {
             </span>
             <span
               className="text-[11px] font-semibold uppercase tracking-[0.28em]"
-              style={{ fontFamily: "var(--font-inter)", color: "#0A0A0A", opacity: 0.4 }}
+              style={{ fontFamily: "var(--font-inter)", color: "var(--d6-faint)" }}
               aria-hidden="true"
             >
               Who We Are
@@ -62,7 +72,7 @@ const BusinessProfile: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT — section title + prose */}
+        {/* RIGHT — section title + prose (sits on panel bg) */}
         <div className="flex flex-col justify-start px-6 py-10 lg:w-[60%] lg:px-12 lg:py-14 xl:px-16">
 
           {/* Section heading */}
@@ -72,21 +82,21 @@ const BusinessProfile: React.FC = () => {
               fontFamily: "var(--font-space-grotesk)",
               fontWeight: 700,
               fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)",
-              color: "#0A0A0A",
+              color: "var(--d6-heading)",
               lineHeight: 1.1,
             }}
           >
             {businessProfile.title}
           </h2>
 
-          {/* Red 3px rule */}
+          {/* Accent 3px rule */}
           <div
             aria-hidden="true"
             className="mb-8 mt-4"
-            style={{ width: "36px", height: "3px", backgroundColor: "#D72638" }}
+            style={{ width: "36px", height: "3px", backgroundColor: "var(--d6-accent)" }}
           />
 
-          {/* Prose paragraphs — **bold** rendered as strong in black */}
+          {/* Prose paragraphs — **bold** rendered as strong in full heading color */}
           <div className="space-y-5">
             {businessProfile.paragraphs.map((para, i) => (
               <ReactMarkdown
@@ -97,8 +107,7 @@ const BusinessProfile: React.FC = () => {
                       className="text-sm leading-relaxed lg:text-[0.9375rem]"
                       style={{
                         fontFamily: "var(--font-inter)",
-                        color: "#0A0A0A",
-                        opacity: 0.72,
+                        color: "var(--d6-muted)",
                       }}
                     >
                       {children}
@@ -108,8 +117,7 @@ const BusinessProfile: React.FC = () => {
                     <strong
                       style={{
                         fontWeight: 700,
-                        color: "#0A0A0A",
-                        opacity: 1,
+                        color: "var(--d6-text)",
                       }}
                     >
                       {children}

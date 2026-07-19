@@ -20,6 +20,7 @@ const DRAFTS = [
   { n: 3, label: "Dark Authoritative" },
   { n: 4, label: "Heritage Traditional" },
   { n: 5, label: "Contemporary Bold" },
+  { n: 6, label: "Kinetic Editorial" },
 ] as const
 
 const TOTAL = DRAFTS.length

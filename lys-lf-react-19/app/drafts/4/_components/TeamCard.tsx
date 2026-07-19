@@ -3,6 +3,9 @@
 /**
  * TeamCard — portrait card with hover lift + frame deepening.
  * Client component; parent TeamSection stays server.
+ *
+ * Colors sourced from --d6-* CSS custom properties (ThemeProvider).
+ * Gap: oxblood frame (#6B1F2A) and monogram letter mapped to --d6-accent.
  */
 
 import type { Employee } from "@/app/types"
@@ -41,14 +44,14 @@ export default function TeamCard({ employee, index }: TeamCardProps) {
           e.currentTarget.style.boxShadow = ""
         }}
       >
-        {/* Classic portrait frame: thick burgundy + inner gold inset */}
+        {/* Classic portrait frame: thick accent + inner accent-line inset */}
         <div
           className="border-4 p-1 w-44 h-52 sm:w-48 sm:h-56"
-          style={{ borderColor: "#6B1F2A" }}
+          style={{ borderColor: "var(--d6-accent2)" }}
         >
           <div
             className="border w-full h-full overflow-hidden flex items-center justify-center"
-            style={{ borderColor: "#9C7A3C" }}
+            style={{ borderColor: "var(--d6-accent-line)" }}
           >
             {employee.img ? (
               <img
@@ -60,11 +63,11 @@ export default function TeamCard({ employee, index }: TeamCardProps) {
               /* Monogram placeholder for members without a photo */
               <div
                 className="w-full h-full flex items-center justify-center"
-                style={{ backgroundColor: "#EDE3D4" }}
+                style={{ backgroundColor: "var(--d6-bg)" }}
               >
                 <span
                   className="text-4xl font-bold select-none"
-                  style={{ fontFamily: "var(--font-libre)", color: "#6B1F2A" }}
+                  style={{ fontFamily: "var(--font-libre)", color: "var(--d6-accent)" }}
                   aria-hidden="true"
                 >
                   {getMonogram(employee.name)}
@@ -78,7 +81,7 @@ export default function TeamCard({ employee, index }: TeamCardProps) {
       {/* Name */}
       <p
         className="text-center text-sm font-bold leading-snug"
-        style={{ fontFamily: "var(--font-libre)", color: "#3B2F2F" }}
+        style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)" }}
       >
         {employee.name}
       </p>
@@ -87,7 +90,7 @@ export default function TeamCard({ employee, index }: TeamCardProps) {
       {employee.position && (
         <p
           className="text-center text-xs tracking-wider"
-          style={{ fontFamily: "var(--font-lora)", color: "#9C7A3C" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
         >
           {employee.position}
         </p>
@@ -96,7 +99,7 @@ export default function TeamCard({ employee, index }: TeamCardProps) {
       {employee.bio && (
         <p
           className="text-justify text-xs leading-[1.7]"
-          style={{ fontFamily: "var(--font-lora)", color: "#3B2F2F" }}
+          style={{ fontFamily: "var(--font-lora)", color: "var(--d6-text)" }}
         >
           {employee.bio}
         </p>

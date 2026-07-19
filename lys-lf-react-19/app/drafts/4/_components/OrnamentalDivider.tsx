@@ -17,7 +17,7 @@ interface OrnamentalDividerProps {
 
 export default function OrnamentalDivider({
   className = "",
-  color = "#9C7A3C",
+  color = "var(--d6-accent)",
 }: OrnamentalDividerProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [drawn, setDrawn] = useState(false)

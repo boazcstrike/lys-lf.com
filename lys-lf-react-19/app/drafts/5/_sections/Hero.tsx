@@ -8,6 +8,22 @@
  * Single <h1> for the page.
  *
  * No JS handlers — pure CSS hover via Tailwind.
+ *
+ * Token mapping (d5-default):
+ *   bg             = #FFFFFF  (left panel background, section bg)
+ *   accent         = #D72638  (index "01", red rule bar, Sze highlight, LYS badge bg)
+ *   accentContrast = #FFFFFF  (LYS badge text)
+ *   heading        = #0A0A0A  (h1 wordmark, structural borders)
+ *   hair           = #0A0A0A  (1px structural borders — opaque in d5-default)
+ *   faint          = rgba(10,10,10,0.40) (est. label, "Law Firm" sub-text)
+ *   muted          = rgba(10,10,10,0.68) (tagline paragraph)
+ *   imgScrim       = rgba(10,10,10,0.18) (hero photo overlay)
+ *   heroText       = #FFFFFF  (photo overlay hr rule)
+ *   heroMuted      = rgba(255,255,255,0.60) (photo location label)
+ *
+ *   slab/slabText  = guaranteed dark surface + light pair (d5-default
+ *                    #0A0A0A / #FFFFFF) — used by "Consult Us" CTA so it
+ *                    stays AA-legible across all 8 offered schemes.
  */
 
 import React from "react"
@@ -19,8 +35,8 @@ const Hero: React.FC = () => {
       id="home"
       className="relative overflow-hidden"
       style={{
-        backgroundColor: "#FFFFFF",
-        borderBottom: "1px solid #0A0A0A",
+        backgroundColor: "var(--d6-bg)",
+        borderBottom: "1px solid var(--d6-hair)",
         minHeight: "100svh",
       }}
     >
@@ -30,7 +46,7 @@ const Hero: React.FC = () => {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(90deg, transparent, transparent calc(25% - 0.5px), #0A0A0A calc(25% - 0.5px), #0A0A0A 25%)",
+            "repeating-linear-gradient(90deg, transparent, transparent calc(25% - 0.5px), var(--d6-heading) calc(25% - 0.5px), var(--d6-heading) 25%)",
           opacity: 0.06,
         }}
       />
@@ -39,7 +55,7 @@ const Hero: React.FC = () => {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute hidden w-full lg:block"
-        style={{ top: "50%", height: "1px", backgroundColor: "#0A0A0A", opacity: 0.12 }}
+        style={{ top: "50%", height: "1px", backgroundColor: "var(--d6-heading)", opacity: 0.12 }}
       />
 
       {/* ── Main two-column grid ── */}
@@ -48,7 +64,7 @@ const Hero: React.FC = () => {
         {/* LEFT PANEL — text content */}
         <div
           className="relative flex flex-col justify-between px-6 pb-10 pt-10 lg:w-[55%] lg:px-14 lg:pb-14 lg:pt-14 xl:px-20"
-          style={{ borderRight: "1px solid #0A0A0A" }}
+          style={{ borderRight: "1px solid var(--d6-hair)" }}
         >
           {/* Top row: section index + established label */}
           <div className="flex items-baseline justify-between">
@@ -59,7 +75,7 @@ const Hero: React.FC = () => {
                 fontFamily: "var(--font-space-grotesk)",
                 fontWeight: 700,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "#D72638",
+                color: "var(--d6-accent)",
                 lineHeight: 1,
               }}
             >
@@ -69,7 +85,7 @@ const Hero: React.FC = () => {
             {/* Est. label — small, all-caps, tight tracking */}
             <span
               className="text-[11px] font-semibold uppercase tracking-[0.3em]"
-              style={{ fontFamily: "var(--font-inter)", color: "#0A0A0A", opacity: 0.45 }}
+              style={{ fontFamily: "var(--font-inter)", color: "var(--d6-faint)" }}
             >
               Est. {siteConfig.establishedYear}
             </span>
@@ -79,7 +95,7 @@ const Hero: React.FC = () => {
           <div
             aria-hidden="true"
             className="my-6"
-            style={{ height: "3px", width: "40px", backgroundColor: "#D72638" }}
+            style={{ height: "3px", width: "40px", backgroundColor: "var(--d6-accent)" }}
           />
 
           {/* Oversized stacked wordmark — single h1 */}
@@ -88,7 +104,7 @@ const Hero: React.FC = () => {
             style={{
               fontFamily: "var(--font-space-grotesk)",
               fontWeight: 700,
-              color: "#0A0A0A",
+              color: "var(--d6-heading)",
               fontSize: "clamp(3.25rem, 8vw + 1rem, 7.5rem)",
             }}
           >
@@ -96,15 +112,14 @@ const Hero: React.FC = () => {
             <br />
             Yutatco-
             <br />
-            <span style={{ color: "#D72638" }}>Sze</span>
+            <span style={{ color: "var(--d6-accent)" }}>Sze</span>
             <br />
             <span
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 500,
                 fontSize: "0.35em",
-                color: "#0A0A0A",
-                opacity: 0.55,
+                color: "var(--d6-faint)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
               }}
@@ -119,15 +134,14 @@ const Hero: React.FC = () => {
             <div
               aria-hidden="true"
               className="mb-6"
-              style={{ height: "1px", backgroundColor: "#0A0A0A", opacity: 0.15 }}
+              style={{ height: "1px", backgroundColor: "var(--d6-hair)", opacity: 0.15 }}
             />
 
             <p
               className="mb-8 max-w-sm text-sm leading-relaxed lg:text-base"
               style={{
                 fontFamily: "var(--font-inter)",
-                color: "#0A0A0A",
-                opacity: 0.65,
+                color: "var(--d6-muted)",
               }}
             >
               Full-service law office. Corporate, labor &amp; tax law. Philippines.
@@ -135,12 +149,13 @@ const Hero: React.FC = () => {
 
             {/* CTA row — no JS, pure CSS hover */}
             <div className="flex flex-wrap gap-3">
+              {/* slab = guaranteed-dark surface across all 8 schemes; slabText its light pair */}
               <a
                 href="#contact"
-                className="inline-flex min-h-[48px] items-center justify-center px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D72638]"
+                className="inline-flex min-h-[48px] items-center justify-center px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
                 style={{
-                  backgroundColor: "#0A0A0A",
-                  color: "#FFFFFF",
+                  backgroundColor: "var(--d6-slab)",
+                  color: "var(--d6-slab-text)",
                   fontFamily: "var(--font-inter)",
                 }}
               >
@@ -148,10 +163,10 @@ const Hero: React.FC = () => {
               </a>
               <a
                 href="#practice-areas"
-                className="inline-flex min-h-[48px] items-center justify-center px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A0A0A]"
+                className="inline-flex min-h-[48px] items-center justify-center px-8 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-heading)]"
                 style={{
-                  border: "1px solid #0A0A0A",
-                  color: "#0A0A0A",
+                  border: "1px solid var(--d6-heading)",
+                  color: "var(--d6-heading)",
                   fontFamily: "var(--font-inter)",
                   backgroundColor: "transparent",
                 }}
@@ -174,20 +189,20 @@ const Hero: React.FC = () => {
           <div
             aria-hidden="true"
             className="absolute inset-0"
-            style={{ backgroundColor: "rgba(10,10,10,0.18)" }}
+            style={{ backgroundColor: "var(--d6-img-scrim)" }}
           />
 
           {/* Firm short-name — bottom left square badge */}
           <div
             className="absolute bottom-0 left-0 flex h-16 w-16 items-center justify-center lg:h-20 lg:w-20"
-            style={{ backgroundColor: "#D72638" }}
+            style={{ backgroundColor: "var(--d6-accent)" }}
             aria-hidden="true"
           >
             <span
               className="text-base font-bold lg:text-lg"
               style={{
                 fontFamily: "var(--font-space-grotesk)",
-                color: "#FFFFFF",
+                color: "var(--d6-accent-contrast)",
                 letterSpacing: "0.05em",
               }}
             >
@@ -200,10 +215,10 @@ const Hero: React.FC = () => {
             className="absolute right-4 top-4 flex items-center gap-2"
             aria-hidden="true"
           >
-            <div style={{ width: "20px", height: "1px", backgroundColor: "#FFFFFF", opacity: 0.6 }} />
+            <div style={{ width: "20px", height: "1px", backgroundColor: "var(--d6-hero-text)", opacity: 0.6 }} />
             <span
               className="text-[9px] font-semibold uppercase tracking-[0.3em]"
-              style={{ fontFamily: "var(--font-inter)", color: "#FFFFFF", opacity: 0.6 }}
+              style={{ fontFamily: "var(--font-inter)", color: "var(--d6-hero-muted)" }}
             >
               Filinvest City, Alabang
             </span>
