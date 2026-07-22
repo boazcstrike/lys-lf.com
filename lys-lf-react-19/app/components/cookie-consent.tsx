@@ -18,6 +18,10 @@ import {
 
 const POLICY_HREF = "/privacy";
 
+// True only under `next dev`. `next build` (static export) inlines this as
+// false, so the dev-only forced banner + notice never ship to production.
+const IS_DEV = process.env.NODE_ENV !== "production";
+
 type View = "hidden" | "banner" | "preferences";
 
 /** Tab-focusable elements inside the consent panel. */
@@ -55,8 +59,11 @@ const CookieConsent: FC = () => {
 
   // Decide initial visibility after mount (localStorage is client-only and
   // the site is statically exported — never gate render on SSR).
+  // In development we force the banner on every load (ignoring any stored
+  // choice) so it's always testable; production shows it once, until a
+  // visitor records a decision.
   useEffect(() => {
-    if (!readConsent()) setView("banner");
+    if (IS_DEV || !readConsent()) setView("banner");
   }, []);
 
   // Allow other components to reopen the preferences modal.
@@ -229,7 +236,26 @@ const BannerBody: FC = () => (
       </a>
       .
     </p>
+    {IS_DEV && <DevNotice />}
   </>
+);
+
+/**
+ * Development-only heads-up. Explains why the banner keeps reappearing in
+ * dev and clarifies the production behaviour. Stripped from the production
+ * build entirely (IS_DEV is inlined false by `next build`).
+ */
+const DevNotice: FC = () => (
+  <p
+    role="note"
+    className="mt-4 rounded-md border border-dashed border-amber-400/50 bg-amber-400/10 px-3 py-2 text-xs leading-relaxed text-amber-200"
+  >
+    <span className="font-semibold uppercase tracking-wider">Dev only</span>
+    {" — "}
+    this banner is forced on every load so you can test it. In production it
+    appears <strong>once</strong>, then stays hidden after a visitor accepts
+    or rejects. This notice does not ship to production.
+  </p>
 );
 
 interface PreferencesBodyProps {
