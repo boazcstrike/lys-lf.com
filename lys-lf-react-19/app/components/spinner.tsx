@@ -7,28 +7,32 @@ interface SpinnerProps {
 }
 
 const sizeClasses = {
-  sm: "h-5 w-5 border-2",
-  md: "h-8 w-8 border-2",
-  lg: "h-12 w-12 border-3",
+  sm: "h-6 w-6",
+  md: "h-9 w-9",
+  lg: "h-14 w-14",
 }
 
-const Spinner: FC<SpinnerProps> = ({ 
-  size = "md", 
+/**
+ * Spinner — branded dual-ring loader.
+ *
+ * Outer track in brand gray, an inner arc counter-rotating in lys-black for
+ * a refined, weighted feel over a plain single-border spin.
+ */
+const Spinner: FC<SpinnerProps> = ({
+  size = "md",
   label = "Loading...",
-  fullScreen = false 
+  fullScreen = false,
 }) => {
   const spinnerElement = (
     <div
       role="status"
       aria-label={label}
-      className={`
-        ${sizeClasses[size]}
-        animate-spin
-        rounded-full
-        border-gray-300
-        border-t-gray-800
-      `}
+      className={`relative ${sizeClasses[size]}`}
     >
+      {/* Outer ring — full track, forward spin */}
+      <span className="absolute inset-0 rounded-full border-2 border-lys-gray/40 border-t-lys-black animate-spin-slow" />
+      {/* Inner arc — counter-rotates for depth */}
+      <span className="absolute inset-[3px] rounded-full border-2 border-transparent border-b-lys-gray-dark animate-spin-reverse" />
       <span className="sr-only">{label}</span>
     </div>
   )
@@ -42,9 +46,7 @@ const Spinner: FC<SpinnerProps> = ({
   }
 
   return (
-    <div className="flex items-center justify-center p-4">
-      {spinnerElement}
-    </div>
+    <div className="flex items-center justify-center p-4">{spinnerElement}</div>
   )
 }
 

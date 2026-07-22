@@ -75,7 +75,7 @@ export default function FooterSection() {
         >
           Website by{" "}
           <a
-            href="https://www.facebook.com/boazcstrike/"
+            href="https://www.linkedin.com/in/boaz-sze-44b00291/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline-offset-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[var(--d6-accent)]"

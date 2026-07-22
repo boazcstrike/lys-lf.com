@@ -6,6 +6,97 @@
   --color-lys-gray-medium: #cecece;
   --color-lys-gray-dark: #606060;
   --color-lys-black: #222222;
+
+  /* Motion tokens — restrained/professional tier.
+     Registered here so `animate-*` utilities resolve in Tailwind 4. */
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-fade-up: fade-up 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-spin-slow: spin 1.3s linear infinite;
+  --animate-spin-reverse: spin-reverse 1s linear infinite;
+  --animate-tilt: tilt 2.4s ease-in-out infinite;
+  --animate-dot: dot-bounce 1.2s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reverse spin for counter-rotating inner ring */
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Scales-of-justice beam tilt — weighs left/right like a balance */
+@keyframes tilt {
+  0%, 100% { transform: rotate(-9deg); }
+  50% { transform: rotate(9deg); }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.55; }
+  40% { transform: translateY(-7px); opacity: 1; }
+}
+
+/* Skeleton/progress shimmer sweep */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Diagonal light sweep across a logo/wordmark */
+@keyframes sheen {
+  0% { transform: translateX(-120%); }
+  60%, 100% { transform: translateX(120%); }
+}
+
+.logo-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  animation: sheen 2.8s ease-in-out infinite;
+}
+
+/* Accessibility: honor reduced-motion globally.
+   Reveal also short-circuits in JS, this is the safety net for CSS loops. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .logo-sheen::after {
+    display: none;
+  }
 }
 
 :root {
@@ -17,13 +108,6 @@
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;

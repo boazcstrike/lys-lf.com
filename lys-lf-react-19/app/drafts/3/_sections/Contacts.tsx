@@ -28,12 +28,17 @@ export default function Contacts() {
         padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)",
       }}
     >
+      {/*
+        Responsive grid: single column on mobile, two columns from md (768px) up.
+        grid-template-columns lives in the scoped stylesheet below (not inline) so
+        the media query can actually toggle it — inline styles can't hold breakpoints.
+      */}
       <div
+        className="d3-contacts-grid"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "clamp(2rem, 5vw, 5rem)",
           alignItems: "start",
         }}
@@ -62,9 +67,11 @@ export default function Contacts() {
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
                 fontWeight: 400,
                 lineHeight: 1.1,
+                letterSpacing: "-0.01em",
                 color: "var(--d6-heading)",
                 margin: 0,
                 marginBottom: "1rem",
+                textWrap: "balance",
               }}
             >
               Contact &amp; Location
@@ -142,6 +149,7 @@ export default function Contacts() {
                 <dd style={{ margin: 0 }}>
                   <a
                     href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                    className="d3-link"
                     onMouseEnter={() => setPhoneHover(true)}
                     onMouseLeave={() => setPhoneHover(false)}
                     style={{
@@ -178,6 +186,7 @@ export default function Contacts() {
                 <dd style={{ margin: 0 }}>
                   <a
                     href={`mailto:${contact.email}`}
+                    className="d3-link"
                     onMouseEnter={() => setEmailHover(true)}
                     onMouseLeave={() => setEmailHover(false)}
                     style={{
@@ -189,7 +198,9 @@ export default function Contacts() {
                       borderBottom: `1px solid ${emailHover ? "var(--d6-accent)" : "transparent"}`,
                       transition: "color 200ms ease-out, border-color 200ms ease-out",
                       paddingBottom: "1px",
-                      wordBreak: "break-all",
+                      // Wrap only at need and prefer boundaries — avoids the
+                      // ragged mid-character breaks that word-break: break-all gives.
+                      overflowWrap: "anywhere",
                     }}
                   >
                     {contact.email}
@@ -268,6 +279,26 @@ export default function Contacts() {
           </div>
         </Reveal>
       </div>
+
+      {/* Scoped rules — inline <style> keeps the draft self-contained (no
+          globals.css edits), matching the pattern used in HeroClient. Holds the
+          responsive grid plus a keyboard focus ring for the contact links so
+          keyboard users get the same gold affordance mouse users get on hover. */}
+      <style>{`
+        .d3-contacts-grid {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .d3-contacts-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        .d3-link:focus-visible {
+          outline: 2px solid var(--d6-accent);
+          outline-offset: 3px;
+          border-radius: 2px;
+        }
+      `}</style>
     </section>
   )
 }

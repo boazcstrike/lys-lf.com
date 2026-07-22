@@ -1,9 +1,9 @@
 /**
  * Shared color-scheme engine — usable by every draft.
  *
- * SchemeId  — union of the 7 luxury ids + 5 draft-default ids.
- * SCHEMES   — all 12 scheme objects (7 luxury + 5 draft defaults).
- * SHARED_SWITCH_LIST — the 7 luxury ids in canonical order.
+ * SchemeId  — union of the 8 luxury ids + 5 draft-default ids.
+ * SCHEMES   — all 13 scheme objects (8 luxury + 5 draft defaults).
+ * SHARED_SWITCH_LIST — the 8 luxury ids in canonical order.
  * offeredFor(defaultId) — [defaultId, ...SHARED_SWITCH_LIST] deduped.
  * schemeCssVars(id) — inline React.CSSProperties of --d6-* vars.
  * TOKEN_TO_CSS_VAR — token key → CSS custom property name map.
@@ -19,8 +19,18 @@ import { DRAFT_DEFAULTS } from "./defaults"
 export interface SchemeTokens {
   bg: string
   panel: string
+  /** Decorative accent — hairlines, borders, icons, CTA fills, swatches. */
   accent: string
   accent2: string
+  /**
+   * Optional text-safe accent for SMALL accent-coloured copy (eyebrow labels,
+   * ~10-12px uppercase) on the scheme's light background. Decorative golds can
+   * fall below WCAG AA (4.5:1) as label text; set this to a darker, AA-passing
+   * variant of the accent hue. Falls back to `accent` when omitted (dark-bg
+   * schemes where the accent already clears AA as text). The decorative `accent`
+   * is intentionally left untouched so borders/fills keep their brightness.
+   */
+  accentText?: string
   accentContrast: string
   heading: string
   text: string
@@ -60,6 +70,7 @@ export type SchemeId =
   | "onyx-champagne"
   | "royal-navy-gold"
   | "kinetic"
+  | "kinetic-orange"
   // Per-draft default identifiers
   | "d1-default"
   | "d2-default"
@@ -80,6 +91,9 @@ const LUXURY_SCHEMES: readonly Scheme[] = [
       panel: "#14213D",
       accent: "#C5A572",
       accent2: "#C5A572",
+      // Deep bronze-gold for label text on ivory/stone: ~5.6:1 vs #FBF8F1
+      // (decorative #C5A572 is only ~2.2:1 and fails AA at small sizes).
+      accentText: "#7C5E2E",
       accentContrast: "#1A1A2E",
       heading: "#14213D",
       text: "#2A2A33",
@@ -229,7 +243,39 @@ const LUXURY_SCHEMES: readonly Scheme[] = [
     },
   },
   {
+    // DEFAULT kinetic identity — restrained amber-gold replaces the vibrant
+    // orange for law-firm gravitas. The original orange is preserved verbatim
+    // as the separate "kinetic-orange" scheme below (non-destructive), so it
+    // stays selectable. Keeping this id as "kinetic" leaves every draft's
+    // defaultScheme wiring (e.g. draft 6) untouched.
     id: "kinetic",
+    name: "Kinetic Amber",
+    tokens: {
+      bg: "#000000",
+      panel: "#14213d",
+      accent: "#D2A24C",
+      accent2: "#D2A24C",
+      accentContrast: "#000000",
+      heading: "#ffffff",
+      text: "#e5e5e5",
+      muted: "rgba(229,229,229,0.62)",
+      faint: "rgba(229,229,229,0.32)",
+      hair: "rgba(255,255,255,0.12)",
+      accentSoft: "rgba(210,162,76,0.14)",
+      accentLine: "rgba(210,162,76,0.45)",
+      scrimTop: "rgba(0,0,0,0.45)",
+      scrimMid: "rgba(20,33,61,0.55)",
+      scrimBot: "rgba(0,0,0,0.96)",
+      imgScrim: "rgba(0,0,0,0.72)",
+      heroText: "#ffffff",
+      heroMuted: "rgba(229,229,229,0.62)",
+      slab: "#14213D",
+      slabText: "#FFFFFF",
+    },
+  },
+  {
+    // Original vibrant-orange kinetic accent, preserved as an opt-in option.
+    id: "kinetic-orange",
     name: "Kinetic Orange",
     tokens: {
       bg: "#000000",
@@ -276,6 +322,7 @@ export const TOKEN_TO_CSS_VAR: Record<keyof SchemeTokens, string> = {
   panel: "--d6-panel",
   accent: "--d6-accent",
   accent2: "--d6-accent2",
+  accentText: "--d6-accent-text",
   accentContrast: "--d6-accent-contrast",
   heading: "--d6-heading",
   text: "--d6-text",
@@ -311,10 +358,21 @@ export function schemeCssVars(id: SchemeId): React.CSSProperties {
   const vars: React.CSSProperties = {}
 
   for (const key of Object.keys(TOKEN_TO_CSS_VAR) as Array<keyof SchemeTokens>) {
+    const value = tokens[key]
+    // Optional tokens (e.g. accentText) may be undefined — skip here and
+    // resolve their fallback explicitly below so no `undefined` leaks into
+    // the inline no-FOUC script's JSON payload.
+    if (value === undefined) continue
     const cssVar = TOKEN_TO_CSS_VAR[key]
     // React's CSSProperties allows custom property assignment via index
-    ;(vars as Record<string, string>)[cssVar] = tokens[key]
+    ;(vars as Record<string, string>)[cssVar] = value
   }
+
+  // Text-safe accent: schemes that omit `accentText` (dark backgrounds where
+  // the decorative accent already clears WCAG AA as label text) fall back to
+  // the accent itself, so --d6-accent-text is always defined for consumers.
+  ;(vars as Record<string, string>)[TOKEN_TO_CSS_VAR.accentText] =
+    tokens.accentText ?? tokens.accent
 
   return vars
 }
@@ -331,6 +389,7 @@ export const SHARED_SWITCH_LIST: SchemeId[] = [
   "onyx-champagne",
   "royal-navy-gold",
   "kinetic",
+  "kinetic-orange",
 ]
 
 /**

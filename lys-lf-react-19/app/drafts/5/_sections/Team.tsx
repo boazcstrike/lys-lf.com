@@ -78,6 +78,7 @@ const Team: React.FC = () => {
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
               color: "var(--d6-accent)",
               lineHeight: 1,
+              letterSpacing: "-0.02em",
             }}
           >
             04
@@ -89,6 +90,7 @@ const Team: React.FC = () => {
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               color: "var(--d6-heading)",
               lineHeight: 1,
+              letterSpacing: "-0.01em",
             }}
           >
             The Team
@@ -123,10 +125,10 @@ const Team: React.FC = () => {
                 borderBottom: `1px solid ${isPartners ? "rgba(255,255,255,0.15)" : "var(--d6-hair)"}`,
               }}
             >
-              {/* Accent tick */}
+              {/* Accent tick — decorative; accent2 = gold under navy/gold tone */}
               <div
                 aria-hidden="true"
-                style={{ width: "20px", height: "2px", backgroundColor: "var(--d6-accent)", flexShrink: 0 }}
+                style={{ width: "20px", height: "2px", backgroundColor: "var(--d6-accent2)", flexShrink: 0 }}
               />
               <h3
                 className="pb-3 text-[11px] font-semibold uppercase tracking-[0.3em]"
@@ -169,7 +171,8 @@ const Team: React.FC = () => {
                       <InitialsBlock name={emp.name} />
                     )}
 
-                    {/* Accent corner rule — top-left */}
+                    {/* Accent corner rule — top-left; decorative, accent2 = gold
+                        under the navy/gold tone (equals accent elsewhere) */}
                     <div
                       aria-hidden="true"
                       style={{
@@ -178,7 +181,7 @@ const Team: React.FC = () => {
                         left: 0,
                         width: "4px",
                         height: "32px",
-                        backgroundColor: "var(--d6-accent)",
+                        backgroundColor: "var(--d6-accent2)",
                       }}
                     />
                   </div>

@@ -48,6 +48,7 @@ const BusinessProfile: React.FC = () => {
                 fontSize: "clamp(2rem, 4vw, 3.5rem)",
                 color: "var(--d6-accent)",
                 lineHeight: 1,
+                letterSpacing: "-0.02em",
               }}
             >
               03
@@ -84,16 +85,20 @@ const BusinessProfile: React.FC = () => {
               fontSize: "clamp(1.6rem, 2.5vw, 2.25rem)",
               color: "var(--d6-heading)",
               lineHeight: 1.1,
+              letterSpacing: "-0.01em",
             }}
           >
             {businessProfile.title}
           </h2>
 
-          {/* Accent 3px rule */}
+          {/* Accent 3px rule — decorative; accent2 shows gold under the
+              navy/gold tone, and equals accent under every other scheme.
+              Width matches the Hero's 40px gold rule so the motif reads as
+              one system across sections. */}
           <div
             aria-hidden="true"
             className="mb-8 mt-4"
-            style={{ width: "36px", height: "3px", backgroundColor: "var(--d6-accent)" }}
+            style={{ width: "40px", height: "3px", backgroundColor: "var(--d6-accent2)" }}
           />
 
           {/* Prose paragraphs — **bold** rendered as strong in full heading color */}

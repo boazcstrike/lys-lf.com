@@ -156,9 +156,11 @@ export default function PracticeAreas() {
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               fontWeight: 400,
               lineHeight: 1.1,
+              letterSpacing: "-0.01em",
               color: "var(--d6-heading)",
               margin: 0,
               marginBottom: "1rem",
+              textWrap: "balance",
             }}
           >
             Areas of Practice

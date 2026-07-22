@@ -38,11 +38,15 @@ const iconMap: Record<string, IconType> = {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <p
-      className="mb-3 text-xs tracking-[0.22em] uppercase"
+      // Legibility: 14px/700 with tightened tracking, and the AA-safe
+      // --d6-accent-text (deep bronze ~5.6:1 on ivory) — decorative --d6-accent
+      // gold is only ~2.2:1 and fails WCAG AA at this size. Same hue family, so
+      // the editorial gold reading is preserved while the text stays readable.
+      className="mb-3 text-sm tracking-[0.18em] uppercase"
       style={{
-        color: "var(--d6-accent)",
+        color: "var(--d6-accent-text)",
         fontFamily: "var(--font-source-sans)",
-        fontWeight: 600,
+        fontWeight: 700,
       }}
     >
       {children}

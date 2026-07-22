@@ -37,6 +37,7 @@ const DraftSwitcher: React.FC = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const pathname = usePathname() ?? "/drafts/1"
+  const isLogoLab = pathname.startsWith("/drafts/logo-lab")
   const current = currentDraftFromPath(pathname)
   const prev = current === 1 ? TOTAL : current - 1
   const next = current === TOTAL ? 1 : current + 1
@@ -92,8 +93,42 @@ const DraftSwitcher: React.FC = () => {
           ›
         </Link>
 
-        <span className="hidden max-w-[14em] truncate px-3 text-xs font-medium text-white/80 md:inline">
-          {current}/{TOTAL} · {activeLabel}
+        {/* Divider between the draft dots and the destination pills. */}
+        <span aria-hidden="true" className="mx-1 h-6 w-px bg-white/15" />
+
+        {/* Fixed destinations: hub index, live site, and the logo lab. */}
+        <Link
+          href="/drafts"
+          aria-label="All drafts (index)"
+          title="All drafts"
+          className="flex h-9 items-center rounded-full px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          All
+        </Link>
+        <Link
+          href="/"
+          aria-label="Live production site"
+          title="Live site"
+          className="flex h-9 items-center rounded-full px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          Live
+        </Link>
+        <Link
+          href="/drafts/logo-lab"
+          aria-label="Logo animation lab"
+          title="Logo lab"
+          aria-current={isLogoLab ? "page" : undefined}
+          className={`flex h-9 items-center rounded-full px-3 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+            isLogoLab
+              ? "bg-amber-400 text-neutral-900"
+              : "text-amber-300/90 hover:bg-white/10 hover:text-amber-200"
+          }`}
+        >
+          Logo
+        </Link>
+
+        <span className="hidden max-w-[12em] truncate px-3 text-xs font-medium text-white/80 lg:inline">
+          {isLogoLab ? "Logo Lab" : `${current}/${TOTAL} · ${activeLabel}`}
         </span>
       </div>
     </div>

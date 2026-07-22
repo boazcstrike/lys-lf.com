@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { FONT, MOTION } from "./theme"
+import { NAV_ITEMS } from "./nav-items"
+import { useScrollSpy } from "./useScrollSpy"
 
 const FN_STYLE = `
 .d6-fn-link:focus-visible {
@@ -14,44 +15,16 @@ const FN_STYLE = `
 }
 `
 
-interface NavItem {
-  id: string
-  label: string
-}
-
-const ITEMS: NavItem[] = [
-  { id: "home", label: "Home" },
-  { id: "practice-areas", label: "Practice" },
-  { id: "about", label: "Firm" },
-  { id: "team", label: "Team" },
-  { id: "contact", label: "Contact" },
-]
-
 /**
  * FloatingNav — right-edge vertical scroll-spy rail (desktop) that
  * highlights the active section via IntersectionObserver and animates a
  * sliding orange indicator. Each tick expands its label on active.
- * Hidden under lg; small-screen users keep native scroll + in-page
- * anchor links, so navigation is never gesture/hover-only.
+ * Hidden under lg; on small screens the paired MobileNav (rendered in
+ * page.tsx) provides an equivalent menu, so navigation is never
+ * gesture/hover-only and never desktop-only.
  */
 export default function FloatingNav() {
-  const [active, setActive] = useState<string>("home")
-
-  useEffect(() => {
-    const sections = ITEMS.map((i) => document.getElementById(i.id)).filter(
-      (el): el is HTMLElement => el !== null
-    )
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(e.target.id)
-        }
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    )
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
-  }, [])
+  const active = useScrollSpy(NAV_ITEMS)
 
   return (
     <>
@@ -70,7 +43,7 @@ export default function FloatingNav() {
         alignItems: "flex-end",
       }}
     >
-      {ITEMS.map((item) => {
+      {NAV_ITEMS.map((item) => {
         const isActive = active === item.id
         return (
           <a

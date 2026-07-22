@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa"
 
 import Map from "@/app/components/map"
+import Reveal from "@/app/components/reveal"
 import { siteConfig } from "@/app/assets/data/site-config"
 
 const Contacts: FC = (): React.ReactNode => {
@@ -18,7 +19,7 @@ const Contacts: FC = (): React.ReactNode => {
       <Map />
 
       <div className="flex flex-col sm:flex-row justify-around items-center gap-8 mt-8">
-        <div className="text-[#1a1a1a] text-center">
+        <Reveal delay={0} className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
             <FaMapMarkerAlt className="inline-block mr-2" aria-hidden="true" />
             Address:
@@ -34,9 +35,9 @@ const Contacts: FC = (): React.ReactNode => {
               {address.city} {address.postalCode}
             </span>
           </h3>
-        </div>
+        </Reveal>
 
-        <div className="text-[#1a1a1a] text-center">
+        <Reveal delay={90} className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
             <FaClock className="inline-block mr-2" aria-hidden="true" />
             Hours:
@@ -46,9 +47,9 @@ const Contacts: FC = (): React.ReactNode => {
               <strong>{officeHours.days}</strong> {officeHours.hours}
             </span>
           </h3>
-        </div>
+        </Reveal>
 
-        <div className="text-[#1a1a1a] text-center">
+        <Reveal delay={180} className="text-[#1a1a1a] text-center">
           <h3 className="font-noticia text-[1.55em] pt-2 pb-4">
             <FaPhone className="inline-block mr-2" aria-hidden="true" />
             Contact:
@@ -64,7 +65,7 @@ const Contacts: FC = (): React.ReactNode => {
               {contact.email}
             </span>
           </h3>
-        </div>
+        </Reveal>
       </div>
     </div>
   )

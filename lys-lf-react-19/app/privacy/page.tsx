@@ -19,9 +19,9 @@ import CookieSettingsButton from "@/app/components/cookie-settings-button";
 
 const EFFECTIVE_DATE = "16 May 2026";
 
-// Consent UI ships dev-only by client request; the consent flow is a draft.
-// In production GA currently runs without a consent banner.
-const CONSENT_UI_ENABLED = process.env.NODE_ENV !== "production";
+// Consent UI is enabled in all environments: the banner gates Google
+// Analytics behind explicit opt-in (Consent Mode default-denied).
+const CONSENT_UI_ENABLED = true;
 
 export const metadata: Metadata = {
   title: "Cookies & Analytics Notice",
@@ -77,16 +77,25 @@ export default function PrivacyPolicyPage(): React.ReactNode {
                   Strictly necessary
                 </dt>
                 <dd className="mt-1 text-lys-gray-dark">
-                  Keep the site secure and remember your cookie choice. No
-                  consent required; always active.
+                  Keeps the site secure and remembers your cookie choice
+                  (stored in your browser&rsquo;s local storage, not a
+                  tracking cookie). No consent required; always active.
                 </dd>
               </div>
               <div>
                 <dt className="font-semibold text-lys-black">Analytics</dt>
                 <dd className="mt-1 text-lys-gray-dark">
-                  Google Analytics measures aggregate, anonymised usage so we
-                  can improve the site. Disabled until you accept. We do not
-                  use it for advertising or profiling.
+                  Google Analytics (Google LLC) sets the cookies{" "}
+                  <code className="rounded bg-lys-gray-light/40 px-1 text-[0.85em]">
+                    _ga
+                  </code>{" "}
+                  and{" "}
+                  <code className="rounded bg-lys-gray-light/40 px-1 text-[0.85em]">
+                    _ga_VE4EEKPNEQ
+                  </code>{" "}
+                  &mdash; both expiring after 2 years &mdash; to measure
+                  aggregated usage so we can improve the site. Disabled until
+                  you accept. We do not use it for advertising or profiling.
                 </dd>
               </div>
             </dl>
@@ -110,6 +119,17 @@ export default function PrivacyPolicyPage(): React.ReactNode {
                 privacy extension, or contact us (below) with any request.
               </p>
             )}
+          </Section>
+
+          <Section title="Data transfer &amp; retention">
+            <p>
+              Google Analytics is provided by Google LLC in the United
+              States, so accepting analytics transfers limited, aggregated
+              usage data outside the Philippines, where it is processed under
+              Google&rsquo;s terms. We keep no analytics data ourselves;
+              Google retains it according to its configured retention period
+              (2&ndash;14 months).
+            </p>
           </Section>
 
           <Section title="Your rights">

@@ -56,6 +56,7 @@ function PracticeRow({
           fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
           color: "var(--d6-accent)",
           lineHeight: 1,
+          letterSpacing: "-0.02em",
         }}
       >
         {num}
@@ -115,6 +116,7 @@ const PracticeAreas: React.FC = () => {
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
               color: "var(--d6-accent)",
               lineHeight: 1,
+              letterSpacing: "-0.02em",
             }}
           >
             02
@@ -126,6 +128,7 @@ const PracticeAreas: React.FC = () => {
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               color: "var(--d6-heading)",
               lineHeight: 1,
+              letterSpacing: "-0.01em",
             }}
           >
             Practice Areas

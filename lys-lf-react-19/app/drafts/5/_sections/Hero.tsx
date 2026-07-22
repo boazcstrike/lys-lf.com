@@ -77,6 +77,7 @@ const Hero: React.FC = () => {
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--d6-accent)",
                 lineHeight: 1,
+                letterSpacing: "-0.02em",
               }}
             >
               01
@@ -91,28 +92,34 @@ const Hero: React.FC = () => {
             </span>
           </div>
 
-          {/* Red top rule under index row */}
+          {/* Top rule under index row — decorative, uses accent2 (gold under the
+              navy/gold tone; identical to accent under every other scheme) */}
           <div
             aria-hidden="true"
             className="my-6"
-            style={{ height: "3px", width: "40px", backgroundColor: "var(--d6-accent)" }}
+            style={{ height: "3px", width: "40px", backgroundColor: "var(--d6-accent2)" }}
           />
 
-          {/* Oversized stacked wordmark — single h1 */}
+          {/* Oversized stacked wordmark — single h1.
+              The compound surname "Yutatco-Sze" is held on one line with a
+              non-breaking hyphen (U+2011) so it never breaks into a dangling
+              "Yutatco-" / "Sze". The clamp floor is sized so the intact surname
+              still fits narrow (~320px) viewports without clipping. */}
           <h1
             className="flex-1 leading-[0.9] tracking-tight"
             style={{
               fontFamily: "var(--font-space-grotesk)",
               fontWeight: 700,
               color: "var(--d6-heading)",
-              fontSize: "clamp(3.25rem, 8vw + 1rem, 7.5rem)",
+              fontSize: "clamp(2.6rem, 8vw + 0.75rem, 7.5rem)",
             }}
           >
             Lim &amp;
             <br />
-            Yutatco-
-            <br />
-            <span style={{ color: "var(--d6-accent)" }}>Sze</span>
+            <span style={{ whiteSpace: "nowrap" }}>
+              Yutatco{"‑"}
+              <span style={{ color: "var(--d6-accent)" }}>Sze</span>
+            </span>
             <br />
             <span
               style={{

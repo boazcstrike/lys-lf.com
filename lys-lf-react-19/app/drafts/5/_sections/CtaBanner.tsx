@@ -43,6 +43,7 @@ const CtaBanner: React.FC = () => {
             fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
             color: "rgba(255,255,255,0.35)",
             lineHeight: 1,
+            letterSpacing: "-0.02em",
           }}
           aria-hidden="true"
         >
@@ -67,6 +68,7 @@ const CtaBanner: React.FC = () => {
             fontWeight: 700,
             color: "var(--d6-accent-contrast)",
             fontSize: "clamp(2rem, 5vw + 0.5rem, 4rem)",
+            letterSpacing: "-0.01em",
           }}
         >
           Have Legal Problems?

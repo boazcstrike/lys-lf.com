@@ -21,17 +21,37 @@ import MagneticButton from "../_components/MagneticButton"
 
 const WORDS = ["Lim", "&", "Yutatco-Sze"]
 
+/**
+ * Motion tuning — deliberately restrained.
+ *
+ * The three background layers (pointer-tilt, scroll parallax, ken-burns)
+ * previously ran at full strength at once, which read as busy and taxed
+ * low-end devices. These calmer values let the layers drift together as
+ * one quiet cinematic motion rather than competing. Pointer-tilt is
+ * additionally limited to fine pointers (desktop mice) — touch devices,
+ * which are the most perf-sensitive, get parallax + ken-burns only.
+ */
+const TILT_RANGE_PX = 6 // per-axis tilt amplitude (was 16)
+const TILT_BG_FACTOR = 0.4 // background follows tilt at this fraction
+const PARALLAX_FACTOR = 0.18 // scroll → vertical drift (was 0.35)
+const KEN_BURNS = "d6Ken 22s cubic-bezier(0.25,0.1,0.25,1) both" // was 18s
+
 export default function Hero() {
   const { firmShortName, establishedYear } = siteConfig
   const [loaded, setLoaded] = useState(false)
   const [reduced, setReduced] = useState(false)
+  const [finePointer, setFinePointer] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const sectionRef = useRef<HTMLElement>(null)
+  const tiltRaf = useRef(0)
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
     setReduced(mq.matches)
+    // Only enable the pointer-tilt layer for precise pointers (mouse /
+    // trackpad); coarse/touch pointers skip it for calmer, cheaper motion.
+    setFinePointer(window.matchMedia("(pointer: fine)").matches)
     const raf = requestAnimationFrame(() => setLoaded(true))
     if (mq.matches) return () => cancelAnimationFrame(raf)
 
@@ -48,21 +68,42 @@ export default function Hero() {
       cancelAnimationFrame(raf)
       window.removeEventListener("scroll", onScroll)
       if (sraf) cancelAnimationFrame(sraf)
+      // Also cancel any queued pointer-tilt frame so it can't setTilt after
+      // unmount (resetTilt only fires on mouse-leave, not on teardown).
+      if (tiltRaf.current) cancelAnimationFrame(tiltRaf.current)
     }
   }, [])
 
+  const tiltEnabled = !reduced && finePointer
+
   function onPointer(e: React.MouseEvent) {
-    if (reduced) return
-    const r = sectionRef.current?.getBoundingClientRect()
-    if (!r) return
-    setTilt({
-      x: ((e.clientX - r.left) / r.width - 0.5) * 16,
-      y: ((e.clientY - r.top) / r.height - 0.5) * 16,
+    if (!tiltEnabled) return
+    // Capture coordinates now; compute against a fresh rect inside the
+    // next frame. rAF-throttling collapses a burst of mousemove events
+    // into one state update per frame — key for low-end perf.
+    const { clientX, clientY } = e
+    if (tiltRaf.current) return
+    tiltRaf.current = requestAnimationFrame(() => {
+      tiltRaf.current = 0
+      const r = sectionRef.current?.getBoundingClientRect()
+      if (!r) return
+      setTilt({
+        x: ((clientX - r.left) / r.width - 0.5) * TILT_RANGE_PX,
+        y: ((clientY - r.top) / r.height - 0.5) * TILT_RANGE_PX,
+      })
     })
   }
 
-  const parallax = reduced ? 0 : scrollY * 0.35
-  const kb = reduced ? "none" : "d6Ken 18s cubic-bezier(0.25,0.1,0.25,1) both"
+  function resetTilt() {
+    if (tiltRaf.current) {
+      cancelAnimationFrame(tiltRaf.current)
+      tiltRaf.current = 0
+    }
+    setTilt({ x: 0, y: 0 })
+  }
+
+  const parallax = reduced ? 0 : scrollY * PARALLAX_FACTOR
+  const kb = reduced ? "none" : KEN_BURNS
 
   return (
     <section
@@ -70,7 +111,7 @@ export default function Hero() {
       id="home"
       aria-label="Firm introduction"
       onMouseMove={onPointer}
-      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+      onMouseLeave={resetTilt}
       style={{
         position: "relative",
         minHeight: "100svh",
@@ -88,7 +129,7 @@ export default function Hero() {
           inset: "-8% 0 0 0",
           overflow: "hidden",
           zIndex: 0,
-          transform: `translate3d(${tilt.x * 0.4}px, ${parallax + tilt.y * 0.4}px, 0)`,
+          transform: `translate3d(${tilt.x * TILT_BG_FACTOR}px, ${parallax + tilt.y * TILT_BG_FACTOR}px, 0)`,
           transition: reduced ? "none" : `transform 300ms ${MOTION.easeOut}`,
           willChange: "transform",
         }}
@@ -171,6 +212,9 @@ export default function Hero() {
             fontSize: "clamp(2.8rem,8vw,6.5rem)",
             fontWeight: 700,
             lineHeight: 1.05,
+            // Slight negative tracking tightens the large display serif so
+            // the wordmark reads as one confident unit, not spaced letters.
+            letterSpacing: "-0.015em",
             color: "var(--d6-hero-text)",
             margin: "0 0 1.5rem",
             maxWidth: "16ch",
@@ -212,11 +256,14 @@ export default function Hero() {
         <p
           style={{
             fontFamily: FONT.body,
-            fontSize: "clamp(0.92rem,1.5vw,1.08rem)",
-            fontWeight: 300,
+            fontSize: "clamp(0.94rem,1.5vw,1.1rem)",
+            // 400 over 300: hairline weight on the dark scrim read thin and
+            // dipped legibility at small sizes; 400 holds prestige elegance
+            // while restoring comfortable contrast. Generous 1.75 leading kept.
+            fontWeight: 400,
             lineHeight: 1.75,
             color: "var(--d6-hero-muted)",
-            maxWidth: "55ch",
+            maxWidth: "52ch",
             marginBottom: "2.5rem",
             opacity: loaded ? 1 : 0,
             transform: loaded ? "none" : "translateY(16px)",
@@ -295,7 +342,7 @@ export default function Hero() {
 
       <style>{`
         @media (prefers-reduced-motion: no-preference) {
-          @keyframes d6Ken { from { transform: scale(1.0); } to { transform: scale(1.09); } }
+          @keyframes d6Ken { from { transform: scale(1.0); } to { transform: scale(1.04); } }
           @keyframes d6ScrollCue {
             0% { transform: translateY(-100%); }
             60%,100% { transform: translateY(100%); }

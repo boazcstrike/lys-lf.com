@@ -9,6 +9,7 @@ import {
 import type { IconType } from "react-icons"
 
 import SectionTitle from "@/app/components/section-title"
+import Reveal from "@/app/components/reveal"
 import type { PracticeArea } from "@/app/types"
 
 interface PracticeAreasProps {
@@ -37,20 +38,23 @@ const PracticeAreas = ({ practiceAreas }: PracticeAreasProps): React.ReactNode =
           {practiceAreas.map((area, index) => {
             const IconComponent = iconMap[area.icon] ?? FallbackIcon
             return (
-              <div
+              <Reveal
                 key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-zinc-200 hover:-translate-y-2 w-full max-w-sm"
+                delay={index * 70}
+                className="w-full max-w-sm"
               >
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-zinc-600 to-zinc-700 rounded-2xl group-hover:from-zinc-700 group-hover:to-zinc-800 transition-all duration-300 group-hover:scale-110">
-                    <IconComponent className="w-8 h-8 text-white" aria-hidden={true} />
+                <div className="group h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-zinc-200 hover:-translate-y-2">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-zinc-600 to-zinc-700 rounded-2xl group-hover:from-zinc-700 group-hover:to-zinc-800 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                      <IconComponent className="w-8 h-8 text-white" aria-hidden={true} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-800 group-hover:text-zinc-700 transition-colors duration-300">
+                      {area.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed text-base">{area.description}</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 group-hover:text-zinc-700 transition-colors duration-300">
-                    {area.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed text-base">{area.description}</p>
                 </div>
-              </div>
+              </Reveal>
             )
           })}
         </div>

@@ -30,10 +30,14 @@
   #             required — a static export cannot generate per-request
   #             nonces, and both the Consent Mode bootstrap and Next's
   #             runtime emit inline scripts.
-  #   style   : 'unsafe-inline' for Tailwind/runtime inline styles.
-  #   font    : self — next/font self-hosts the Google fonts at build.
-  #   img/connect: GA endpoints for measurement + Consent Mode.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com"
+  #   style   : 'unsafe-inline' for Tailwind/runtime inline styles; Maps injects
+  #             a Google Fonts stylesheet.
+  #   font    : self — next/font self-hosts most fonts; Maps pulls Roboto from
+  #             fonts.gstatic.com.
+  #   img/connect: GA endpoints for measurement + Consent Mode; Google Maps
+  #             tiles/markers (JS API on the main site) + fonts.
+  #   frame   : Google Maps iframe embeds used on the /drafts/* pages.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; frame-src 'self' https://www.google.com https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://maps.gstatic.com https://*.googleapis.com https://*.google.com https://*.ggpht.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://maps.googleapis.com https://maps.gstatic.com"
 
   # Long-lived immutable cache for fingerprinted Next assets.
   <FilesMatch "\.(?:js|css|woff2?|webp|avif|png|jpg|jpeg|gif|svg|ico)$">

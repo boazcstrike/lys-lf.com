@@ -263,13 +263,13 @@ const PreferencesBody: FC<PreferencesBodyProps> = ({ draft, setDraft }) => (
     <div className="mt-5 divide-y divide-white/10 border-y border-white/10">
       <CategoryRow
         title="Strictly necessary"
-        description="Security, page layout, and remembering this consent choice. Always active."
+        description="Keeps the site secure and remembers your cookie choice (stored in your browser, not a tracking cookie). Always active."
         checked
         locked
       />
       <CategoryRow
         title="Analytics"
-        description="Google Analytics — anonymous usage statistics to help us improve the site. No advertising or profiling."
+        description="Google Analytics — aggregated usage statistics to help us improve the site. No advertising or profiling."
         checked={draft.analytics}
         onChange={(v) =>
           setDraft((prev) => ({ ...prev, analytics: v }))

@@ -91,6 +91,7 @@ export default function CtaBanner() {
               color: "var(--d6-slab-text)",
               margin: 0,
               marginBottom: "1.5rem",
+              textWrap: "balance",
             }}
           >
             Have Legal Problems?
@@ -118,6 +119,7 @@ export default function CtaBanner() {
               lineHeight: 1.7,
               maxWidth: "55ch",
               margin: "0 auto 2.5rem",
+              textWrap: "pretty",
             }}
           >
             Our team of experienced attorneys is ready to assist you.
@@ -136,6 +138,7 @@ export default function CtaBanner() {
             {/* Primary — phone, gold fill */}
             <a
               href={`tel:${contact.phone.replace(/\s/g, "")}`}
+              className="d3-cta"
               onMouseEnter={() => setPrimaryHover(true)}
               onMouseLeave={() => {
                 setPrimaryHover(false)
@@ -162,7 +165,6 @@ export default function CtaBanner() {
                 transform: primaryPress ? "scale(0.97)" : "scale(1)",
                 transition:
                   "filter 200ms ease-out, transform 150ms ease-out",
-                outline: "2px solid transparent",
               }}
             >
               {contact.phoneDisplay}
@@ -171,6 +173,7 @@ export default function CtaBanner() {
             {/* Secondary — email, ghost */}
             <a
               href={`mailto:${contact.email}`}
+              className="d3-cta"
               onMouseEnter={() => setSecondaryHover(true)}
               onMouseLeave={() => {
                 setSecondaryHover(false)
@@ -197,7 +200,6 @@ export default function CtaBanner() {
                 transform: secondaryPress ? "scale(0.97)" : "scale(1)",
                 transition:
                   "background-color 200ms ease-out, border-color 200ms ease-out, transform 150ms ease-out",
-                outline: "2px solid transparent",
               }}
             >
               {contact.email}

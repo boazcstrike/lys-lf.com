@@ -1,4 +1,6 @@
 import siteConfig, { headerConfig } from "@/app/assets/data/site-config"
+import MobileNav from "./MobileNav"
+import { NAV_ITEMS } from "./nav-items"
 
 /**
  * Hero — Quiet Luxury direction.
@@ -13,19 +15,36 @@ export default function Hero() {
 
   return (
     <header
+      id="home"
+      tabIndex={-1}
       style={{
         backgroundColor: "var(--d6-bg)",
         fontFamily: "var(--font-source-sans), system-ui, sans-serif",
       }}
-      className="w-full"
+      className="w-full focus:outline-none"
     >
+      {/* Reduced-motion-safe entrance: a quiet 8px rise + fade for the hero
+          content. Disabled under prefers-reduced-motion. */}
+      <style>{`
+        @keyframes d2HeroRise {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .d2-rise {
+          animation: d2HeroRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .d2-rise-delayed { animation-delay: 0.12s; }
+        @media (prefers-reduced-motion: reduce) {
+          .d2-rise { animation: none; }
+        }
+      `}</style>
       {/* ── Utility top bar ────────────────────────────────────────── */}
       <div
         style={{ borderBottom: "1px solid var(--d6-hair)" }}
         className="hidden sm:block"
       >
         <div
-          style={{ color: "var(--d6-faint)" }}
+          style={{ color: "var(--d6-muted)" }}
           className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2.5 text-[11px]"
         >
           <span
@@ -54,7 +73,7 @@ export default function Hero() {
       </div>
 
       {/* ── Logo / nav bar ─────────────────────────────────────────── */}
-      <div style={{ borderBottom: "1px solid var(--d6-hair)" }}>
+      <div style={{ borderBottom: "1px solid var(--d6-hair)" }} className="relative">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-5">
           <a
             href="#"
@@ -92,19 +111,15 @@ export default function Hero() {
             </div>
           </a>
 
-          <nav aria-label="Main navigation">
+          {/* Desktop nav — md and up. Mobile disclosure handles below md.
+              Wrapper is gated to md so screen readers don't meet an empty
+              "Main navigation" landmark on phones. */}
+          <nav aria-label="Main navigation" className="hidden md:block">
             <ul
               style={{ color: "var(--d6-muted)" }}
-              className="hidden items-center gap-8 text-[11px] font-medium uppercase tracking-widest md:flex"
+              className="flex items-center gap-8 text-[11px] font-medium uppercase tracking-widest"
             >
-              {(
-                [
-                  ["Practice Areas", "#practice-areas"],
-                  ["About", "#about"],
-                  ["Team", "#team"],
-                  ["Contact", "#contact"],
-                ] as const
-              ).map(([label, href]) => (
+              {NAV_ITEMS.map(({ label, href }) => (
                 <li key={label}>
                   <a
                     href={href}
@@ -117,13 +132,16 @@ export default function Hero() {
               ))}
             </ul>
           </nav>
+
+          {/* Mobile nav — hamburger disclosure, below md. */}
+          <MobileNav />
         </div>
       </div>
 
       {/* ── Hero split layout ──────────────────────────────────────── */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-8 py-16 md:grid-cols-2 md:gap-16 md:py-24 lg:py-28">
         {/* Left: text */}
-        <div className="flex flex-col">
+        <div className="d2-rise flex flex-col">
           {/* Eyebrow label */}
           <p
             style={{ color: "var(--d6-accent)", letterSpacing: "0.22em", fontSize: "10px" }}
@@ -139,6 +157,7 @@ export default function Hero() {
               color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.08,
+              letterSpacing: "-0.01em",
             }}
             className="mb-6 text-[2.75rem] sm:text-[3.5rem] lg:text-[3.75rem]"
           >
@@ -160,7 +179,7 @@ export default function Hero() {
           </p>
 
           <p
-            style={{ color: "var(--d6-faint)", lineHeight: 1.75 }}
+            style={{ color: "var(--d6-muted)", lineHeight: 1.75 }}
             className="mb-10 text-sm"
           >
             {description}
@@ -200,7 +219,7 @@ export default function Hero() {
         </div>
 
         {/* Right: framed photo */}
-        <div className="relative mt-6 md:mt-0">
+        <div className="d2-rise d2-rise-delayed relative mt-6 md:mt-0">
           {/* Decorative offset border */}
           <div
             style={{

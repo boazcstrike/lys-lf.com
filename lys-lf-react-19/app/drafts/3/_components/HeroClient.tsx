@@ -12,6 +12,13 @@ import CountUp from "./CountUp"
  * - Scroll indicator fades in after 1.2s.
  * Colors use --d6-* CSS custom properties set by ThemeProvider.
  */
+// Hero background is the Largest Contentful Paint element. Its source and
+// intrinsic dimensions are declared once so the preload hint and the <img>
+// stay in sync (DRY) and the browser can reserve the correct aspect ratio.
+const HERO_IMAGE_SRC = "/images/optimized/LYS-29.webp"
+const HERO_IMAGE_WIDTH = 1920
+const HERO_IMAGE_HEIGHT = 1080
+
 export default function HeroClient() {
   const { firmName, firmShortName, establishedYear } = siteConfig
   const [loaded, setLoaded] = useState(false)
@@ -31,7 +38,7 @@ export default function HeroClient() {
 
   return (
     <section
-      id="hero"
+      id="home"
       aria-label="Firm introduction"
       style={{
         position: "relative",
@@ -41,15 +48,31 @@ export default function HeroClient() {
         overflow: "hidden",
       }}
     >
+      {/* High-priority hint for the LCP background image. React 19 hoists this
+          <link> into <head> and dedupes it against the <img> below; it mainly
+          reinforces fetch priority (the <img> is already in the server HTML). */}
+      <link
+        rel="preload"
+        as="image"
+        href={HERO_IMAGE_SRC}
+        fetchPriority="high"
+      />
+
       {/* Background photo wrapper — clips the scale transform to prevent overflow */}
       <div
         aria-hidden="true"
         style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}
       >
         <img
-          src="/images/optimized/LYS-29.webp"
+          src={HERO_IMAGE_SRC}
           alt=""
           aria-hidden="true"
+          // High priority + intrinsic dimensions: the browser fetches this LCP
+          // image eagerly; width/height give it the 16:9 aspect ratio for decode.
+          fetchPriority="high"
+          decoding="async"
+          width={HERO_IMAGE_WIDTH}
+          height={HERO_IMAGE_HEIGHT}
           style={{
             width: "100%",
             height: "100%",
@@ -142,10 +165,12 @@ export default function HeroClient() {
             fontSize: "clamp(2.6rem, 7vw, 6rem)",
             fontWeight: 400,
             lineHeight: 1.08,
+            letterSpacing: "-0.01em",
             color: "var(--d6-hero-text)",
             margin: 0,
             marginBottom: "1.5rem",
             maxWidth: "18ch",
+            textWrap: "balance",
           }}
         >
           {firmName}
@@ -161,6 +186,7 @@ export default function HeroClient() {
             color: "var(--d6-hero-muted)",
             maxWidth: "55ch",
             marginBottom: "2.5rem",
+            textWrap: "pretty",
           }}
         >
           {headerConfig.tagline}
@@ -171,6 +197,7 @@ export default function HeroClient() {
           {/* Primary — gold fill */}
           <a
             href="#contact"
+            className="d3-cta"
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => {
               setPrimaryHover(false)
@@ -197,8 +224,6 @@ export default function HeroClient() {
               transform: primaryPress ? "scale(0.97)" : "scale(1)",
               transition:
                 "filter 200ms ease-out, transform 150ms ease-out",
-              outline: "2px solid transparent",
-              outlineOffset: "2px",
             }}
           >
             Consult Us
@@ -207,6 +232,7 @@ export default function HeroClient() {
           {/* Secondary — ghost */}
           <a
             href="#practice-areas"
+            className="d3-cta"
             onMouseEnter={() => setSecondaryHover(true)}
             onMouseLeave={() => {
               setSecondaryHover(false)
@@ -234,8 +260,6 @@ export default function HeroClient() {
               transform: secondaryPress ? "scale(0.97)" : "scale(1)",
               transition:
                 "background-color 200ms ease-out, border-color 200ms ease-out, transform 150ms ease-out",
-              outline: "2px solid transparent",
-              outlineOffset: "2px",
             }}
           >
             Our Practice
@@ -280,13 +304,21 @@ export default function HeroClient() {
         </span>
       </div>
 
-      {/* Ken-burns keyframe — inside client component, safe for static export */}
+      {/* Ken-burns keyframe + keyboard focus ring — scoped to the client
+          component, safe for static export. The CTAs use a class (not inline
+          outline) so :focus-visible can paint a visible gold ring for keyboard
+          users while mouse clicks stay ring-free. */}
       <style>{`
         @media (prefers-reduced-motion: no-preference) {
           @keyframes d3KenBurns {
             from { transform: scale(1.0); }
             to   { transform: scale(1.06); }
           }
+        }
+        .d3-cta { outline: none; }
+        .d3-cta:focus-visible {
+          outline: 2px solid var(--d6-accent);
+          outline-offset: 3px;
         }
       `}</style>
     </section>

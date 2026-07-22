@@ -16,8 +16,9 @@
 # next.js
 /.next/
 /out/
-# build artifact archives (e.g. out.zip) — never commit
+# build artifact archives (e.g. out.zip, backups) — never commit
 *.zip
+*.tar.gz
 
 # production
 /build

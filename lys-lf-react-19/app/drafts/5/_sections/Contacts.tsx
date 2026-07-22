@@ -45,6 +45,7 @@ const Contacts: React.FC = () => {
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
               color: "var(--d6-accent)",
               lineHeight: 1,
+              letterSpacing: "-0.02em",
             }}
           >
             06
@@ -56,6 +57,7 @@ const Contacts: React.FC = () => {
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               color: "var(--d6-heading)",
               lineHeight: 1,
+              letterSpacing: "-0.01em",
             }}
           >
             Contact &amp; Location

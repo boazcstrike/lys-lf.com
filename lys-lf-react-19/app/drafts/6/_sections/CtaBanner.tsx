@@ -6,14 +6,16 @@ import Reveal from "../_components/Reveal"
 import { FONT } from "../_components/theme"
 
 /**
- * CtaBanner — kinetic marquee band (Draft 6).
+ * CtaBanner — refined closing call-to-action (Draft 6).
  *
- * An infinite accent "LET'S TALK" marquee scrolls behind a centered
- * headline; magnetic CTA buttons sit on top. Marquee pauses for
- * prefers-reduced-motion. Panel bg keeps AA contrast on hero-text type.
- * Colors via CSS custom properties (--d6-*).
+ * A single static, oversized firm wordmark sits as a faint editorial
+ * watermark behind a centered headline; a small accent kicker anchors
+ * the eye and magnetic CTA buttons sit on top. The kinetic feel now
+ * comes from the entrance Reveal alone — the previous looping
+ * "LET'S TALK" marquee was dropped as it read decorative rather than
+ * prestige. No infinite motion, so nothing to pause for reduced-motion.
+ * Panel bg keeps AA contrast on hero-text type. Colors via --d6-* vars.
  */
-const MARQUEE = "LET'S TALK · LEGAL COUNSEL · "
 
 export default function CtaBanner() {
   return (
@@ -26,7 +28,7 @@ export default function CtaBanner() {
         padding: "clamp(4.5rem,10vw,8rem) 1.25rem",
       }}
     >
-      {/* Marquee backdrop */}
+      {/* Static editorial watermark — single, still, low-contrast wordmark */}
       <div
         aria-hidden="true"
         style={{
@@ -34,25 +36,18 @@ export default function CtaBanner() {
           inset: 0,
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           whiteSpace: "nowrap",
-          opacity: 0.08,
+          opacity: 0.06,
           pointerEvents: "none",
+          fontFamily: FONT.display,
+          fontWeight: 700,
+          fontSize: "clamp(5rem,18vw,14rem)",
+          letterSpacing: "-0.02em",
+          color: "var(--d6-accent)",
         }}
       >
-        <div
-          className="d6-marquee"
-          style={{
-            display: "flex",
-            fontFamily: FONT.display,
-            fontWeight: 700,
-            fontSize: "clamp(4rem,12vw,10rem)",
-            color: "var(--d6-accent)",
-            animation: "d6Marquee 28s linear infinite",
-          }}
-        >
-          <span>{MARQUEE.repeat(6)}</span>
-          <span>{MARQUEE.repeat(6)}</span>
-        </div>
+        {siteConfig.firmShortName}
       </div>
 
       {/* Foreground */}
@@ -66,12 +61,28 @@ export default function CtaBanner() {
             textAlign: "center",
           }}
         >
+          <p
+            style={{
+              fontFamily: FONT.body,
+              fontSize: "0.72rem",
+              fontWeight: 600,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: "var(--d6-accent)",
+              margin: "0 0 1.25rem",
+            }}
+          >
+            Legal Counsel
+          </p>
           <h2
             style={{
               fontFamily: FONT.display,
               fontWeight: 700,
               fontSize: "clamp(2.2rem,6vw,4.2rem)",
               lineHeight: 1.05,
+              // Match the hero headline's optical tracking for a consistent
+              // display-serif voice across the page.
+              letterSpacing: "-0.015em",
               color: "var(--d6-hero-text)",
               margin: "0 0 1.75rem",
             }}
@@ -97,16 +108,6 @@ export default function CtaBanner() {
           </div>
         </div>
       </Reveal>
-
-      <style>{`
-        @keyframes d6Marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .d6-marquee { animation: none !important; }
-        }
-      `}</style>
     </section>
   )
 }

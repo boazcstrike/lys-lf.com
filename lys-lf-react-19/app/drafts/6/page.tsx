@@ -9,6 +9,7 @@ import Contacts from "./_sections/Contacts"
 import Footer from "./_sections/Footer"
 import ScrollProgress from "./_components/ScrollProgress"
 import FloatingNav from "./_components/FloatingNav"
+import MobileNav from "./_components/MobileNav"
 import ThemeProvider from "@/app/drafts/_theme/ThemeProvider"
 import ColorSwitcher from "@/app/drafts/_theme/ColorSwitcher"
 
@@ -29,19 +30,26 @@ export const metadata: Metadata = {
  *    scroll-spy rail, a reading-progress bar, count-up stats, and a
  *    kinetic marquee.
  *
- * Palette (requested): #000000 base · #14213d panels · #fca311 accent ·
- * #e5e5e5 / #ffffff text. Every interaction respects
- * prefers-reduced-motion. All styling inline — globals/root layout
- * untouched. scroll-behavior: smooth for anchor + scroll-spy nav.
+ * Palette: #000000 base · #14213d navy panels · #D2A24C amber-gold accent ·
+ * #e5e5e5 / #ffffff text. The default accent is the restrained amber-gold
+ * "Kinetic Amber" scheme (chosen for law-firm gravitas over the original
+ * vibrant #fca311 orange, which remains selectable as "kinetic-orange").
+ * Every interaction respects prefers-reduced-motion. All draft styling is
+ * inline — globals/root layout untouched. scroll-behavior: smooth for
+ * anchor + scroll-spy nav.
  *
- * Theme: defaultScheme="kinetic" (Kinetic Orange) — storageKey "lys-scheme-d6"
- * allows the user to switch to any of the 7 shared luxury schemes.
+ * Theme: defaultScheme="kinetic" (Kinetic Amber, #D2A24C) — storageKey
+ * "lys-scheme-d6" lets the user switch to any of the shared luxury schemes.
+ * Note: the "kinetic" accent token is defined in the shared
+ * app/drafts/_theme/schemes.ts (outside this folder); this draft consumes
+ * it via --d6-* custom properties and does not hard-code the hex.
  */
 export default function Draft6Page() {
   return (
     <ThemeProvider defaultScheme="kinetic" storageKey="lys-scheme-d6">
       <ScrollProgress />
       <FloatingNav />
+      <MobileNav />
       <ColorSwitcher />
       <Hero />
       <PracticeAreas />

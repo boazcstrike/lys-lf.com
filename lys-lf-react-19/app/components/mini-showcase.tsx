@@ -1,5 +1,7 @@
 import React, { FC } from "react"
 
+import Reveal from "@/app/components/reveal"
+
 /**
  * MiniShowcase component - displays a hero section with text overlay
  * 
@@ -15,9 +17,13 @@ interface MiniShowcaseProps {
 const MiniShowcase: FC<MiniShowcaseProps> = ({ text }) => {
   return (
     <div className="bg-[linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('/images/optimized/LYS-38.webp')] bg-cover bg-fixed bg-center bg-no-repeat pt-12 pb-8 text-center">
-      <h2 className="font-raleway font-bold uppercase text-[2.6em] text-white my-[1.2em]">
+      <Reveal
+        as="h2"
+        y={16}
+        className="font-raleway font-bold uppercase text-[2.6em] text-white my-[1.2em]"
+      >
         {text}
-      </h2>
+      </Reveal>
     </div>
   )
 }

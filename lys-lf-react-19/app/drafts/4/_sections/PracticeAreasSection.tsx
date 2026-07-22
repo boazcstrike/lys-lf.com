@@ -1,6 +1,6 @@
 /**
  * PracticeAreasSection — Heritage Traditional (server component)
- * Cream background, double-rule frame, centered serif heading,
+ * Cream background, double-rule frame, left-aligned serif heading block,
  * animated OrnamentalDivider, PracticeCard for hover interactivity.
  * Passes iconName string (not the component) to avoid server→client fn boundary.
  *
@@ -29,25 +29,34 @@ export default function PracticeAreasSection() {
         aria-hidden="true"
       />
 
-      <div className="max-w-5xl mx-auto px-6 py-16 sm:py-20 text-center">
-        {/* Heading block */}
+      <div className="max-w-5xl mx-auto px-6 py-16 sm:py-20">
+        {/* Heading block — left-aligned editorial intro (asymmetry vs. the grid) */}
         <Reveal>
           <h2
             id="pa-heading"
-            className="text-2xl sm:text-3xl mb-2"
-            style={{ fontFamily: "var(--font-libre)", color: "var(--d6-heading)", fontWeight: 700 }}
+            className="text-2xl sm:text-3xl leading-[1.1] mb-2"
+            style={{
+              fontFamily: "var(--font-libre)",
+              color: "var(--d6-heading)",
+              fontWeight: 700,
+              // Match the hero h1's display-serif tracking for heading parity.
+              letterSpacing: "-0.01em",
+            }}
           >
             Areas of Practice
           </h2>
 
+          {/* Subtitle — small gold label on the light cream bg. Uses the
+              text-safe accent (--d6-accent-text) so it clears WCAG AA where the
+              decorative gold would fall short as small copy. */}
           <p
             className="text-xs tracking-widest uppercase mb-6"
-            style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent)" }}
+            style={{ fontFamily: "var(--font-lora)", color: "var(--d6-accent-text)" }}
           >
             Our Fields of Expertise
           </p>
 
-          <OrnamentalDivider className="my-8 max-w-sm mx-auto" color="var(--d6-accent)" />
+          <OrnamentalDivider className="mt-6 mb-8 max-w-sm" color="var(--d6-accent)" />
         </Reveal>
 
         {/* Cards grid — role="list" on wrapper; each PracticeCard has role="listitem" */}

@@ -30,6 +30,12 @@
  *
  * Styling: --d6-* CSS custom properties so the switcher reflects the
  *   currently active scheme regardless of which draft is hosting it.
+ *
+ * Dev-only: this floating picker is a design tool and must never ship in a
+ *   production bundle. The default export gates on `process.env.NODE_ENV`
+ *   (statically inlined by Next at build time), mirroring
+ *   `_components/draft-switcher.tsx`. In `next build` the gate becomes
+ *   `return null` and the hook-using implementation is tree-shaken out.
  */
 
 import { useEffect, useRef, useState } from "react"
@@ -102,7 +108,19 @@ function PaletteIcon() {
 /* ColorSwitcher                                                        */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Dev-only gate. Renders nothing outside `next dev`. Because
+ * `process.env.NODE_ENV` is statically inlined at build time, this compiles to
+ * `return null` in production and `ColorSwitcherPanel` (with all its hooks)
+ * is tree-shaken out of the bundle. Keeping the hooks in the child component
+ * avoids a conditional-hooks lint violation in the gate itself.
+ */
 export default function ColorSwitcher() {
+  if (process.env.NODE_ENV !== "development") return null
+  return <ColorSwitcherPanel />
+}
+
+function ColorSwitcherPanel() {
   const { scheme, setScheme, schemes, defaultScheme } = useScheme()
   const [open, setOpen] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)

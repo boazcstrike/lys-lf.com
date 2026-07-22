@@ -60,6 +60,7 @@ export default function Team() {
               color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.1,
+              letterSpacing: "-0.01em",
             }}
             className="text-[2.25rem] sm:text-[2.75rem]"
           >
@@ -182,10 +183,13 @@ export default function Team() {
                         </p>
 
                         {employee.position && (
+                          /* Role label — muted (not faint) + heavier weight and a
+                             touch larger for legible contrast. */
                           <p
                             style={{
-                              color: "var(--d6-faint)",
-                              fontSize: "11px",
+                              color: "var(--d6-muted)",
+                              fontSize: "12px",
+                              fontWeight: 500,
                               letterSpacing: "0.05em",
                               marginTop: "0.25rem",
                             }}
@@ -221,7 +225,7 @@ export default function Team() {
                             {employee.mobile && (
                               <a
                                 href={`tel:${employee.mobile}`}
-                                style={{ color: "var(--d6-faint)", fontSize: "11px", display: "block" }}
+                                style={{ color: "var(--d6-muted)", fontSize: "11px", display: "block" }}
                                 className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                               >
                                 {employee.mobile}
@@ -230,7 +234,7 @@ export default function Team() {
                             {employee.email && (
                               <a
                                 href={`mailto:${employee.email}`}
-                                style={{ color: "var(--d6-faint)", fontSize: "11px", display: "block" }}
+                                style={{ color: "var(--d6-muted)", fontSize: "11px", display: "block" }}
                                 className="transition-colors hover:text-[var(--d6-heading)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--d6-accent)] focus-visible:ring-offset-2"
                               >
                                 {employee.email}

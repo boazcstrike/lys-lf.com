@@ -16,7 +16,7 @@ import lysLogo from "@/public/images/optimized/lys-white-logo-darker.webp"
 const Footer: FC = () => {
   return (
     <footer className="bg-[url('/images/optimized/zwartevilt_@2X.webp')] bg-left-top bg-repeat px-8 py-8 pb-12 flex flex-col items-center">
-      <div className="max-w-[20em] mb-4">
+      <div className="logo-sheen max-w-[20em] mb-4 transition-transform duration-500 hover:-translate-y-1">
         <img src={lysLogo.src} alt="LYS Logo" loading="lazy" />
       </div>
       <span className="text-[#cccccc] text-sm text-center block">
@@ -25,7 +25,9 @@ const Footer: FC = () => {
       <div className="text-[#cccccc] text-sm text-center block">
         Website by{" "}
         <a
-          href="https://www.facebook.com/boazcstrike/"
+          href="https://www.linkedin.com/in/boaz-sze-44b00291/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-[#696969] font-semibold transition-colors duration-300 hover:text-white"
         >
           Boaz Sze

@@ -71,7 +71,7 @@ export default function Footer() {
           >
             Website by{" "}
             <a
-              href="https://www.facebook.com/boazcstrike/"
+              href="https://www.linkedin.com/in/boaz-sze-44b00291/"
               target="_blank"
               rel="noopener noreferrer"
               className="d6-footer-link underline underline-offset-2"

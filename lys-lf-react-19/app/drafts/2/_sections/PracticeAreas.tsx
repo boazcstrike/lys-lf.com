@@ -54,6 +54,7 @@ export default function PracticeAreas() {
               color: "var(--d6-heading)",
               fontWeight: 500,
               lineHeight: 1.1,
+              letterSpacing: "-0.01em",
             }}
             className="text-[2.25rem] sm:text-[2.75rem]"
           >
@@ -125,9 +126,11 @@ export default function PracticeAreas() {
                   aria-hidden="true"
                 />
 
+                {/* Body copy — muted (not faint) + slightly heavier weight for
+                    readable contrast on the stone card background. */}
                 <p
-                  style={{ color: "var(--d6-faint)", lineHeight: 1.7 }}
-                  className="text-sm"
+                  style={{ color: "var(--d6-muted)", lineHeight: 1.7, fontWeight: 450 }}
+                  className="text-[0.9375rem]"
                 >
                   {area.description}
                 </p>

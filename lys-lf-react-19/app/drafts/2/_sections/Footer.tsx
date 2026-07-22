@@ -52,7 +52,7 @@ export default function Footer() {
         <p style={{ color: "var(--d6-hero-muted)", fontSize: "11px" }}>
           Website by{" "}
           <a
-            href="https://www.facebook.com/boazcstrike/"
+            href="https://www.linkedin.com/in/boaz-sze-44b00291/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "var(--d6-accent)" }}

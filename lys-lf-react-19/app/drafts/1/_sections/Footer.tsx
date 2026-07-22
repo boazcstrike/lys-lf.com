@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
             >
               Website by{" "}
               <a
-                href="https://www.facebook.com/boazcstrike/"
+                href="https://www.linkedin.com/in/boaz-sze-44b00291/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"

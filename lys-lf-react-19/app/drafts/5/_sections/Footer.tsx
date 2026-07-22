@@ -3,7 +3,7 @@
  *
  * Strict black bar. White logo left-aligned, firm name in Space Grotesk,
  * established year in faint small-caps label. Accent top border.
- * "Website by Boaz Sze" credit right-aligned with external Facebook link.
+ * "Website by Boaz Sze" credit right-aligned with external LinkedIn link.
  * No decorations, no rounded corners.
  *
  * Token mapping (d5-default):
@@ -19,8 +19,10 @@ import React from "react"
 import siteConfig from "@/app/assets/data/site-config"
 
 const Footer: React.FC = () => {
+  // Top border uses accent2 — a gold hairline reads on the dark slab under the
+  // navy/gold tone; equals accent under every other scheme.
   return (
-    <footer style={{ backgroundColor: "var(--d6-slab)", borderTop: "2px solid var(--d6-accent)" }}>
+    <footer style={{ backgroundColor: "var(--d6-slab)", borderTop: "2px solid var(--d6-accent2)" }}>
       <div
         className="flex flex-col gap-6 px-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:px-14 xl:px-20"
       >
@@ -62,10 +64,10 @@ const Footer: React.FC = () => {
         >
           Website by{" "}
           <a
-            href="https://www.facebook.com/boazcstrike/"
+            href="https://www.linkedin.com/in/boaz-sze-44b00291/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent)]"
+            className="underline underline-offset-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--d6-accent2)]"
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Boaz Sze

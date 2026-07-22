@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa"
 
 import lysLogo from "@/public/images/optimized/lys-white-logo-darker.webp"
 import { siteConfig, headerConfig } from "@/app/assets/data/site-config"
-import Spinner from "@/app/components/spinner"
+import BrandLoader from "@/app/components/brand-loader"
 
 const Header: FC = (): React.ReactNode => {
   const [backgroundStyle, setBackgroundStyle] = useState<React.CSSProperties>({})
@@ -31,14 +31,7 @@ const Header: FC = (): React.ReactNode => {
   }, [])
 
   if (!isImageLoaded) {
-    return (
-      <section
-        aria-label="LYS Law Firm header loading"
-        className="flex flex-col items-center justify-center h-screen bg-lys-black px-8"
-      >
-        <Spinner size="lg" label="Preparing your case..." />
-      </section>
-    )
+    return <BrandLoader label="Preparing your case" />
   }
 
   return (
@@ -48,12 +41,14 @@ const Header: FC = (): React.ReactNode => {
       style={backgroundStyle}
     >
       <div className="max-w-[45em]">
-        <img
-          src={lysLogo.src}
-          alt="LYS Law Firm logo"
-          className="min-w-0"
-          fetchPriority="high"
-        />
+        <div className="logo-sheen">
+          <img
+            src={lysLogo.src}
+            alt="LYS Law Firm logo"
+            className="min-w-0"
+            fetchPriority="high"
+          />
+        </div>
         <div className="flex flex-col items-center gap-2">
 <p className="text-[#bcbcbc] font-noticia text-[1.55em] tracking-[0.25em] flex items-center gap-2">
             <FaPhoneAlt className="text-[0.75em]" aria-hidden="true" />
