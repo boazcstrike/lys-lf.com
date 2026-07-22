@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "node scripts/strip-drafts.mjs",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
