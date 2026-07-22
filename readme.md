@@ -105,9 +105,8 @@ Static export works on any web server:
 |-----|---------|
 | `lys-lf-react-19/README.md` | Architecture, SOLID/DRY patterns, file structure |
 | `lys-lf-react-19/AGENTS.md` | AI-agent context: static-export rules, code patterns |
-| `lys-lf-react-19/DEPLOYMENT.md` | Bluehost deploy, `.htaccess`, cookie consent |
-| `lys-lf-react-19/docs/INFRASTRUCTURE.md` | Hosting, domain, cPanel/SSH, DNS, email, renewals, credentials map |
-| `lys-lf-react-19/docs/SECURITY.md` | Risk register + deploy / migration security checklists |
+
+> Hosting, deploy, and security runbooks are kept private (not in this public repo).
 
 **Secrets:** real credentials live only in gitignored `.env` (repo root, ops)
 and `lys-lf-react-19/.env.local` (app build vars). Committed `.env.example`

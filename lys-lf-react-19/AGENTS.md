@@ -19,10 +19,7 @@
   <section_ref id="known_issues"/>
 </reading_order>
 
-<reference_docs note="Operational context — read for infra/security/deploy tasks">
-  <doc path="docs/INFRASTRUCTURE.md">Hosting, domain, cPanel/SSH, DNS, email, renewal dates, credentials map. Secrets in gitignored repo-root .env.</doc>
-  <doc path="docs/SECURITY.md">Risk register (severity-tagged), positive controls, deploy + WP→static cutover security checklists.</doc>
-  <doc path="DEPLOYMENT.md">Bluehost upload flow, .htaccess replacement, cookie-consent, prod GA/consent decision.</doc>
+<reference_docs note="Operational runbooks (hosting, deploy, security) are kept OUT of this public repo — local only.">
   <secrets_rule enforce="absolute">Real secrets ONLY in gitignored .env / .env.local. Never commit them. Never put ops secrets behind a NEXT_PUBLIC_ prefix (they inline into the browser bundle).</secrets_rule>
 </reference_docs>
 
