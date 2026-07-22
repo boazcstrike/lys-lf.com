@@ -76,3 +76,17 @@ credentials*.json
 *credentials*.local.*
 
 lys-lf-initial
+
+# ---- opsec: PUBLIC repo — keep deploy mechanics & infra runbooks OUT of git ----
+# Recon-sensitive (hosts, paths, transport, runbooks). Kept LOCAL only; never
+# track. Deploy scripts are env-driven — real values live in the gitignored .env.
+lys-lf-react-19/docs/ops/
+lys-lf-react-19/docs/INFRASTRUCTURE.md
+lys-lf-react-19/docs/SECURITY.md
+lys-lf-react-19/DEPLOYMENT.md
+lys-lf-react-19/scripts/deploy.sh
+lys-lf-react-19/scripts/deploy-cpanel.sh
+lys-lf-react-19/scripts/ftps-curl-upload.sh
+lys-lf-react-19/scripts/ftps-deploy.sh
+.github/workflows/deploy.yml
+.github/workflows/deploy-ftps.yml
